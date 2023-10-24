@@ -33,7 +33,7 @@ function ResponsiveAppBar() {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* Mobile View */}
-          <FitnessCenterIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <FitnessCenterIcon sx={{ display: { xs: 'flex', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -42,7 +42,7 @@ function ResponsiveAppBar() {
             href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
-              display: { xs: 'flex', md: 'none' },
+              display: { xs: 'flex', md: 'flex' },
               flexGrow: 1,
               fontFamily: 'monospace',
               fontWeight: 700,
@@ -97,7 +97,6 @@ function ResponsiveAppBar() {
 
 
           {/* Medium View */}
-          <FitnessCenterIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
             {pages.map((page) => (

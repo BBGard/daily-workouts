@@ -6,7 +6,7 @@ import ResponsiveAppBar from "./Components/ResponsiveAppBar";
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary" align="center">
+    <Typography variant="body2" color="white" align="center">
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
         Benjamin Gardiner
@@ -19,11 +19,11 @@ function Copyright() {
 
 function App() {
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="xl" sx={{backgroundColor:"#454545", height:"100vh"}}>
       <ResponsiveAppBar />
 
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" align="center" gutterBottom>
+      <Box sx={{ my: 4, height:"100%", maxHeight: "50vh"}}>
+        <Typography variant="h4" component="h1" align="center" gutterBottom color={'white'}>
           Daily Workouts
         </Typography>
         <Copyright />
