@@ -1,3 +1,6 @@
+/**
+ * @fileoverview This file defines the main App component.
+ */
 import React, { useEffect, useState } from "react";
 import {
   Container,
@@ -54,7 +57,6 @@ function App() {
       !lastGeneratedTimestamp ||
       currentDate.getDate() !== new Date(lastGeneratedTimestamp).getDate()
     ) {
-      console.log("Regenerating workouts");
 
       const workoutList = workoutData.filter(
         (workout) =>
@@ -75,9 +77,7 @@ function App() {
 
   // Save all workouts to localStorage whenever they change
   useEffect(() => {
-    console.log("Saving workouts");
     localStorage.setItem("allWorkouts", JSON.stringify(allWorkouts));
-    console.log("Workouts saved", allWorkouts);
   }, [allWorkouts]);
 
   // Increment the recommended workout
@@ -91,8 +91,6 @@ function App() {
       setRecommendedWorkout(todaysWorkouts[0]);
     }
 
-    // Print the watch count to the console
-    console.log(recommendedWorkout.watchCount);
   }
 
   // Watch the selected workout

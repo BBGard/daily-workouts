@@ -1,3 +1,6 @@
+/**
+ * @fileoverview Defines a component that displays the year and author of the app.
+ */
 import { Typography, Link } from "@mui/material";
 
 export function Copyright() {

@@ -1,20 +1,20 @@
+/**
+ * @fileoverview This file provides the ResponsiveAppBar component.
+ */
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-// import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import { Menu } from '@mui/material';
-// import menu
 
 const pages = ['Workouts', 'Warmups', 'Recovery'];
-// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
