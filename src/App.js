@@ -28,25 +28,7 @@ function App() {
     // Check if there is a local copy of workouts
     const savedAllWorkouts = JSON.parse(localStorage.getItem("allWorkouts"));
 
-    if (savedAllWorkouts) {
-      console.log("Loading saved workouts");
-      setAllWorkouts(savedAllWorkouts);
-
-      // Generate today's workouts and recommended workout
-      generateTodaysWorkouts(savedAllWorkouts);
-    } else {
-      console.log("Loading default workouts");
-      setAllWorkouts(workouts);
-
-      // Generate today's workouts and recommended workout
-      generateTodaysWorkouts(workouts);
-
-      // Save the default workouts to local storage
-      localStorage.setItem("allWorkouts", JSON.stringify(workouts));
-    }
-  }, []);
-
-  // Generate today's workouts and recommended workout
+    // Generate today's workouts and recommended workout
   const generateTodaysWorkouts = (workoutData) => {
     const lastGeneratedTimestamp = localStorage.getItem("lastGeneratedTimestamp");
     const currentDate = new Date();
@@ -74,6 +56,26 @@ function App() {
       setRecommendedWorkout(workoutList[0]);
     }
   };
+
+    if (savedAllWorkouts) {
+      console.log("Loading saved workouts");
+      setAllWorkouts(savedAllWorkouts);
+
+      // Generate today's workouts and recommended workout
+      generateTodaysWorkouts(savedAllWorkouts);
+    } else {
+      console.log("Loading default workouts");
+      setAllWorkouts(workouts);
+
+      // Generate today's workouts and recommended workout
+      generateTodaysWorkouts(workouts);
+
+      // Save the default workouts to local storage
+      localStorage.setItem("allWorkouts", JSON.stringify(workouts));
+    }
+  }, [todaysWorkouts.length]);
+
+
 
   // Save all workouts to localStorage whenever they change
   useEffect(() => {
