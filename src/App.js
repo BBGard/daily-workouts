@@ -12,10 +12,9 @@ import {
   CardContent,
   CardMedia,
 } from "@mui/material";
-import {workouts, workoutSchedule} from "./Data/workouts";
+import { workouts, workoutSchedule } from "./Data/workouts";
 import { Copyright } from "./Components/Copyright";
 import { ResponsiveAppBar } from "./Components/ResponsiveAppBar";
-
 
 function App() {
   // Pick a random workout from the workout schedule
@@ -29,37 +28,45 @@ function App() {
     const savedAllWorkouts = JSON.parse(localStorage.getItem("allWorkouts"));
 
     // Generate today's workouts and recommended workout
-  const generateTodaysWorkouts = (workoutData) => {
-    const lastGeneratedTimestamp = localStorage.getItem("lastGeneratedTimestamp");
-    const currentDate = new Date();
-
-    // Check if the workouts need to be regenerated
-    if (
-      todaysWorkouts.length === 0 ||
-      !lastGeneratedTimestamp ||
-      currentDate.getDate() !== new Date(lastGeneratedTimestamp).getDate()
-    ) {
-
-      const workoutList = workoutData.filter(
-        (workout) =>
-          workout.category.includes(workoutSchedule[currentDate.getDay()].workout)
+    const generateTodaysWorkouts = (workoutData) => {
+      console.log("Generating todays workout");
+      const lastGeneratedTimestamp = localStorage.getItem(
+        "lastGeneratedTimestamp"
       );
+      const currentDate = new Date();
 
-      workoutList.sort((a, b) => (a.watchCount > b.watchCount ? 1 : -1));
+      // Check if the workouts need to be regenerated
+      if (
+        todaysWorkouts.length === 0 ||
+        !lastGeneratedTimestamp ||
+        currentDate.getDate() !== new Date(lastGeneratedTimestamp).getDate()
+      ) {
+        const workoutList = workoutData.filter((workout) =>
+          workout.category.includes(
+            workoutSchedule[currentDate.getDay()].workout
+          )
+        );
 
-      setTodaysWorkouts(workoutList);
+        workoutList.sort((a, b) => (a.watchCount > b.watchCount ? 1 : -1));
 
-      // Store the current date as the last generated timestamp
-      localStorage.setItem("lastGeneratedTimestamp", currentDate);
+        console.log("workoutData", workoutData);
+        console.log("Generated new workouts", workoutList);
 
-      // Set the recommended workout
-      setRecommendedWorkout(workoutList[0]);
-    }
-  };
+        setTodaysWorkouts(workoutList);
 
-    if (savedAllWorkouts) {
+        // Store the current date as the last generated timestamp
+        localStorage.setItem("lastGeneratedTimestamp", currentDate);
+
+        // Set the recommended workout
+        setRecommendedWorkout(workoutList[0]);
+      }
+    };
+
+    if (savedAllWorkouts && savedAllWorkouts.length > 0) {
       console.log("Loading saved workouts");
       setAllWorkouts(savedAllWorkouts);
+
+      console.log("savedAllWorkouts", savedAllWorkouts);
 
       // Generate today's workouts and recommended workout
       generateTodaysWorkouts(savedAllWorkouts);
@@ -75,8 +82,6 @@ function App() {
     }
   }, [todaysWorkouts.length]);
 
-
-
   // Save all workouts to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem("allWorkouts", JSON.stringify(allWorkouts));
@@ -88,12 +93,10 @@ function App() {
 
     if (currentWorkoutIndex < todaysWorkouts.length - 1) {
       setRecommendedWorkout(todaysWorkouts[currentWorkoutIndex + 1]);
-    }
-    else {
+    } else {
       setRecommendedWorkout(todaysWorkouts[0]);
     }
-
-  }
+  };
 
   // Watch the selected workout
   function watchSelectedWorkout() {
@@ -104,9 +107,8 @@ function App() {
     const workoutIndex = allWorkouts.indexOf(recommendedWorkout);
     allWorkouts[workoutIndex].watchCount = recommendedWorkout.watchCount;
 
-     // Save the updated allWorkouts to local storage
-     localStorage.setItem("allWorkouts", JSON.stringify(allWorkouts));
-
+    // Save the updated allWorkouts to local storage
+    localStorage.setItem("allWorkouts", JSON.stringify(allWorkouts));
 
     window.open(recommendedWorkout.link, "_blank");
   }
@@ -131,28 +133,37 @@ function App() {
           {workoutSchedule[new Date().getDay()].workout}
         </Typography>
 
-        <Card sx={{ maxWidth: 345, margin: "1rem auto" }}>
-          <CardMedia
-            component="img"
-            alt="workout video screenshot"
-            height="190"
-            image={recommendedWorkout.thumbnail}
-          />
-          <CardContent sx={{ textAlign: "center", margin: "0 auto", height: "15vh" }}>
-            <Typography gutterBottom variant="h5" component="div">
-              Recommended Workout
-            </Typography>
-            <Typography variant="h7" color="text.primary">
-              {recommendedWorkout.name}<br></br>
-              Duration: {recommendedWorkout.duration}
-            </Typography>
-          </CardContent>
-          <CardActions sx={{ justifyContent: "center" }}>
-            <Button size="small" onClick={incrementRecommendedWorkout}>Next</Button>
-            <Button size="small" onClick={watchSelectedWorkout}>Watch</Button>
-          </CardActions>
-        </Card>
-
+        {recommendedWorkout && (
+          <Card sx={{ maxWidth: 345, margin: "1rem auto" }}>
+            <CardMedia
+              component="img"
+              alt="workout video screenshot"
+              height="190"
+              // image={recommendedWorkout.thumbnail}
+              image={recommendedWorkout.thumbnail}
+            />
+            <CardContent
+              sx={{ textAlign: "center", margin: "0 auto", height: "15vh" }}
+            >
+              <Typography gutterBottom variant="h5" component="div">
+                Recommended Workout
+              </Typography>
+              <Typography variant="h7" color="text.primary">
+                {recommendedWorkout.name}
+                <br></br>
+                Duration: {recommendedWorkout.duration}
+              </Typography>
+            </CardContent>
+            <CardActions sx={{ justifyContent: "center" }}>
+              <Button size="small" onClick={incrementRecommendedWorkout}>
+                Next
+              </Button>
+              <Button size="small" onClick={watchSelectedWorkout}>
+                Watch
+              </Button>
+            </CardActions>
+          </Card>
+        )}
         <Copyright />
       </Box>
     </Container>
