@@ -21,9 +21,9 @@ const ErrorPage = () => {
         <Typography variant="h1" color={'white'}>404</Typography>
         <Typography variant="h4" color={'white'} sx={{marginBottom:"1rem"}}>Whoops!</Typography>
         <Typography variant="body1" color={'white'} textAlign={'center'}>
-          404 means the page you are looking for is not found.<br></br>
-          Whether or not it ever existed is a mystery to us all.<br></br>
-          But don't worry, you can always go back to the home page.
+          404 - That means 4 seconds on the way up and then 4 seconds on the way down, right?<br/>
+          Wait, that's not right. 404 means the page you're looking for doesn't exist.<br/>
+          You can either head back to our home page or chill here and catch your breath.
         </Typography>
         <Button component={Link} to="/" variant="contained" color="primary" sx={{margin:"2rem 0"}}>
           Go Home
