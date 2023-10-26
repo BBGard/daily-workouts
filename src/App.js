@@ -20,7 +20,7 @@ function App() {
   // Pick a random workout from the workout schedule
   const [recommendedWorkout, setRecommendedWorkout] = useState([]);
   const [todaysWorkouts, setTodaysWorkouts] = useState([]);
-  const [allWorkouts, setAllWorkouts] = useState([]);
+  const [allWorkouts, setAllWorkouts] = useState([workouts]);
 
   // On mount, load the workouts from localStorage or use the default workouts
   useEffect(() => {
@@ -43,14 +43,15 @@ function App() {
       ) {
         const workoutList = workoutData.filter((workout) =>
           workout.category.includes(
+            // Javascript uses 0-6 for Sunday-Saturday
             workoutSchedule[currentDate.getDay()].workout
           )
         );
 
         workoutList.sort((a, b) => (a.watchCount > b.watchCount ? 1 : -1));
 
-        console.log("workoutData", workoutData);
-        console.log("Generated new workouts", workoutList);
+        // console.log("workoutData", workoutData);
+        // console.log("Generated new workouts", workoutList);
 
         setTodaysWorkouts(workoutList);
 
@@ -66,20 +67,17 @@ function App() {
       console.log("Loading saved workouts");
       setAllWorkouts(savedAllWorkouts);
 
-      console.log("savedAllWorkouts", savedAllWorkouts);
+      // console.log("savedAllWorkouts", savedAllWorkouts);
 
-      // Generate today's workouts and recommended workout
-      generateTodaysWorkouts(savedAllWorkouts);
     } else {
       console.log("Loading default workouts");
-      setAllWorkouts(workouts);
-
-      // Generate today's workouts and recommended workout
-      generateTodaysWorkouts(workouts);
 
       // Save the default workouts to local storage
       localStorage.setItem("allWorkouts", JSON.stringify(workouts));
     }
+
+     // Generate today's workouts and recommended workout
+     generateTodaysWorkouts(workouts);
   }, [todaysWorkouts.length]);
 
   // Save all workouts to localStorage whenever they change
@@ -129,6 +127,7 @@ function App() {
           color={"white"}
           flex="1"
         >
+          {/* Display Day of Week and Workout Type */}
           {workoutSchedule[new Date().getDay()].day}:{" "}
           {workoutSchedule[new Date().getDay()].workout}
         </Typography>

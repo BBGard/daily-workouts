@@ -400,8 +400,13 @@ const workouts = [
   },
 ];
 
-// Initialize workoutSchedule
+// Initialize workoutSchedule - note: Sunday is index 0
 const workoutSchedule = [
+  {
+    day: "Sunday",
+    workout: "Rest",
+    duration: "Rest",
+  },
   {
     day: "Monday",
     workout: "Legs",
@@ -425,11 +430,6 @@ const workoutSchedule = [
   {
     day: "Saturday",
     workout: "Abs",
-  },
-  {
-    day: "Sunday",
-    workout: "Rest",
-    duration: "Rest",
   },
 ];
 
