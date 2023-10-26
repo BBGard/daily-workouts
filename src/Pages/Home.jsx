@@ -1,9 +1,8 @@
 /**
- * @fileoverview This file defines the main App component.
+ * @fileoverview Home page for the app. Displays the recommended workout for the day.
  */
 import React, { useEffect, useState } from "react";
 import {
-  Container,
   Typography,
   Box,
   Button,
@@ -13,7 +12,6 @@ import {
   CardMedia,
 } from "@mui/material";
 import { workouts, workoutSchedule } from "../Data/workoutData";
-import { ResponsiveAppBar } from "../Components/ResponsiveAppBar";
 
 const Home = () => {
   // Pick a random workout from the workout schedule
@@ -112,11 +110,6 @@ const Home = () => {
   }
 
   return (
-    <Container
-      maxWidth="xl"
-      sx={{ backgroundColor: "#454545", height: "100vh" }}
-    >
-      <ResponsiveAppBar />
 
       <Box sx={{ my: 4, height: "100%", maxHeight: "70vh" }}>
         <Typography
@@ -164,7 +157,6 @@ const Home = () => {
           </Card>
         )}
       </Box>
-    </Container>
   );
 }
 

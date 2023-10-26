@@ -43,7 +43,7 @@ export function ResponsiveAppBar() {
             noWrap
             component="a"
             justifyContent={'center'}
-            href="#app-bar-with-responsive-menu"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'flex' },
