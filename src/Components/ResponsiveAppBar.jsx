@@ -13,6 +13,8 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import { Menu } from '@mui/material';
+import { Link } from "react-router-dom";
+
 
 const pages = ['Workouts', 'Warmups', 'Recovery'];
 
@@ -28,6 +30,8 @@ export function ResponsiveAppBar() {
   };
 
 
+
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -39,7 +43,7 @@ export function ResponsiveAppBar() {
             noWrap
             component="a"
             justifyContent={'center'}
-            href="#app-bar-with-responsive-menu"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'flex' },
@@ -85,11 +89,19 @@ export function ResponsiveAppBar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
+              {/* Map each page to a menu item with the ref as the page to navigate to */}
               {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Link to={`/${page.toLowerCase()}`} style={{ textDecoration: 'none', color: 'black' }}>
+                    <Typography textAlign="center">{page}</Typography>
+                  </Link>
+                </MenuItem>
+              ))}
+              {/* {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
-              ))}
+              ))} */}
             </Menu>
           </Box>
 
