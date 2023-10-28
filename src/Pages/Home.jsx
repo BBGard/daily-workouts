@@ -17,7 +17,8 @@ const Home = () => {
   // Pick a random workout from the workout schedule
   const [recommendedWorkout, setRecommendedWorkout] = useState([]);
   const [todaysWorkouts, setTodaysWorkouts] = useState([]);
-  const [allWorkouts, setAllWorkouts] = useState([workouts]);
+  const [allWorkouts, setAllWorkouts] = useState();
+
 
 
   // On mount, load the workouts from localStorage or use the default workouts
@@ -64,9 +65,6 @@ const Home = () => {
     if (savedAllWorkouts && savedAllWorkouts.length > 0) {
       console.log("Loading saved workouts");
       setAllWorkouts(savedAllWorkouts);
-
-      // console.log("savedAllWorkouts", savedAllWorkouts);
-
     } else {
       console.log("Loading default workouts");
 
@@ -78,10 +76,6 @@ const Home = () => {
      generateTodaysWorkouts(workouts);
   }, [todaysWorkouts.length]);
 
-  // Save all workouts to localStorage whenever they change
-  useEffect(() => {
-    localStorage.setItem("allWorkouts", JSON.stringify(allWorkouts));
-  }, [allWorkouts]);
 
   // Increment the recommended workout
   const incrementRecommendedWorkout = () => {
@@ -96,15 +90,29 @@ const Home = () => {
 
   // Watch the selected workout
   function watchSelectedWorkout() {
+
+    // Log the recommended workout
+    console.log("Recommended workout", recommendedWorkout);
+
     // Increment the watch count
     recommendedWorkout.watchCount++;
 
-    // Update the watch count in the allWorkouts array
-    const workoutIndex = allWorkouts.indexOf(recommendedWorkout);
-    allWorkouts[workoutIndex].watchCount = recommendedWorkout.watchCount;
+    // Find recommendedWorkout in allWorkouts and update it
+    const updatedWorkouts = allWorkouts.map((workout) => {
+      if (workout.name === recommendedWorkout.name) {
+        return recommendedWorkout;
+      } else {
+        return workout;
+      }
+    });
 
+    // Update allWorkouts
+    setAllWorkouts(updatedWorkouts);
+
+    // Log the updated workout from allWorkouts
+    console.log("Updated workout", allWorkouts.find(workout => workout.name === recommendedWorkout.name));
     // Save the updated allWorkouts to local storage
-    localStorage.setItem("allWorkouts", JSON.stringify(allWorkouts));
+    localStorage.setItem("allWorkouts", JSON.stringify(updatedWorkouts));
 
     window.open(recommendedWorkout.link, "_blank");
   }
