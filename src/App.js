@@ -13,7 +13,7 @@ function App() {
   return (
     <Container
       maxWidth="xl"
-      sx={{ backgroundColor: "#454545", height: "100vh" }}
+      sx={{ backgroundColor: "#454545", height: "100%", minHeight: "100vh" }}
     >
       <ResponsiveAppBar />
       <Routes>
