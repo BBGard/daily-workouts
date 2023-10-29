@@ -10,6 +10,7 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  Slide,
 } from "@mui/material";
 import { workouts, workoutSchedule } from "../Data/workoutData";
 
@@ -118,23 +119,30 @@ const Home = () => {
   }
 
   return (
-
-      <Box sx={{ my: 4, height: "100%", maxHeight: "70vh" }}>
-        <Typography
-          variant="h4"
-          component="h1"
-          align="center"
-          gutterBottom
-          color={"white"}
-          flex="1"
+    <Box sx={{ my: 4, height: "100%", maxHeight: "70vh" }}>
+      {recommendedWorkout && (
+        // <Slide in={true} timeout={1000}>
+        <Slide
+          direction="right"
+          timeout={500}
+          in={true}
+          mountOnEnter
+          unmountOnExit
         >
-          {/* Display Day of Week and Workout Type */}
-          {workoutSchedule[new Date().getDay()].day}:{" "}
-          {workoutSchedule[new Date().getDay()].workout}
-        </Typography>
 
-        {recommendedWorkout && (
+
           <Card sx={{ maxWidth: 345, margin: "1rem auto" }}>
+            {/* <Typography
+              variant="h5"
+              component="h1"
+              align="center"
+              gutterBottom
+              marginTop={"1rem"}
+              flex="1"
+            >
+              {workoutSchedule[new Date().getDay()].day}-{" "}
+              {workoutSchedule[new Date().getDay()].workout}
+            </Typography> */}
             <CardMedia
               component="img"
               alt="workout video screenshot"
@@ -163,8 +171,9 @@ const Home = () => {
               </Button>
             </CardActions>
           </Card>
-        )}
-      </Box>
+        </Slide>
+      )}
+    </Box>
   );
 }
 
