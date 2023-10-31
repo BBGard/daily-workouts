@@ -6,11 +6,13 @@ import {
   Typography,
   Box,
   Button,
+  // ButtonGroup,
   Card,
   CardActions,
   CardContent,
   CardMedia,
   Slide,
+  Skeleton,
 } from "@mui/material";
 import { workouts, workoutSchedule } from "../Data/workoutData";
 
@@ -18,14 +20,11 @@ const Home = () => {
   // Pick a random workout from the workout schedule
   const [recommendedWorkout, setRecommendedWorkout] = useState([]);
   const [todaysWorkouts, setTodaysWorkouts] = useState([]);
-  const [allWorkouts, setAllWorkouts] = useState();
+  const [allWorkouts, setAllWorkouts] = useState(workouts);
 
 
-
-  // On mount, load the workouts from localStorage or use the default workouts
+  // On mount, load all workouts, generate today's workouts, and set the recommended workout
   useEffect(() => {
-    // Check if there is a local copy of workouts
-    const savedAllWorkouts = JSON.parse(localStorage.getItem("allWorkouts"));
 
     // Generate today's workouts and recommended workout
     const generateTodaysWorkouts = (workoutData) => {
@@ -41,6 +40,8 @@ const Home = () => {
         !lastGeneratedTimestamp ||
         currentDate.getDate() !== new Date(lastGeneratedTimestamp).getDate()
       ) {
+
+        // Filter the workouts based on the current day
         const workoutList = workoutData.filter((workout) =>
           workout.category.includes(
             // Javascript uses 0-6 for Sunday-Saturday
@@ -48,30 +49,18 @@ const Home = () => {
           )
         );
 
+        // Sort the workouts by watch count - to be propery implemented later
         workoutList.sort((a, b) => (a.watchCount > b.watchCount ? 1 : -1));
-
-        // console.log("workoutData", workoutData);
-        // console.log("Generated new workouts", workoutList);
 
         setTodaysWorkouts(workoutList);
 
         // Store the current date as the last generated timestamp
         localStorage.setItem("lastGeneratedTimestamp", currentDate);
 
-        // Set the recommended workout
+        // Set the recommended workout to the first workout in the list
         setRecommendedWorkout(workoutList[0]);
       }
     };
-
-    if (savedAllWorkouts && savedAllWorkouts.length > 0) {
-      console.log("Loading saved workouts");
-      setAllWorkouts(savedAllWorkouts);
-    } else {
-      console.log("Loading default workouts");
-
-      // Save the default workouts to local storage
-      localStorage.setItem("allWorkouts", JSON.stringify(workouts));
-    }
 
      // Generate today's workouts and recommended workout
      generateTodaysWorkouts(workouts);
@@ -107,21 +96,21 @@ const Home = () => {
       }
     });
 
-    // Update allWorkouts
+    // Update allWorkouts to reflect the updated watch count
     setAllWorkouts(updatedWorkouts);
 
     // Log the updated workout from allWorkouts
     console.log("Updated workout", allWorkouts.find(workout => workout.name === recommendedWorkout.name));
-    // Save the updated allWorkouts to local storage
-    localStorage.setItem("allWorkouts", JSON.stringify(updatedWorkouts));
 
+    // Open the workout in a new tab
     window.open(recommendedWorkout.link, "_blank");
   }
 
+
   return (
+    <>
     <Box sx={{ my: 4, height: "100%", maxHeight: "70vh" }}>
-      {recommendedWorkout && (
-        // <Slide in={true} timeout={1000}>
+
         <Slide
           direction="right"
           timeout={500}
@@ -129,8 +118,6 @@ const Home = () => {
           mountOnEnter
           unmountOnExit
         >
-
-
           <Card sx={{ maxWidth: 345, margin: "1rem auto" }}>
             {/* <Typography
               variant="h5"
@@ -143,6 +130,8 @@ const Home = () => {
               {workoutSchedule[new Date().getDay()].day}-{" "}
               {workoutSchedule[new Date().getDay()].workout}
             </Typography> */}
+
+            {recommendedWorkout ? (
             <CardMedia
               component="img"
               alt="workout video screenshot"
@@ -150,8 +139,18 @@ const Home = () => {
               // image={recommendedWorkout.thumbnail}
               image={recommendedWorkout.thumbnail}
             />
+            ) : (
+              <Skeleton
+                variant="rectangular"
+                width={345}
+                height={190}
+                animation="wave"
+              />
+            )}
+
+            {recommendedWorkout ? (
             <CardContent
-              sx={{ textAlign: "center", margin: "0 auto", height: "15vh" }}
+              sx={{ textAlign: "center", margin: "1rem auto", height: "15vh" }}
             >
               <Typography gutterBottom variant="h5" component="div">
                 Recommended Workout
@@ -162,18 +161,78 @@ const Home = () => {
                 Duration: {recommendedWorkout.duration}
               </Typography>
             </CardContent>
-            <CardActions sx={{ justifyContent: "center" }}>
-              <Button size="small" onClick={incrementRecommendedWorkout}>
+            ) : (
+              <>
+              <Skeleton variant="text" sx={{ fontSize: '2rem', margin: '0 1rem'}} />
+              <Skeleton variant="text" sx={{ fontSize: '1rem', margin: '0 1rem' }} />
+              </>
+            )}
+
+            <CardActions sx={{ justifyContent: "center", gap: '1rem' }}>
+            {recommendedWorkout ? (
+              <>
+              <Button size="small" variant="contained" onClick={incrementRecommendedWorkout}>
                 Next
               </Button>
-              <Button size="small" onClick={watchSelectedWorkout}>
+              <Button size="small" variant="contained" color="success" onClick={watchSelectedWorkout}>
                 Watch
               </Button>
+              </>
+            ) : (
+              <>
+              <Skeleton variant="text" sx={{ width: '30%', fontSize: '2rem', margin: '0 1rem' }} />
+              <Skeleton variant="text" sx={{ width: '30%', fontSize: '2rem', margin: '0 1rem' }} />
+              </>
+            )}
             </CardActions>
+
           </Card>
         </Slide>
-      )}
+
+
+      {/* <ButtonGroup sx={{width: "100%", justifyContent: "center"}}  variant="contained" aria-label="outlined primary button group">
+
+      <Button
+        variant="contained"
+        sx={{ margin: "1rem 1rem" }}
+        onClick={() => {
+          // setWorkoutList(workouts);
+        }}
+      >
+        All Workouts
+      </Button>
+      <Button
+        variant="contained"
+        sx={{ margin: "1rem 1rem" }}
+        onClick={() => {
+          // setWorkoutList(workouts.filter((workout) => workout.category === "cardio"));
+        }}
+      >
+        Cardio
+      </Button>
+      <Button
+        variant="contained"
+        sx={{ margin: "1rem 1rem" }}
+        onClick={() => {
+          // setWorkoutList(workouts.filter((workout) => workout.category === "strength"));
+        }}
+      >
+        Strength
+      </Button>
+      <Button
+        variant="contained"
+        sx={{ margin: "1rem 1rem" }}
+        onClick={() => {
+          // setWorkoutList(workouts.filter((workout) => workout.category === "stretching"));
+        }}
+      >
+        Stretching
+      </Button>
+      </ButtonGroup> */}
     </Box>
+    </>
+
+
   );
 }
 

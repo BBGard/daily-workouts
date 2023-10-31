@@ -13,7 +13,11 @@ const theme = createTheme({
     error: {
       main: red.A400,
     },
+    background: {
+      default: '#ffffff',
+    },
   },
+
 });
 
 export default theme;
