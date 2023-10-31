@@ -11,11 +11,16 @@ import {Container} from '@mui/material';
 
 function App() {
   return (
+    <>
+    <ResponsiveAppBar />
+
     <Container
+    component="main"
       maxWidth="xl"
-      sx={{ backgroundColor: "#454545", height: "100%", minHeight: "100vh" }}
+      // sx={{ height: "100%", minHeight: "100vh" }}
+      // Add a margin to account for height of AppBar
+      sx={{ height: "100%", minHeight: "calc(100vh - 5rem)", marginTop: "5rem"}}
     >
-      <ResponsiveAppBar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/recovery" element={<Recovery />} />
@@ -24,6 +29,7 @@ function App() {
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Container>
+    </>
   );
 }
 
