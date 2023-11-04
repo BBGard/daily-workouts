@@ -8,6 +8,7 @@ const Workouts = () => {
 
 const [allWorkouts, setAllWorkouts] = useState(workouts); // all workouts
 const [workoutsToShow, setWorkoutsToShow] = useState(workouts); // workouts to show
+// cost [filter]
 
 // List of muscle groups and workout types
 const muscleGroups = [
