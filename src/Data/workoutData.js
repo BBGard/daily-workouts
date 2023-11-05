@@ -5,7 +5,8 @@
 const workouts = [
   {
     id: 1,
-    category: "Legs",
+    category: "Weights",
+    group: "Legs",
     name: "Leg Workout",
     link: "https://hasfit.com/workouts/home/home-legs/40-min-dumbbell-leg-workout-at-home/",
     youtube: "https://www.youtube.com/watch?v=fdflwO-HXkY",
@@ -15,7 +16,8 @@ const workouts = [
   },
   {
     id: 2,
-    category: "Legs, Glutes",
+    category: "Weights",
+    group: "Legs, Glutes",
     name: "Legs Glutes Workout",
     link: "https://hasfit.com/workouts/bodybuilding/30-min-legs-glutes-workout-with-dumbbells/",
     youtube: "https://www.youtube.com/watch?v=qmP9U6EkCYM&t=1990s",
@@ -25,7 +27,8 @@ const workouts = [
   },
   {
     id: 3,
-    category: "Legs, Glutes",
+    category: "Weights",
+    group: "Legs, Glutes",
     name: "Butt and Leg Workout",
     link: "https://hasfit.com/workouts/home/strength-weight-training/30-min-home-butt-and-leg-workout/",
     youtube: "https://www.youtube.com/watch?v=D-R3jwjdPXo",
@@ -35,7 +38,8 @@ const workouts = [
   },
   {
     id: 4,
-    category: "Legs, Glutes",
+    category: "Weights",
+    group: "Legs, Glutes",
     name: "Butt and Legs Workout",
     link: "https://hasfit.com/workouts/bodybuilding/20-min-butt-and-legs-workout/",
     youtube: "https://www.youtube.com/watch?v=wNaNC0fFutI",
@@ -45,7 +49,8 @@ const workouts = [
   },
   {
     id: 5,
-    category: "Legs",
+    category: "Weights",
+    group: "Legs",
     name: "Leg Workout with Dumbbells",
     link: "https://hasfit.com/workouts/bodybuilding/leg-workout-with-dumbbells/",
     youtube: "https://www.youtube.com/watch?v=X-glH8lPA7Q",
@@ -55,7 +60,8 @@ const workouts = [
   },
   {
     id: 6,
-    category: "Legs, Glutes",
+    category: "Weights",
+    group: "Legs, Glutes",
     name: "Butt and Legs Workout",
     link: "https://hasfit.com/workouts/bodybuilding/butt-and-legs-workout/",
     youtube: "https://www.youtube.com/watch?v=5pMF6ei4AT8",
@@ -65,7 +71,8 @@ const workouts = [
   },
   {
     id: 7,
-    category: "Legs",
+    category: "Weights",
+    group: "Legs",
     name: "Leg Workout with Dumbbells",
     link: "https://hasfit.com/workouts/bodybuilding/home-leg-workout-with-dumbbells/",
     youtube: "https://www.youtube.com/watch?v=fA8QFocWJ2M",
@@ -75,7 +82,8 @@ const workouts = [
   },
   {
     id: 8,
-    category: "Legs",
+    category: "Weights",
+    group: "Legs",
     name: "Leg Workout to Build Muscle",
     link: "https://hasfit.com/workouts/bodybuilding/leg-workout-to-build-muscle/",
     youtube: "https://www.youtube.com/watch?v=JPTwaSapykE",
@@ -85,7 +93,8 @@ const workouts = [
   },
   {
     id: 9,
-    category: "Legs",
+    category: "Weights",
+    group: "Legs",
     name: "Dumbbell Legs Workout",
     link: "https://hasfit.com/workouts/home/home-legs/40-min-home-dumbbell-legs-workout/",
     youtube: "https://www.youtube.com/watch?v=USX_B3zEfFo",
@@ -95,7 +104,8 @@ const workouts = [
   },
   {
     id: 10,
-    category: "Chest, Triceps",
+    category: "Weights",
+    group: "Chest, Triceps",
     name: "Chest and Triceps Workout",
     link: "https://hasfit.com/workouts/home/home-chest/30-min-dumbbell-chest-and-triceps-workout/",
     youtube: "https://www.youtube.com/watch?v=uNP7Cz0gwd0",
@@ -105,7 +115,8 @@ const workouts = [
   },
   {
     id: 11,
-    category: "Back, Biceps",
+    category: "Weights",
+    group: "Back, Biceps",
     name: "Back and Biceps Workout",
     link: "https://hasfit.com/workouts/bodybuilding/30-min-dumbbell-back-and-biceps-workout/",
     youtube: "https://www.youtube.com/watch?v=FMpRjCDUdoM",
@@ -115,7 +126,8 @@ const workouts = [
   },
   {
     id: 12,
-    category: "Chest",
+    category: "Weights",
+    group: "Chest",
     name: "Dumbbell Chest Workout",
     link: "https://hasfit.com/workouts/home/strength-weight-training/dumbbell-chest-workout-at-home/",
     youtube: "https://www.youtube.com/watch?v=tCcySgP5lZc",
@@ -125,7 +137,8 @@ const workouts = [
   },
   {
     id: 13,
-    category: "Back",
+    category: "Weights",
+    group: "Back",
     name: "Bodybuilding Back Workout",
     link: "https://hasfit.com/workouts/bodybuilding/bodybuilding-back-workout/",
     youtube: "https://www.youtube.com/watch?v=LkkvW9ZbAv4",
@@ -135,7 +148,8 @@ const workouts = [
   },
   {
     id: 14,
-    category: "Back, Biceps",
+    category: "Weights",
+    group: "Back, Biceps",
     name: "Back and Biceps Workout",
     link: "https://hasfit.com/workouts/home/home-back/25-min-back-and-biceps-workout-with-dumbbells-at-home/",
     youtube: "https://www.youtube.com/watch?v=iFraJa-uwbo",
@@ -145,7 +159,8 @@ const workouts = [
   },
   {
     id: 15,
-    category: "Chest, Triceps",
+    category: "Weights",
+    group: "Chest, Triceps",
     name: "Chest and Tricep Workout",
     link: "https://hasfit.com/workouts/bodybuilding/40-min-chest-and-tricep-workout/",
     youtube: "https://www.youtube.com/watch?v=PInAyHosJEQ",
@@ -155,7 +170,8 @@ const workouts = [
   },
   {
     id: 16,
-    category: "Back, Biceps",
+    category: "Weights",
+    group: "Back, Biceps",
     name: "Back and Bicep Workout",
     link: "https://hasfit.com/workouts/bodybuilding/40-min-back-and-bicep-workout/",
     youtube: "https://www.youtube.com/watch?v=6IdOLoYc0MM",
@@ -165,7 +181,8 @@ const workouts = [
   },
   {
     id: 17,
-    category: "Chest, Triceps",
+    category: "Weights",
+    group: "Chest, Triceps",
     name: "Chest and Triceps Workout",
     link: "https://hasfit.com/workouts/home/home-chest/25-min-chest-and-triceps-workout-with-dumbbells/",
     youtube: "https://www.youtube.com/watch?v=6ekcJByFvRg",
@@ -175,7 +192,8 @@ const workouts = [
   },
   {
     id: 18,
-    category: "Arms, Shoulders",
+    category: "Weights",
+    group: "Arms, Shoulders",
     name: "Arms and Shoulders Workout",
     link: "https://hasfit.com/workouts/home/home-arms/40-min-arms-and-shoulders-workout/",
     youtube:"https://www.youtube.com/watch?v=kEg9a8JoxOY",
@@ -185,7 +203,8 @@ const workouts = [
   },
   {
     id: 19,
-    category: "Shoulders",
+    category: "Weights",
+    group: "Shoulders",
     name: "Shoulder Workout with Dumbbells",
     link: "https://hasfit.com/workouts/home/shoulder/15-min-shoulder-workout-with-dumbbells/",
     youtube: "https://www.youtube.com/watch?v=w6Phd6VQ0xQ",
@@ -195,7 +214,8 @@ const workouts = [
   },
   {
     id: 20,
-    category: "Arms",
+    category: "Weights",
+    group: "Arms",
     name: "Arms Workout",
     link: "https://hasfit.com/workouts/home/home-arms/20-minute-arms-workout/",
     youtube: "https://www.youtube.com/watch?v=GrHyZNThtD8",
@@ -205,7 +225,8 @@ const workouts = [
   },
   {
     id: 21,
-    category: "Arms",
+    category: "Weights",
+    group: "Arms",
     name: "Dumbbell Arms Workout",
     link: "https://hasfit.com/workouts/bodybuilding/biceps-and-triceps/20-minute-dumbbell-arms-workout-at-home-for-women-men-biceps-and-triceps-arm-workout-with-dumbbells/",
     youtube: "https://www.youtube.com/watch?v=skde8_aWbFo",
@@ -215,7 +236,8 @@ const workouts = [
   },
   {
     id: 22,
-    category: "Arms",
+    category: "Weights",
+    group: "Arms",
     name: "Dumbbell Arms Workout",
     link: "https://hasfit.com/workouts/home/home-arms/30-min-dumbbell-arms-workout-at-home/",
     youtube: "https://www.youtube.com/watch?v=5hm_6rV1qGo",
@@ -225,7 +247,8 @@ const workouts = [
   },
   {
     id: 23,
-    category: "Arms, Shoulders",
+    category: "Weights",
+    group: "Arms, Shoulders",
     name: "Arms and Shoulder Workout",
     link: "https://hasfit.com/workouts/bodybuilding/35-minute-arms-and-shoulder-workout-at-home/",
     youtube: "https://www.youtube.com/watch?v=CC3dLVG4GH8",
@@ -235,7 +258,8 @@ const workouts = [
   },
   {
     id: 24,
-    category: "Arms",
+    category: "Weights",
+    group: "Arms",
     name: "Arms Workout",
     link: "https://hasfit.com/workouts/bodybuilding/20-minute-arms-workout-at-home-with-dumbbells/",
     youtube: "https://www.youtube.com/watch?v=km4h2_IXBZY",
@@ -245,7 +269,8 @@ const workouts = [
   },
   {
     id: 25,
-    category: "Shoulders",
+    category: "Weights",
+    group: "Shoulders",
     name: "Shoulder Workout",
     link: "https://hasfit.com/workouts/bodybuilding/home-shoulder-workout-routine/",
     youtube: "https://www.youtube.com/watch?v=2vl18gjB7R4",
@@ -255,7 +280,8 @@ const workouts = [
   },
   {
     id: 26,
-    category: "Abs",
+    category: "Weights",
+    group: "Abs",
     name: "Standing Abs Workout",
     link: "https://hasfit.com/workouts/abs/10-min-standing-abs-workout-at-home/",
     youtube: "https://www.youtube.com/watch?v=E7gC9sA0ibM",
@@ -265,7 +291,8 @@ const workouts = [
   },
   {
     id: 27,
-    category: "Abs",
+    category: "Weights",
+    group: "Abs",
     name: "Standing Abs Workout",
     link: "https://hasfit.com/workouts/abs/12-min-standing-abs-workout/",
     youtube: "https://www.youtube.com/watch?v=U-3Pa7NA0Ho",
@@ -275,7 +302,8 @@ const workouts = [
   },
   {
     id: 28,
-    category: "Abs",
+    category: "Weights",
+    group: "Abs",
     name: "Abdominal Workout",
     link: "https://hasfit.com/workouts/home/ab/10-minute-abdominal-workout/",
     youtube: "https://www.youtube.com/watch?v=XzLojq_iKVk",
@@ -285,7 +313,8 @@ const workouts = [
   },
   {
     id: 29,
-    category: "Abs",
+    category: "Weights",
+    group: "Abs",
     name: "Advanced Ab Workout",
     link: "https://hasfit.com/workouts/home/ab/20-min-advanced-ab-workout/",
     youtube: "https://www.youtube.com/watch?v=qACdw1WeOws",
@@ -295,9 +324,10 @@ const workouts = [
   },
   {
     id: 30,
-    category: "Flexibility",
+    category: "Rehabilitation",
+    group: "Legs, Sciatica, Glutes",
     name: "Sciatica Pain Relief Exercises",
-    link: "https://hasfit.com/workouts/home/flexibility-mobility/20-min-sciatica-pain-relief-exercises/",
+    link: "https://hasfit.com/workouts/home/Rehabilitation-mobility/20-min-sciatica-pain-relief-exercises/",
     youtube: "https://www.youtube.com/watch?v=AkgxIT2z0js",
     thumbnail: "http://img.youtube.com/vi/AkgxIT2z0js/0.jpg",
     duration: "20 min",
@@ -305,7 +335,8 @@ const workouts = [
   },
   {
     id: 31,
-    category: "Flexibility",
+    category: "Rehabilitation",
+    group: "Lower Back",
     name: "Exercises for Lower Back Pain Stretches",
     link: "https://hasfit.com/workouts/home/low-back/20-min-exercises-for-lower-back-pain-stretches/",
     youtube: "https://www.youtube.com/watch?v=CirlwUzPYek",
@@ -315,7 +346,8 @@ const workouts = [
   },
   {
     id: 32,
-    category: "Flexibility",
+    category: "Rehabilitation",
+    group: "Shoulders",
     name: "Shoulder Pain Relief Exercises Stretches",
     link: "https://hasfit.com/workouts/rehabilitation/shoulder-pain-relief-exercises-stretches/",
     youtube: "https://www.youtube.com/watch?v=jzyRGiB9BZQ",
@@ -325,7 +357,8 @@ const workouts = [
   },
   {
     id: 33,
-    category: "Flexibility",
+    category: "Rehabilitation",
+    group: "Pelvis, Back",
     name: "How to Fix Anterior Pelvic Tilt",
     link: "https://hasfit.com/workouts/rehabilitation/how-to-fix-anterior-pelvic-tilt/",
     youtube: "https://www.youtube.com/watch?v=JGLQS_ArIMY",
@@ -335,7 +368,8 @@ const workouts = [
   },
   {
     id: 34,
-    category: "Flexibility",
+    category: "Rehabilitation",
+    group: "Knee, Legs",
     name: "Knee Stretches for Knee Pain Relief",
     link: "https://hasfit.com/workouts/rehabilitation/knee-stretches-for-knee-pain-relief/",
     youtube: "https://www.youtube.com/watch?v=-3Sn5wFF5SA",
@@ -345,7 +379,8 @@ const workouts = [
   },
   {
     id: 35,
-    category: "Flexibility",
+    category: "Rehabilitation",
+    group: "Lower Back, Hip",
     name: "Exercises for Lower Back and Hip Pain Relief",
     link: "https://hasfit.com/workouts/home/senior/exercises-for-lower-back-and-hip-pain-relief/",
     youtube: "https://www.youtube.com/watch?v=_lT5Cd4cDTc",
@@ -355,7 +390,8 @@ const workouts = [
   },
   {
     id: 36,
-    category: "Flexibility",
+    category: "Rehabilitation",
+    group: "Knee, Leg",
     name: "Knee Strengthening Knee Stretches",
     link: "https://hasfit.com/workouts/home/senior/knee-strengthening-knee-stretches/",
     youtube: "https://www.youtube.com/watch?v=Ci9IwxLP5RE",
@@ -365,7 +401,8 @@ const workouts = [
   },
   {
     id: 37,
-    category: "Flexibility",
+    category: "Rehabilitation",
+    group: "Shoulders",
     name: "Shoulder Stretches Strengthening for Pain Relief",
     link: "https://hasfit.com/workouts/home/senior/shoulder-stretches-strengthening-for-pain-relief/",
     youtube: "https://www.youtube.com/watch?v=6vfamrwD7ks&embeds_referring_euri=https%3A%2F%2Fhasfit.com%2F&source_ve_path=OTY3MTQ&feature=emb_imp_woyt",
@@ -375,7 +412,8 @@ const workouts = [
   },
   {
     id: 38,
-    category: "Flexibility",
+    category: "Rehabilitation",
+    group: "Hip",
     name: "Hip Stretching Strengthening Exercises for Hip Pain",
     link: "https://hasfit.com/workouts/rehabilitation/25-min-hip-stretching-strengthening-exercises-for-hip-pain/",
     youtube: "https://www.youtube.com/watch?v=j5VsVh8dtsc",
@@ -385,7 +423,8 @@ const workouts = [
   },
   {
     id: 39,
-    category: "Flexibility",
+    category: "Rehabilitation",
+    group: "Lower Back",
     name: "Lower Back Exercises for Lower Back Pain",
     link: "https://hasfit.com/exercises/lower-back/lower-back-exercises-for-lower-back-pain/",
     youtube: "https://www.youtube.com/watch?v=b4ZnvU3QkRM",
@@ -395,7 +434,8 @@ const workouts = [
   },
   {
     id: 40,
-    category: "Flexibility",
+    category: "Rehabilitation",
+    group: "Posture, Shoulders, Back",
     name: "Posture Stretches",
     link: "https://hasfit.com/workouts/rehabilitation/posture-stretches/",
     youtube: "https://www.youtube.com/watch?v=lyRQbwtESBc",
@@ -405,7 +445,8 @@ const workouts = [
   },
   {
     id: 41,
-    category: "Flexibility",
+    category: "Rehabilitation",
+    group: "Hip",
     name: "Hip Stretches",
     link: "https://hasfit.com/workouts/rehabilitation/hip-stretches/",
     youtube: "https://www.youtube.com/watch?v=Ie5SW9mqmuk",
@@ -415,7 +456,8 @@ const workouts = [
   },
   {
     id: 42,
-    category: "Flexibility",
+    category: "Rehabilitation",
+    group: "Foot, Heel",
     name: "Plantar Fasciitis Foot Heel Pain Relief",
     link: "https://hasfit.com/workouts/rehabilitation/15-min-plantar-fasciitis-foot-heel-pain-relief/",
     youtube: "https://www.youtube.com/watch?v=hSGPSPqycSw",
@@ -427,6 +469,7 @@ const workouts = [
   {
     id: 43,
     category: "Warmup",
+    group: "Full Body",
     name: "Warm Up Exercises Before Workout",
     link: "https://hasfit.com/workouts/warm-up-cool-down-stretches-stretching/warm-up-exercises-before-workout-2/",
     youtube: "https://www.youtube.com/watch?v=b0Z81IGUnGI",
@@ -437,6 +480,7 @@ const workouts = [
   {
     id: 44,
     category: "Warmup",
+    group: "Full Body",
     name: "Warm Up Exercises Before Workout",
     link: "https://hasfit.com/workouts/warm-up-cool-down-stretches-stretching/warm-up-before-you-workout/",
     youtube: "https://www.youtube.com/watch?v=lrecexMFCQU",
@@ -450,7 +494,7 @@ const workouts = [
 const workoutSchedule = [
   {
     day: "Sunday",
-    workout: "Flexibility",
+    workout: "Rehabilitation",
   },
   {
     day: "Monday",
