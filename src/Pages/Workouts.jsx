@@ -1,6 +1,6 @@
 import React from 'react';
 import { workouts } from '../Data/workoutData';
-import {  Typography, Box, Button, Card, CardActions, TextField, Input, CardMedia, Skeleton, CardContent, OutlinedInput } from '@mui/material';
+import {  Typography, Box, Button, Card, CardActions, TextField,  CardMedia, Skeleton, CardContent, OutlinedInput } from '@mui/material';
 import { useState } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
