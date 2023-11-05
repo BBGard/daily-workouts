@@ -11,7 +11,7 @@ import Checkbox from '@mui/material/Checkbox';
 
 const Workouts = () => {
 
-const [allWorkouts, setAllWorkouts] = useState(workouts); // all workouts
+const [allWorkouts] = useState(workouts); // all workouts
 const [workoutsToShow, setWorkoutsToShow] = useState(workouts); // workouts to show
 const [searchText, setSearchText] = useState([]); // search text
 const [muscleGroupsSelection, setMuscleGroupsSelection] = useState([]); // muscle groups
