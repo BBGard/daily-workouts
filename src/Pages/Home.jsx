@@ -239,9 +239,8 @@ const Home = () => {
           >
             <Button
               variant="contained"
-              sx={{ margin: "1rem 1rem" }}
+              sx={{ margin: "1rem auto" }}
               href="/workouts"
-              margin="1rem auto"
             >
               Find a Workout
             </Button>
