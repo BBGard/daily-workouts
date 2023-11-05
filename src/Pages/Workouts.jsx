@@ -1,9 +1,7 @@
 import React from 'react';
 import { workouts } from '../Data/workoutData';
-import { Link } from 'react-router-dom';
-import { Autocomplete, Typography, Box, Button, Card, CardActions, TextField, Input, CardMedia, Skeleton, CardContent, ButtonGroup } from '@mui/material';
-import { useState, useEffect } from 'react';
-import OutlinedInput from '@mui/material/OutlinedInput';
+import {  Typography, Box, Button, Card, CardActions, TextField, Input, CardMedia, Skeleton, CardContent, OutlinedInput } from '@mui/material';
+import { useState } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -15,7 +13,7 @@ const Workouts = () => {
 
 const [allWorkouts, setAllWorkouts] = useState(workouts); // all workouts
 const [workoutsToShow, setWorkoutsToShow] = useState(workouts); // workouts to show
-const [filterKeywords, setFilterKeywords] = useState([]); // filter keywords [muscle group, workout type, duration, etc]
+const [searchText, setSearchText] = useState([]); // search text
 const [muscleGroupsSelection, setMuscleGroupsSelection] = useState([]); // muscle groups
 const [workoutTypesSelection, setWorkoutTypesSelection] = useState([]); // workout types
 
@@ -52,14 +50,31 @@ const workoutTypes = [
 
 // Filter the workouts to show based on the selected muscle group and workout type
 const filterWorkouts = () => {
+
   let filteredWorkouts; // workouts to show
 
-  // If no muscle groups or workout types are selected, show all workouts
+  // If there is search text, filter workouts by search text
+  if (searchText.length > 0) {
+    console.log("filtering by search text");
+    console.log(searchText);
+
+    filteredWorkouts = allWorkouts.filter((workout) => {
+      return workout.name.toLowerCase().includes(searchText.toLowerCase()) ||
+      workout.category.toLowerCase().includes(searchText.toLowerCase()) ||
+      workout.group.toLowerCase().includes(searchText.toLowerCase());
+    });
+
+
+  }
+
+  // If no muscle groups or workout types are selected show all workouts
   if (
     muscleGroupsSelection.length === 0 &&
-    workoutTypesSelection.length === 0
+    workoutTypesSelection.length === 0 &&
+    searchText.length === 0
   ) {
     setWorkoutsToShow(allWorkouts);
+    return;
   }
 
   // If muscle groups are selected, filter workouts by muscle group
@@ -128,7 +143,23 @@ const handleWorkoutTypeChange = (event) => {
         >
           Find a Workout
         </Typography>
+
         <FormControl sx={{ m: 1, width: 300 }}>
+          {/* Keyword search */}
+          <TextField
+            id="keyword-search"
+            label="Type here to search"
+            variant="outlined"
+            onChange={(event) => {
+              setSearchText(event.target.value);
+            }}
+          />
+
+          </FormControl>
+
+
+
+        <FormControl label='Muscle Group' variant='outlined' sx={{ m: 1, width: 300 }}>
           <InputLabel id="muscle-group-label">Muscle Group</InputLabel>
           <Select
             labelId="muscle-group-label"
@@ -136,7 +167,7 @@ const handleWorkoutTypeChange = (event) => {
             multiple
             value={muscleGroupsSelection}
             onChange={handleMuscleChange}
-            input={<Input label="Tag" />}
+            input={<OutlinedInput label={"Muscle Group"} />}
             renderValue={(selected) => selected.join(", ")}
             MenuProps={MenuProps}
           >
@@ -156,7 +187,7 @@ const handleWorkoutTypeChange = (event) => {
             multiple
             value={workoutTypesSelection}
             onChange={handleWorkoutTypeChange}
-            input={<Input label="Tag" />}
+            input={<OutlinedInput label={"Workout Type"} />}
             renderValue={(selected) => selected.join(", ")}
             MenuProps={MenuProps}
           >
