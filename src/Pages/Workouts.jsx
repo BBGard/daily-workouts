@@ -215,6 +215,7 @@ const handleWorkoutTypeChange = (event) => {
               console.log("Clearing filters");
               setMuscleGroupsSelection([]);
               setWorkoutTypesSelection([]);
+              setSearchText("");
               setWorkoutsToShow(allWorkouts);
             }}
           >
