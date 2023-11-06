@@ -16,6 +16,20 @@ const theme = createTheme({
     background: {
       default: '#ffffff',
     },
+    // DEfine font family
+    typography: {
+      fontFamily: [
+        'Montserrat',
+        'sans-serif',
+      ].join(','),
+      body1: {
+        fontFamily: [
+          'Source Sans Pro',
+          'sans-serif',
+        ].join(','),
+        fontSize: '3rem',
+      },
+    },
   },
 
 });
