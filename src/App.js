@@ -7,6 +7,7 @@ import Workouts from './Pages/Workouts';
 import ErrorPage from './Pages/ErrorPage';
 import { ResponsiveAppBar } from "./Components/ResponsiveAppBar";
 import {Container} from '@mui/material';
+import {ScrollToTopButton} from './Components/ScrollToTopButton';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           <Route path="/workouts" element={<Workouts />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
+        <ScrollToTopButton />
       </Container>
     </>
   );
