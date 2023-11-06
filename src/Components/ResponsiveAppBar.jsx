@@ -50,7 +50,6 @@ export function ResponsiveAppBar() {
                 mr: 2,
                 display: { xs: "flex", md: "flex" },
                 flexGrow: 1,
-                fontFamily: "monospace",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
                 color: "inherit",
