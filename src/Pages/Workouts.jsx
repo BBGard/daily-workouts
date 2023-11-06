@@ -44,7 +44,7 @@ const muscleGroups = [
 
 const workoutTypes = [
   "Weights",
-  "Warmups",
+  "Warmup",
   "Rehabilitation",
 ];
 
@@ -59,12 +59,12 @@ const filterWorkouts = () => {
     console.log(searchText);
 
     filteredWorkouts = allWorkouts.filter((workout) => {
-      return workout.name.toLowerCase().includes(searchText.toLowerCase()) ||
-      workout.category.toLowerCase().includes(searchText.toLowerCase()) ||
-      workout.group.toLowerCase().includes(searchText.toLowerCase());
+      return (
+        workout.name.toLowerCase().includes(searchText.toLowerCase()) ||
+        workout.category.toLowerCase().includes(searchText.toLowerCase()) ||
+        workout.group.toLowerCase().includes(searchText.toLowerCase())
+      );
     });
-
-
   }
 
   // If no muscle groups or workout types are selected show all workouts
@@ -88,11 +88,19 @@ const filterWorkouts = () => {
 
   // If workout types are selected, filter workouts by workout type (category)
   if (workoutTypesSelection.length > 0) {
-    filteredWorkouts = filteredWorkouts.filter((workout) => {
-      return workoutTypesSelection.some((workoutType) => {
-        return workout.category.includes(workoutType);
+    if (filteredWorkouts === undefined) {
+      filteredWorkouts = allWorkouts.filter((workout) => {
+        return workoutTypesSelection.some((workoutType) => {
+          return workout.category.includes(workoutType);
+        });
       });
-    });
+    } else {
+      filteredWorkouts = filteredWorkouts.filter((workout) => {
+        return workoutTypesSelection.some((workoutType) => {
+          return workout.category.includes(workoutType);
+        });
+      });
+    }
   }
 
   // Set the workouts to show
