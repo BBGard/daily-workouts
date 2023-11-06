@@ -22,6 +22,7 @@ const Home = () => {
   const [todaysWorkouts, setTodaysWorkouts] = useState([]);
   const [allWorkouts, setAllWorkouts] = useState(workouts);
   const [warmups, setWarmups] = useState();
+  const [recommendedWarmup, setRecommendedWarmup] = useState([]);
 
 
   // On mount, load all workouts, generate today's workouts, and set the recommended workout
@@ -29,6 +30,7 @@ const Home = () => {
 
     // Setup Warmups
     setWarmups(workouts.filter(workout => workout.category.includes("Warmup")));
+    setRecommendedWarmup(workouts.filter(workout => workout.category.includes("Warmup"))[0]);
 
     // Generate today's workouts and recommended workout
     const generateTodaysWorkouts = (workoutData) => {
@@ -86,6 +88,17 @@ const Home = () => {
     }
   };
 
+  // Increment the recommended warmup
+  const incrementRecommendedWarmup = () => {
+    const currentWarmupIndex = warmups.indexOf(recommendedWarmup);
+
+    if (currentWarmupIndex < warmups.length - 1) {
+      setRecommendedWarmup(warmups[currentWarmupIndex + 1]);
+    } else {
+      setRecommendedWarmup(warmups[0]);
+    }
+  }
+
   // Watch the selected workout
   function watchSelectedWorkout() {
 
@@ -135,8 +148,6 @@ const Home = () => {
               flex="1"
             >
               Recommended Workout
-              {/* {workoutSchedule[new Date().getDay()].day}-{" "}
-              {workoutSchedule[new Date().getDay()].workout} */}
             </Typography>
         <Slide
           direction="right"
@@ -153,7 +164,6 @@ const Home = () => {
                 component="img"
                 alt="workout video screenshot"
                 height="190"
-                // image={recommendedWorkout.thumbnail}
                 image={recommendedWorkout.thumbnail}
               />
             ) : (
@@ -174,7 +184,8 @@ const Home = () => {
                 }}
               >
                 <Typography gutterBottom variant="h5" component="div">
-                  Recommended Workout
+                  {workoutSchedule[new Date().getDay()].day}: {" "}
+                  {workoutSchedule[new Date().getDay()].workout}
                 </Typography>
                 <Typography variant="h7" color="text.primary">
                   {recommendedWorkout.name}
@@ -245,12 +256,13 @@ const Home = () => {
           unmountOnExit
         >
           <ButtonGroup
-            sx={{ width: "100%", justifyContent: "center" }}
+            sx={{ width: "100%", justifyContent: "center", marginTop: "2rem" }}
             variant="text"
             aria-label="text button group"
           >
             <Button
               variant="contained"
+              size="large"
               sx={{ margin: "1rem auto" }}
               href="/workouts"
               onClick={() => {
@@ -277,7 +289,6 @@ const Home = () => {
           component="h2"
           align="center"
           gutterBottom
-          marginTop={"1rem"}
           flex="1"
         >
           Need a Warmup?
@@ -291,13 +302,12 @@ const Home = () => {
           unmountOnExit
         >
           <Card sx={{ maxWidth: 345, margin: "1rem auto" }}>
-            {recommendedWorkout ? (
+            {recommendedWarmup ? (
               <CardMedia
                 component="img"
                 alt="workout video screenshot"
                 height="190"
-                // image={recommendedWorkout.thumbnail}
-                image={recommendedWorkout.thumbnail}
+                image={recommendedWarmup.thumbnail}
               />
             ) : (
               <Skeleton
@@ -308,7 +318,7 @@ const Home = () => {
               />
             )}
 
-            {recommendedWorkout ? (
+            {recommendedWarmup ? (
               <CardContent
                 sx={{
                   textAlign: "center",
@@ -317,12 +327,12 @@ const Home = () => {
                 }}
               >
                 <Typography gutterBottom variant="h5" component="div">
-                  Recommended Workout
+                  Recommended Warmup
                 </Typography>
                 <Typography variant="h7" color="text.primary">
-                  {recommendedWorkout.name}
+                  {recommendedWarmup.name}
                   <br></br>
-                  Duration: {recommendedWorkout.duration}
+                  Duration: {recommendedWarmup.duration}
                 </Typography>
               </CardContent>
             ) : (
@@ -345,13 +355,13 @@ const Home = () => {
                 marginBottom: "1.5rem",
               }}
             >
-              {recommendedWorkout ? (
+              {recommendedWarmup ? (
                 <>
                   <Button
                     size="large"
                     variant="contained"
                     color="secondary"
-                    onClick={incrementRecommendedWorkout}
+                    onClick={incrementRecommendedWarmup}
                   >
                     Next
                   </Button>
@@ -359,7 +369,11 @@ const Home = () => {
                     size="large"
                     variant="contained"
                     color="primary"
-                    onClick={watchSelectedWorkout}
+                    onClick={
+                      () => {
+                        window.open(recommendedWarmup.link, "_blank");
+                      }
+                    }
                   >
                     Watch
                   </Button>
