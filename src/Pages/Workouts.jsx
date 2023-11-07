@@ -161,6 +161,7 @@ const handleWorkoutTypeChange = (event) => {
             onChange={(event) => {
               setSearchText(event.target.value);
             }}
+            autoComplete="off"
           />
 
           </FormControl>
