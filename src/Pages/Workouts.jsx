@@ -141,7 +141,7 @@ const handleWorkoutTypeChange = (event) => {
         All Workouts
       </Typography>
 
-      <Card sx={{ maxWidth: 345, margin: "2rem auto", padding: "1rem" }}>
+      <Card sx={{ maxWidth: 640, margin: "2rem auto", padding: "1rem" }}>
         <Typography
           variant="h6"
           component="h6"
@@ -152,7 +152,7 @@ const handleWorkoutTypeChange = (event) => {
           Find a Workout
         </Typography>
 
-        <FormControl sx={{ m: 1, width: 300 }}>
+        <FormControl sx={{ width: "100%" }}>
           {/* Keyword search */}
           <TextField
             id="keyword-search"
@@ -168,7 +168,7 @@ const handleWorkoutTypeChange = (event) => {
 
 
 
-        <FormControl label='Muscle Group' variant='outlined' sx={{ m: 1, width: 300 }}>
+        <FormControl label='Muscle Group' variant='outlined' sx={{ marginTop: "1rem", width: "100%" }}>
           <InputLabel id="muscle-group-label">Muscle Group</InputLabel>
           <Select
             labelId="muscle-group-label"
@@ -188,7 +188,7 @@ const handleWorkoutTypeChange = (event) => {
             ))}
           </Select>
         </FormControl>
-        <FormControl sx={{ m: 1, width: 300 }}>
+        <FormControl sx={{ marginTop: "1rem", width: "100%" }}>
           <InputLabel id="workout-type-label">Workout Type</InputLabel>
           <Select
             labelId="workout-type-label"
