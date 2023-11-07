@@ -16,9 +16,10 @@ import { Slide } from '@mui/material';
 import Drawer from '@mui/material/Drawer';
 import { Link } from "react-router-dom";
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
-import SportsGymnasticsIcon from '@mui/icons-material/SportsGymnastics';
-import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
+import WhatshotOutlinedIcon from '@mui/icons-material/WhatshotOutlined';
+import RestoreOutlinedIcon from '@mui/icons-material/RestoreOutlined';
 import HomeIcon from '@mui/icons-material/Home';
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 const pages = ['Workouts', 'Warmups', 'Recovery'];
 
@@ -79,40 +80,32 @@ export function ResponsiveAppBar() {
                 open={open}
                 onClose={toggleDrawer(false)}
               >
-                <Box
-                  sx={{ width: "50vw", maxWidth: "300px", marginTop: "10vh" }}
-                  role="presentation"
-                  onClick={toggleDrawer(false)}
-                  onKeyDown={toggleDrawer(false)}
-                >
-                  <MenuItem key={"Home"}>
-                    <Link
-                      to={`/`}
-                      style={{
-                        textDecoration: "none",
-                        color: "black",
-                        width: "100%",
-                        height: "100%",
-                        padding: "0.5rem",
-                        margin: "0",
-                        display: "flex",
-                        alignItems: "center",
 
-
-                      }}
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "flex-end",
+                      padding: "1rem",
+                    }}
+                  >
+                    <IconButton
+                      size="large"
+                      aria-label="close menu"
+                      onClick={toggleDrawer(false)}
+                      color="inherit"
                     >
-                      <HomeIcon
-                        sx={{ display: { xs: "flex", md: "flex" }, mr: 1 }}
-                      />
-                      <Typography textAlign="left" fontSize={"1.2rem"} fontWeight={500}>
-                        Home
-                      </Typography>
-                    </Link>
-                  </MenuItem>
-                  {pages.map((page) => (
-                    <MenuItem key={page}>
+                      <CloseOutlinedIcon />
+                    </IconButton>
+                  </Box>
+                  <Box
+                    sx={{ width: "50vw", maxWidth: "300px", marginTop: "10vh" }}
+                    role="presentation"
+                    onClick={toggleDrawer(false)}
+                    onKeyDown={toggleDrawer(false)}
+                  >
+                    <MenuItem key={"Home"}>
                       <Link
-                        to={`/${page.toLowerCase()}`}
+                        to={`/`}
                         style={{
                           textDecoration: "none",
                           color: "black",
@@ -124,31 +117,54 @@ export function ResponsiveAppBar() {
                           alignItems: "center",
                         }}
                       >
-                        {page === "Workouts" ? (
-                          <FitnessCenterIcon
-                            sx={{ display: { xs: "flex", md: "flex" }, mr: 1 }}
-                          />
-                        ) : page === "Warmups" ? (
-                          <SportsGymnasticsIcon
-                            sx={{ display: { xs: "flex", md: "flex" }, mr: 1 }}
-                          />
-                        ) : page === "Recovery" ? (
-                          <HealthAndSafetyIcon
-                            sx={{ display: { xs: "flex", md: "flex" }, mr: 1 }}
-                          />
-                        ) : (
-                          <DirectionsRunIcon
-                            sx={{ display: { xs: "flex", md: "flex" }, mr: 1 }}
-                          />
-                        )}
-
-                        <Typography textAlign="left"  fontSize={"1.2rem"} fontWeight={500}>
-                          {page}
+                        <HomeIcon
+                          sx={{ display: { xs: "flex", md: "flex" }, mr: 1 }}
+                        />
+                        <Typography textAlign="left" fontSize={"1.2rem"} fontWeight={500}>
+                          Home
                         </Typography>
                       </Link>
                     </MenuItem>
-                  ))}
-                </Box>
+                    {pages.map((page) => (
+                      <MenuItem key={page}>
+                        <Link
+                          to={`/${page.toLowerCase()}`}
+                          style={{
+                            textDecoration: "none",
+                            color: "black",
+                            width: "100%",
+                            height: "100%",
+                            padding: "0.5rem",
+                            margin: "0",
+                            display: "flex",
+                            alignItems: "center",
+                          }}
+                        >
+                          {page === "Workouts" ? (
+                            <FitnessCenterIcon
+                              sx={{ display: { xs: "flex", md: "flex" }, mr: 1 }}
+                            />
+                          ) : page === "Warmups" ? (
+                            <WhatshotOutlinedIcon
+                              sx={{ display: { xs: "flex", md: "flex" }, mr: 1 }}
+                            />
+                          ) : page === "Recovery" ? (
+                            <RestoreOutlinedIcon
+                              sx={{ display: { xs: "flex", md: "flex" }, mr: 1 }}
+                            />
+                          ) : (
+                            <DirectionsRunIcon
+                              sx={{ display: { xs: "flex", md: "flex" }, mr: 1 }}
+                            />
+                          )}
+
+                          <Typography textAlign="left"  fontSize={"1.2rem"} fontWeight={500}>
+                            {page}
+                          </Typography>
+                        </Link>
+                      </MenuItem>
+                    ))}
+                  </Box>
               </Drawer>
             </Box>
 
