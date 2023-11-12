@@ -577,17 +577,6 @@ const workouts = [
     watchCount: 0,
   },
   {
-    id: 53,
-    category: "Weights",
-    group: "Full Body",
-    name: "Full Body Workout",
-    link: "",
-    youtube: "",
-    thumbnail: "",
-    duration: " min",
-    watchCount: 0,
-  },
-  {
     id: 54,
     category: "Weights",
     group: "Full Body",
