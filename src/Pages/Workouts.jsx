@@ -44,7 +44,7 @@ const muscleGroups = [
 
 const workoutTypes = [
   "Weights",
-  "Warmup",
+  "Warm Up",
   "Rehabilitation",
 ];
 

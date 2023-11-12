@@ -468,7 +468,7 @@ const workouts = [
 
   {
     id: 43,
-    category: "Warmup",
+    category: "Warm Up",
     group: "Full Body",
     name: "Warm Up Exercises Before Workout",
     link: "https://hasfit.com/workouts/warm-up-cool-down-stretches-stretching/warm-up-exercises-before-workout-2/",
@@ -479,7 +479,7 @@ const workouts = [
   },
   {
     id: 44,
-    category: "Warmup",
+    category: "Warm Up",
     group: "Full Body",
     name: "Warm Up Exercises Before Workout",
     link: "https://hasfit.com/workouts/warm-up-cool-down-stretches-stretching/warm-up-before-you-workout/",
@@ -699,9 +699,9 @@ const workouts = [
   },
   {
     id: 64,
-    category: "Warmup",
+    category: "Warm Up",
     group: "Full Body",
-    name: "Warmup",
+    name: "Warm Up",
     link: "https://hasfit.com/workouts/warm-up-cool-down-stretches-stretching/warm-up-before-workout/",
     youtube: "https://www.youtube.com/watch?v=XklVcpXN9ic",
     thumbnail: "http://img.youtube.com/vi/XklVcpXN9ic/0.jpg",
