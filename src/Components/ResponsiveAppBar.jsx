@@ -37,7 +37,7 @@ export function ResponsiveAppBar() {
 
   return (
     <Slide direction="down" timeout={500} in={true} mountOnEnter unmountOnExit>
-      <AppBar component={"nav"}>
+      <AppBar component={"nav"} color='secondary'>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             {/* Mobile View */}

@@ -29,8 +29,8 @@ const Home = () => {
   useEffect(() => {
 
     // Setup Warmups
-    setWarmups(workouts.filter(workout => workout.category.includes("Warmup")));
-    setRecommendedWarmup(workouts.filter(workout => workout.category.includes("Warmup"))[0]);
+    setWarmups(workouts.filter(workout => workout.category.includes("Warm Up")));
+    setRecommendedWarmup(workouts.filter(workout => workout.category.includes("Warm Up"))[0]);
 
     // Generate today's workouts and recommended workout
     const generateTodaysWorkouts = (workoutData) => {
@@ -146,6 +146,7 @@ const Home = () => {
               gutterBottom
               marginTop={"1rem"}
               flex="1"
+              color={"white"}
             >
               Recommended Workout
             </Typography>
@@ -156,7 +157,7 @@ const Home = () => {
           mountOnEnter
           unmountOnExit
         >
-          <Card sx={{ maxWidth: 345, margin: "1rem auto" }}>
+          <Card sx={{ maxWidth: 345, margin: "1rem auto"}}>
 
 
             {recommendedWorkout ? (
@@ -181,6 +182,7 @@ const Home = () => {
                   textAlign: "center",
                   margin: "1rem auto",
                   height: "15vh",
+                  color: "text.secondary",
                 }}
               >
                 <Typography gutterBottom variant="h5" component="div">
@@ -290,6 +292,9 @@ const Home = () => {
           align="center"
           gutterBottom
           flex="1"
+          marginTop={"2rem"}
+          color={"white"}
+
         >
           Need a Warmup?
         </Typography>
@@ -301,7 +306,7 @@ const Home = () => {
           mountOnEnter
           unmountOnExit
         >
-          <Card sx={{ maxWidth: 345, margin: "1rem auto" }}>
+          <Card sx={{ maxWidth: 345, margin: "1rem auto"}}>
             {recommendedWarmup ? (
               <CardMedia
                 component="img"
@@ -326,7 +331,7 @@ const Home = () => {
                   height: "15vh",
                 }}
               >
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography gutterBottom variant="h5" component="div" color={"text.secondary"}>
                   Recommended Warmup
                 </Typography>
                 <Typography variant="h7" color="text.primary">

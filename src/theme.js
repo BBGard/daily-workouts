@@ -5,16 +5,30 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#222230',
+      main: '#b2ff34',
+      text: '#ffffff',
     },
     secondary: {
-      main: '#19857b',
+      main: '#1e232f',
+      // b2ff34
+    },
+    tertiary: {
+      main: '#4b807b',
     },
     error: {
       main: red.A400,
     },
     background: {
-      default: '#ffffff',
+      default: '#282f3e',
+      // 2e2b2c
+    },
+    card: {
+      default: '#dc143c',
+    },
+
+    // Define default font color
+    text: {
+      primary: '#000000',
     },
     // DEfine font family
     typography: {

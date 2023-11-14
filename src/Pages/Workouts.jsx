@@ -134,7 +134,6 @@ const handleWorkoutTypeChange = (event) => {
       <Typography
         variant="h4"
         component="h1"
-        color={"black"}
         textAlign={"center"}
         gutterBottom
       >
@@ -277,6 +276,7 @@ const handleWorkoutTypeChange = (event) => {
               maxWidth: 345,
               width: "100%",
               margin: "1rem auto",
+              // backgroundColor: "#dc143c"
             }}
           >
             {workout != null ? (
@@ -309,7 +309,7 @@ const handleWorkoutTypeChange = (event) => {
             >
               {workout != null ? (
                 <>
-                  <Typography variant="body1" color="text.secondary">
+                  <Typography variant="body1" color={"text.secondary"}>
                     {workout.category}
                   </Typography>
                   <Typography
@@ -335,7 +335,7 @@ const handleWorkoutTypeChange = (event) => {
               {workout != null ? (
                 <Button
                   variant="contained"
-                  color="secondary"
+                  color="primary"
                   onClick={() => {
                     window.open(workout.link, "_blank");
                   }}
