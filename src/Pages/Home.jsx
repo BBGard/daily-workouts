@@ -52,11 +52,9 @@ const Home = () => {
           workout.group.includes(
             // Javascript uses 0-6 for Sunday-Saturday
             workoutSchedule[currentDate.getDay()].workout
-          ) ||
-          workout.category.includes(
-            // Javascript uses 0-6 for Sunday-Saturday
-            workoutSchedule[currentDate.getDay()].workout
-          )
+          ) &&
+          workout.category === "Weights"
+
         );
 
         // Sort the workouts by watch count - to be propery implemented later
@@ -228,7 +226,7 @@ const Home = () => {
                   <Button
                     size="large"
                     variant="contained"
-                    color="primary"
+                    color="button"
                     onClick={watchSelectedWorkout}
                   >
                     Watch
@@ -265,6 +263,7 @@ const Home = () => {
             <Button
               variant="contained"
               size="large"
+              color="button"
               sx={{ margin: "1rem auto" }}
               href="/workouts"
               onClick={() => {
@@ -373,7 +372,7 @@ const Home = () => {
                   <Button
                     size="large"
                     variant="contained"
-                    color="primary"
+                    color="button"
                     onClick={
                       () => {
                         window.open(recommendedWarmup.link, "_blank");
