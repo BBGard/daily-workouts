@@ -577,6 +577,17 @@ const workouts = [
     watchCount: 0,
   },
   {
+    id: 53,
+    category: "Weights",
+    group: "Back",
+    name: "Back Workout With Dumbells",
+    link: "https://hasfit.com/workouts/home/home-back/20-min-back-workout-with-dumbbells-at-home/",
+    youtube: "https://www.youtube.com/watch?v=jeoF_T4kJDE",
+    thumbnail: "http://img.youtube.com/vi/jeoF_T4kJDE/0.jpg",
+    duration: "20 min",
+    watchCount: 0,
+  },
+  {
     id: 54,
     category: "Weights",
     group: "Full Body",
