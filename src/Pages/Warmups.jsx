@@ -1,7 +1,6 @@
 import React from 'react';
 import { workouts } from '../Data/workoutData';
-import {  Typography, Box, Button, Card, CardActions, TextField,  CardMedia, Skeleton, CardContent, OutlinedInput } from '@mui/material';
-import { useState } from 'react';
+import {  Typography, Box, Button, Card, CardActions,  CardMedia, Skeleton, CardContent,  } from '@mui/material';
 
 
 function Warmups() {
@@ -18,7 +17,7 @@ function Warmups() {
       <Typography
         variant="h4"
         component="h1"
-        color={"black"}
+        color={"text.tertiary"}
         textAlign={"center"}
         gutterBottom
       >
@@ -74,7 +73,7 @@ function Warmups() {
                   <Typography variant="body1" color="text.secondary">
                     {warmup.category}
                   </Typography>
-                  <Typography variant="h6" component="div" color={"black"}>
+                  <Typography variant="h6" component="div" color={"text.primary"}>
                     {warmup.duration} {warmup.name}
                   </Typography>
                 </>
@@ -93,7 +92,7 @@ function Warmups() {
               {warmup != null ? (
                 <Button
                   variant="contained"
-                  color="secondary"
+                  color="buttonSuccess"
                   onClick={() => {
                     window.open(warmup.link, "_blank");
                   }}

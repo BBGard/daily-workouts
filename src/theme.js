@@ -15,9 +15,14 @@ const theme = createTheme({
     tertiary: {
       main: '#4b807b',
     },
-    button: {
+    buttonSuccess: {
       main: '#b2ff34',
-
+    },
+    buttonWarning: {
+      main: '#ffae00',
+    },
+    buttonError: {
+      main: '#ff0000',
     },
 
     error: {
@@ -34,6 +39,8 @@ const theme = createTheme({
     // Define default font color
     text: {
       primary: '#000000',
+      secondary: '#323232',
+      tertiary: '#ffffff',
     },
     // DEfine font family
     typography: {

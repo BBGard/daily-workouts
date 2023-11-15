@@ -144,7 +144,7 @@ const Home = () => {
               gutterBottom
               marginTop={"1rem"}
               flex="1"
-              color={"white"}
+              color={"text.tertiary"}
             >
               Recommended Workout
             </Typography>
@@ -226,7 +226,7 @@ const Home = () => {
                   <Button
                     size="large"
                     variant="contained"
-                    color="button"
+                    color="buttonSuccess"
                     onClick={watchSelectedWorkout}
                   >
                     Watch
@@ -263,7 +263,7 @@ const Home = () => {
             <Button
               variant="contained"
               size="large"
-              color="button"
+              color="buttonSuccess"
               sx={{ margin: "1rem auto" }}
               href="/workouts"
               onClick={() => {
@@ -292,7 +292,7 @@ const Home = () => {
           gutterBottom
           flex="1"
           marginTop={"2rem"}
-          color={"white"}
+          color={"text.tertiary"}
 
         >
           Need a Warmup?
@@ -330,7 +330,7 @@ const Home = () => {
                   height: "15vh",
                 }}
               >
-                <Typography gutterBottom variant="h5" component="div" color={"text.secondary"}>
+                <Typography gutterBottom variant="h5" component="div" color={"text.tertiary"}>
                   Recommended Warmup
                 </Typography>
                 <Typography variant="h7" color="text.primary">
@@ -372,7 +372,7 @@ const Home = () => {
                   <Button
                     size="large"
                     variant="contained"
-                    color="button"
+                    color="buttonSuccess"
                     onClick={
                       () => {
                         window.open(recommendedWarmup.link, "_blank");

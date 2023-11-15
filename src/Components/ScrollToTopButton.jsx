@@ -30,7 +30,7 @@ export const ScrollToTopButton = () => {
 
   return (
     <Zoom in={isVisible} timeout={500} unmountOnExit>
-        <Fab sx={{position: "fixed", bottom: "1rem", right: "1rem"}} color="primary" size="medium" onClick={handleClick}>
+        <Fab sx={{position: "fixed", bottom: "1rem", right: "1rem"}} color="button" size="medium" onClick={handleClick}>
           <KeyboardArrowUpIcon />
         </Fab>
     </Zoom>

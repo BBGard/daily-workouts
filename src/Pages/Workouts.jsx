@@ -136,7 +136,7 @@ const handleWorkoutTypeChange = (event) => {
         component="h1"
         textAlign={"center"}
         gutterBottom
-        color={"white"}
+        color={"text.tertiary"}
       >
         All Workouts
       </Typography>
@@ -145,7 +145,7 @@ const handleWorkoutTypeChange = (event) => {
         <Typography
           variant="h6"
           component="h6"
-          color={"black"}
+          color={"text.primary"}
           textAlign={"left"}
           gutterBottom
         >
@@ -158,6 +158,7 @@ const handleWorkoutTypeChange = (event) => {
             id="keyword-search"
             label="Type here to search"
             variant="outlined"
+            sx={{color: "text.primary"}}
             onChange={(event) => {
               setSearchText(event.target.value);
             }}
@@ -214,7 +215,7 @@ const handleWorkoutTypeChange = (event) => {
         <CardActions
           sx={{ justifyContent: "center", gap: "1rem", marginTop: "1rem" }}
         >
-          <Button variant="contained" color="button" onClick={filterWorkouts}>
+          <Button variant="contained" color="buttonSuccess" onClick={filterWorkouts}>
             Filter
           </Button>
           <Button
@@ -251,7 +252,6 @@ const handleWorkoutTypeChange = (event) => {
               maxWidth: 345,
               width: "100%",
               margin: "1rem auto",
-              // backgroundColor: "#dc143c"
             }}
           >
             {workout != null ? (
@@ -259,7 +259,6 @@ const handleWorkoutTypeChange = (event) => {
                 component="img"
                 alt="workout video screenshot"
                 height="190"
-                // image={recommendedWorkout.thumbnail}
                 image={workout.thumbnail}
                 onClick={() => {
                   window.open(workout.link, "_blank");
@@ -287,7 +286,7 @@ const handleWorkoutTypeChange = (event) => {
                   <Typography variant="body1" color={"text.secondary"}>
                     {workout.category}
                   </Typography>
-                  <Typography variant="h6" component="div" color={"black"}>
+                  <Typography variant="h6" component="div" color={"text.primary"}>
                     {workout.duration} {workout.name}
                   </Typography>
                 </>
@@ -306,7 +305,7 @@ const handleWorkoutTypeChange = (event) => {
               {workout != null ? (
                 <Button
                   variant="contained"
-                  color="button"
+                  color="buttonSuccess"
                   onClick={() => {
                     window.open(workout.link, "_blank");
                   }}
