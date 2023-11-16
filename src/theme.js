@@ -5,16 +5,45 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#e82136',
+      main: '#127f28',
+      text: '#ffffff',
     },
     secondary: {
-      main: '#19857b',
+      main: '#1e232f',
+      // b2ff34
     },
+    tertiary: {
+      main: '#0bbcda',
+    },
+    buttonPrimary: {
+      main: '#05eb8b',
+    },
+    buttonSuccess: {
+      main: '#b2ff34',
+    },
+    buttonWarning: {
+      main: '#ffae00',
+    },
+    buttonError: {
+      main: '#fe4d4c',
+    },
+
     error: {
       main: red.A400,
     },
     background: {
-      default: '#ffffff',
+      // default: '#282f3e',
+      default: '#2f384b',
+    },
+    card: {
+      default: '#dc143c',
+    },
+
+    // Define default font color
+    text: {
+      primary: '#000000',
+      secondary: '#323232',
+      tertiary: '#ffffff',
     },
     // DEfine font family
     typography: {

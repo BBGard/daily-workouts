@@ -44,8 +44,8 @@ const muscleGroups = [
 
 const workoutTypes = [
   "Weights",
-  "Warmup",
-  "Rehabilitation",
+  "Warm Up",
+  "Recovery",
 ];
 
 // Filter the workouts to show based on the selected muscle group and workout type
@@ -134,40 +134,43 @@ const handleWorkoutTypeChange = (event) => {
       <Typography
         variant="h4"
         component="h1"
-        color={"black"}
         textAlign={"center"}
         gutterBottom
+        color={"text.tertiary"}
       >
         All Workouts
       </Typography>
 
-      <Card sx={{ maxWidth: 345, margin: "2rem auto", padding: "1rem" }}>
+      <Card sx={{ maxWidth: 640, margin: "2rem auto", padding: "1rem" }}>
         <Typography
           variant="h6"
           component="h6"
-          color={"black"}
+          color={"text.primary"}
           textAlign={"left"}
           gutterBottom
         >
           Find a Workout
         </Typography>
 
-        <FormControl sx={{ m: 1, width: 300 }}>
+        <FormControl sx={{ width: "100%" }}>
           {/* Keyword search */}
           <TextField
             id="keyword-search"
             label="Type here to search"
             variant="outlined"
+            sx={{color: "text.primary"}}
             onChange={(event) => {
               setSearchText(event.target.value);
             }}
+            autoComplete="off"
           />
+        </FormControl>
 
-          </FormControl>
-
-
-
-        <FormControl label='Muscle Group' variant='outlined' sx={{ m: 1, width: 300 }}>
+        <FormControl
+          label="Muscle Group"
+          variant="outlined"
+          sx={{ marginTop: "1rem", width: "100%" }}
+        >
           <InputLabel id="muscle-group-label">Muscle Group</InputLabel>
           <Select
             labelId="muscle-group-label"
@@ -187,7 +190,7 @@ const handleWorkoutTypeChange = (event) => {
             ))}
           </Select>
         </FormControl>
-        <FormControl sx={{ m: 1, width: 300 }}>
+        <FormControl sx={{ marginTop: "1rem", width: "100%" }}>
           <InputLabel id="workout-type-label">Workout Type</InputLabel>
           <Select
             labelId="workout-type-label"
@@ -195,25 +198,24 @@ const handleWorkoutTypeChange = (event) => {
             multiple
             value={workoutTypesSelection}
             onChange={handleWorkoutTypeChange}
-            input={<OutlinedInput label={"Workout Type"} />}
+            input={<OutlinedInput label={"Workout Type"}/>}
             renderValue={(selected) => selected.join(", ")}
             MenuProps={MenuProps}
           >
             {workoutTypes.map((type) => (
               <MenuItem key={type} value={type}>
-                <Checkbox checked={workoutTypesSelection.indexOf(type) > -1} />
+                <Checkbox
+                  checked={workoutTypesSelection.indexOf(type) > -1}
+                />
                 <ListItemText primary={type} />
               </MenuItem>
             ))}
           </Select>
         </FormControl>
-        <CardActions sx={{ justifyContent: "center", gap: "1rem", marginTop: "1rem"}}>
-
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={filterWorkouts}
-          >
+        <CardActions
+          sx={{ justifyContent: "center", gap: "1rem", marginTop: "1rem" }}
+        >
+          <Button variant="contained" color="buttonSuccess" onClick={filterWorkouts}>
             Filter
           </Button>
           <Button
@@ -230,32 +232,6 @@ const handleWorkoutTypeChange = (event) => {
             Clear
           </Button>
         </CardActions>
-
-        {/* <Autocomplete
-          id="Muscle Group"
-          options={muscleGroups}
-          getOptionLabel={(option) => option}
-          sx={{ width: "100%", marginBottom: "1rem" }}
-          renderInput={(params) => (
-            <TextField {...params} label="Muscle Group" />
-          )}
-          onSelect={(event) => {
-            filterWorkouts(event.target.value);
-          }}
-        />
-
-        <Autocomplete
-          id="Workout Type"
-          options={workoutTypes}
-          getOptionLabel={(option) => option}
-          sx={{ width: "100%" }}
-          renderInput={(params) => (
-            <TextField {...params} label="Workout Type" />
-          )}
-          onSelect={(event) => {
-            filterWorkouts(event.target.value);
-          }}
-        /> */}
       </Card>
 
       {/* TODO Add min max duration selections */}
@@ -283,7 +259,6 @@ const handleWorkoutTypeChange = (event) => {
                 component="img"
                 alt="workout video screenshot"
                 height="190"
-                // image={recommendedWorkout.thumbnail}
                 image={workout.thumbnail}
                 onClick={() => {
                   window.open(workout.link, "_blank");
@@ -308,14 +283,10 @@ const handleWorkoutTypeChange = (event) => {
             >
               {workout != null ? (
                 <>
-                  <Typography variant="body1" color="text.secondary">
+                  <Typography variant="body1" color={"text.secondary"}>
                     {workout.category}
                   </Typography>
-                  <Typography
-                    variant="h6"
-                    component="div"
-                    color={"black"}
-                  >
+                  <Typography variant="h6" component="div" color={"text.primary"}>
                     {workout.duration} {workout.name}
                   </Typography>
                 </>
@@ -334,7 +305,7 @@ const handleWorkoutTypeChange = (event) => {
               {workout != null ? (
                 <Button
                   variant="contained"
-                  color="secondary"
+                  color="buttonSuccess"
                   onClick={() => {
                     window.open(workout.link, "_blank");
                   }}

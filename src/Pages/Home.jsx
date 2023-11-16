@@ -29,8 +29,8 @@ const Home = () => {
   useEffect(() => {
 
     // Setup Warmups
-    setWarmups(workouts.filter(workout => workout.category.includes("Warmup")));
-    setRecommendedWarmup(workouts.filter(workout => workout.category.includes("Warmup"))[0]);
+    setWarmups(workouts.filter(workout => workout.category.includes("Warm Up")));
+    setRecommendedWarmup(workouts.filter(workout => workout.category.includes("Warm Up"))[0]);
 
     // Generate today's workouts and recommended workout
     const generateTodaysWorkouts = (workoutData) => {
@@ -52,11 +52,9 @@ const Home = () => {
           workout.group.includes(
             // Javascript uses 0-6 for Sunday-Saturday
             workoutSchedule[currentDate.getDay()].workout
-          ) ||
-          workout.category.includes(
-            // Javascript uses 0-6 for Sunday-Saturday
-            workoutSchedule[currentDate.getDay()].workout
-          )
+          ) &&
+          workout.category === "Weights"
+
         );
 
         // Sort the workouts by watch count - to be propery implemented later
@@ -146,6 +144,7 @@ const Home = () => {
               gutterBottom
               marginTop={"1rem"}
               flex="1"
+              color={"text.tertiary"}
             >
               Recommended Workout
             </Typography>
@@ -156,7 +155,7 @@ const Home = () => {
           mountOnEnter
           unmountOnExit
         >
-          <Card sx={{ maxWidth: 345, margin: "1rem auto" }}>
+          <Card sx={{ maxWidth: 345, margin: "1rem auto"}}>
 
 
             {recommendedWorkout ? (
@@ -181,6 +180,7 @@ const Home = () => {
                   textAlign: "center",
                   margin: "1rem auto",
                   height: "15vh",
+                  color: "text.secondary",
                 }}
               >
                 <Typography gutterBottom variant="h5" component="div">
@@ -226,7 +226,7 @@ const Home = () => {
                   <Button
                     size="large"
                     variant="contained"
-                    color="primary"
+                    color="buttonSuccess"
                     onClick={watchSelectedWorkout}
                   >
                     Watch
@@ -263,6 +263,7 @@ const Home = () => {
             <Button
               variant="contained"
               size="large"
+              color="buttonSuccess"
               sx={{ margin: "1rem auto" }}
               href="/workouts"
               onClick={() => {
@@ -290,6 +291,9 @@ const Home = () => {
           align="center"
           gutterBottom
           flex="1"
+          marginTop={"2rem"}
+          color={"text.tertiary"}
+
         >
           Need a Warmup?
         </Typography>
@@ -301,7 +305,7 @@ const Home = () => {
           mountOnEnter
           unmountOnExit
         >
-          <Card sx={{ maxWidth: 345, margin: "1rem auto" }}>
+          <Card sx={{ maxWidth: 345, margin: "1rem auto"}}>
             {recommendedWarmup ? (
               <CardMedia
                 component="img"
@@ -326,7 +330,7 @@ const Home = () => {
                   height: "15vh",
                 }}
               >
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography gutterBottom variant="h5" component="div" color={"text.tertiary"}>
                   Recommended Warmup
                 </Typography>
                 <Typography variant="h7" color="text.primary">
@@ -368,7 +372,7 @@ const Home = () => {
                   <Button
                     size="large"
                     variant="contained"
-                    color="primary"
+                    color="buttonSuccess"
                     onClick={
                       () => {
                         window.open(recommendedWarmup.link, "_blank");
