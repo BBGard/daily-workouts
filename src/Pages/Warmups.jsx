@@ -8,10 +8,6 @@ function Warmups() {
   // Select only warmups from workout data
   const warmups = workouts.filter((workout) => workout.category === "Warm Up");
 
-
-  console.log(warmups);
-
-
   return (
     <Box sx={{ my: 4 }}>
       <Typography

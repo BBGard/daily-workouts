@@ -324,10 +324,10 @@ const workouts = [
   },
   {
     id: 30,
-    category: "Rehabilitation",
+    category: "Recovery",
     group: "Legs, Sciatica, Glutes",
     name: "Sciatica Pain Relief Exercises",
-    link: "https://hasfit.com/workouts/home/Rehabilitation-mobility/20-min-sciatica-pain-relief-exercises/",
+    link: "https://hasfit.com/workouts/home/Recovery-mobility/20-min-sciatica-pain-relief-exercises/",
     youtube: "https://www.youtube.com/watch?v=AkgxIT2z0js",
     thumbnail: "http://img.youtube.com/vi/AkgxIT2z0js/0.jpg",
     duration: "20 min",
@@ -335,7 +335,7 @@ const workouts = [
   },
   {
     id: 31,
-    category: "Rehabilitation",
+    category: "Recovery",
     group: "Lower Back",
     name: "Exercises for Lower Back Pain Stretches",
     link: "https://hasfit.com/workouts/home/low-back/20-min-exercises-for-lower-back-pain-stretches/",
@@ -346,10 +346,10 @@ const workouts = [
   },
   {
     id: 32,
-    category: "Rehabilitation",
+    category: "Recovery",
     group: "Shoulders",
     name: "Shoulder Pain Relief Exercises Stretches",
-    link: "https://hasfit.com/workouts/rehabilitation/shoulder-pain-relief-exercises-stretches/",
+    link: "https://hasfit.com/workouts/Recovery/shoulder-pain-relief-exercises-stretches/",
     youtube: "https://www.youtube.com/watch?v=jzyRGiB9BZQ",
     thumbnail: "http://img.youtube.com/vi/jzyRGiB9BZQ/0.jpg",
     duration: "20 min",
@@ -357,10 +357,10 @@ const workouts = [
   },
   {
     id: 33,
-    category: "Rehabilitation",
+    category: "Recovery",
     group: "Pelvis, Back",
     name: "How to Fix Anterior Pelvic Tilt",
-    link: "https://hasfit.com/workouts/rehabilitation/how-to-fix-anterior-pelvic-tilt/",
+    link: "https://hasfit.com/workouts/Recovery/how-to-fix-anterior-pelvic-tilt/",
     youtube: "https://www.youtube.com/watch?v=JGLQS_ArIMY",
     thumbnail: "http://img.youtube.com/vi/JGLQS_ArIMY/0.jpg",
     duration: "20 min",
@@ -368,10 +368,10 @@ const workouts = [
   },
   {
     id: 34,
-    category: "Rehabilitation",
+    category: "Recovery",
     group: "Knee, Legs",
     name: "Knee Stretches for Knee Pain Relief",
-    link: "https://hasfit.com/workouts/rehabilitation/knee-stretches-for-knee-pain-relief/",
+    link: "https://hasfit.com/workouts/Recovery/knee-stretches-for-knee-pain-relief/",
     youtube: "https://www.youtube.com/watch?v=-3Sn5wFF5SA",
     thumbnail: "http://img.youtube.com/vi/-3Sn5wFF5SA/0.jpg",
     duration: "17 min",
@@ -379,7 +379,7 @@ const workouts = [
   },
   {
     id: 35,
-    category: "Rehabilitation",
+    category: "Recovery",
     group: "Lower Back, Hip",
     name: "Exercises for Lower Back and Hip Pain Relief",
     link: "https://hasfit.com/workouts/home/senior/exercises-for-lower-back-and-hip-pain-relief/",
@@ -390,7 +390,7 @@ const workouts = [
   },
   {
     id: 36,
-    category: "Rehabilitation",
+    category: "Recovery",
     group: "Knee, Leg",
     name: "Knee Strengthening Knee Stretches",
     link: "https://hasfit.com/workouts/home/senior/knee-strengthening-knee-stretches/",
@@ -401,7 +401,7 @@ const workouts = [
   },
   {
     id: 37,
-    category: "Rehabilitation",
+    category: "Recovery",
     group: "Shoulders",
     name: "Shoulder Stretches Strengthening for Pain Relief",
     link: "https://hasfit.com/workouts/home/senior/shoulder-stretches-strengthening-for-pain-relief/",
@@ -412,10 +412,10 @@ const workouts = [
   },
   {
     id: 38,
-    category: "Rehabilitation",
+    category: "Recovery",
     group: "Hip",
     name: "Hip Stretching Strengthening Exercises for Hip Pain",
-    link: "https://hasfit.com/workouts/rehabilitation/25-min-hip-stretching-strengthening-exercises-for-hip-pain/",
+    link: "https://hasfit.com/workouts/Recovery/25-min-hip-stretching-strengthening-exercises-for-hip-pain/",
     youtube: "https://www.youtube.com/watch?v=j5VsVh8dtsc",
     thumbnail: "http://img.youtube.com/vi/j5VsVh8dtsc/0.jpg",
     duration: "25 min",
@@ -423,7 +423,7 @@ const workouts = [
   },
   {
     id: 39,
-    category: "Rehabilitation",
+    category: "Recovery",
     group: "Lower Back",
     name: "Lower Back Exercises for Lower Back Pain",
     link: "https://hasfit.com/exercises/lower-back/lower-back-exercises-for-lower-back-pain/",
@@ -434,10 +434,10 @@ const workouts = [
   },
   {
     id: 40,
-    category: "Rehabilitation",
+    category: "Recovery",
     group: "Posture, Shoulders, Back",
     name: "Posture Stretches",
-    link: "https://hasfit.com/workouts/rehabilitation/posture-stretches/",
+    link: "https://hasfit.com/workouts/Recovery/posture-stretches/",
     youtube: "https://www.youtube.com/watch?v=lyRQbwtESBc",
     thumbnail: "http://img.youtube.com/vi/lyRQbwtESBc/0.jpg",
     duration: "7 min",
@@ -445,10 +445,10 @@ const workouts = [
   },
   {
     id: 41,
-    category: "Rehabilitation",
+    category: "Recovery",
     group: "Hip",
     name: "Hip Stretches",
-    link: "https://hasfit.com/workouts/rehabilitation/hip-stretches/",
+    link: "https://hasfit.com/workouts/Recovery/hip-stretches/",
     youtube: "https://www.youtube.com/watch?v=Ie5SW9mqmuk",
     thumbnail: "http://img.youtube.com/vi/Ie5SW9mqmuk/0.jpg",
     duration: "15 min",
@@ -456,10 +456,10 @@ const workouts = [
   },
   {
     id: 42,
-    category: "Rehabilitation",
+    category: "Recovery",
     group: "Foot, Heel",
     name: "Plantar Fasciitis Foot Heel Pain Relief",
-    link: "https://hasfit.com/workouts/rehabilitation/15-min-plantar-fasciitis-foot-heel-pain-relief/",
+    link: "https://hasfit.com/workouts/Recovery/15-min-plantar-fasciitis-foot-heel-pain-relief/",
     youtube: "https://www.youtube.com/watch?v=hSGPSPqycSw",
     thumbnail: "http://img.youtube.com/vi/hSGPSPqycSw/0.jpg",
     duration: "15 min",
@@ -644,7 +644,7 @@ const workouts = [
   },
   {
     id: 59,
-    category: "Rehabilitation",
+    category: "Recovery",
     group: "Full Body",
     name: "Full Body Stretching Exercises",
     link: "https://hasfit.com/workouts/warm-up-cool-down-stretches-stretching/30-minute-full-body-stretch-routine/",
@@ -655,7 +655,7 @@ const workouts = [
   },
   {
     id: 60,
-    category: "Rehabilitation",
+    category: "Recovery",
     group: "Full Body",
     name: "Full Body Stretching Exercises",
     link: "https://hasfit.com/workouts/warm-up-cool-down-stretches-stretching/30-minute-full-body-stretching-exercises/",
@@ -666,7 +666,7 @@ const workouts = [
   },
   {
     id: 61,
-    category: "Rehabilitation",
+    category: "Recovery",
     group: "Full Body",
     name: "Full Body Dynamic Stretching Routine",
     link: "https://hasfit.com/workouts/warm-up-cool-down-stretches-stretching/dynamic-stretching-routine/",
@@ -677,7 +677,7 @@ const workouts = [
   },
   {
     id: 62,
-    category: "Rehabilitation",
+    category: "Recovery",
     group: "Full Body",
     name: "Full Body Stretching Exercises",
     link: "https://hasfit.com/workouts/home/flexibility-mobility/25-minute-full-body-stretching/",
@@ -688,7 +688,7 @@ const workouts = [
   },
   {
     id: 63,
-    category: "Rehabilitation",
+    category: "Recovery",
     group: "Full Body",
     name: "Morning Yoga Routine",
     link: "https://hasfit.com/workouts/yoga/morning-yoga-routine/",
@@ -710,7 +710,7 @@ const workouts = [
   },
   {
     id: 65,
-    category: "Rehabilitation",
+    category: "Recovery",
     group: "Full Body",
     name: "Full Body Mobility Routine",
     link: "https://hasfit.com/workouts/warm-up-cool-down-stretches-stretching/mobility-wod/",
@@ -726,7 +726,7 @@ const workouts = [
 const workoutSchedule = [
   {
     day: "Sunday",
-    workout: "Rehabilitation",
+    workout: "Recovery",
   },
   {
     day: "Monday",

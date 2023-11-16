@@ -45,7 +45,7 @@ const muscleGroups = [
 const workoutTypes = [
   "Weights",
   "Warm Up",
-  "Rehabilitation",
+  "Recovery",
 ];
 
 // Filter the workouts to show based on the selected muscle group and workout type
