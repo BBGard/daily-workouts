@@ -13,7 +13,10 @@ const theme = createTheme({
       // b2ff34
     },
     tertiary: {
-      main: '#4b807b',
+      main: '#0bbcda',
+    },
+    buttonPrimary: {
+      main: '#05eb8b',
     },
     buttonSuccess: {
       main: '#b2ff34',
@@ -22,15 +25,15 @@ const theme = createTheme({
       main: '#ffae00',
     },
     buttonError: {
-      main: '#ff0000',
+      main: '#fe4d4c',
     },
 
     error: {
       main: red.A400,
     },
     background: {
-      default: '#282f3e',
-      // 2e2b2c
+      // default: '#282f3e',
+      default: '#2f384b',
     },
     card: {
       default: '#dc143c',
