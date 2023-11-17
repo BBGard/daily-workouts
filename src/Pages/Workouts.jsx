@@ -18,7 +18,6 @@ const [muscleGroupsSelection, setMuscleGroupsSelection] = useState([]); // muscl
 const [workoutTypesSelection, setWorkoutTypesSelection] = useState([]); // workout types
 const [muscleGroupTabSelection, setMuscleGroupTabSelection] = useState("All"); // muscle groups
 
-
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -32,6 +31,7 @@ const MenuProps = {
 
 // List of muscle groups and workout types
 const muscleGroups = weightMuscleGroups.sort();
+
 
 // Filter the workouts to show based on the selected muscle group and workout type
 const filterWorkouts = () => {
@@ -123,6 +123,8 @@ const handleMuscleGroupTabClick = (event, newValue) => {
   setWorkoutsToShow(workouts.filter((workout) => workout.group.includes(newValue)));
 
 }
+
+
 
   return (
     <Box sx={{ my: 4 }}>
@@ -221,14 +223,13 @@ const handleMuscleGroupTabClick = (event, newValue) => {
               setWorkoutTypesSelection([]);
               setSearchText("");
               setWorkoutsToShow(allWorkouts);
+              setMuscleGroupTabSelection("All");
             }}
           >
             Clear
           </Button>
         </CardActions>
       </Card>
-
-      {/* TODO Add min max duration selections */}
 
       <Card sx={{ maxWidth: 640, margin: "2rem auto", padding: "1rem" }}>
 
@@ -247,6 +248,8 @@ const handleMuscleGroupTabClick = (event, newValue) => {
         ))}
       </Tabs>
       </Card>
+
+
 
       <Box
         sx={{
