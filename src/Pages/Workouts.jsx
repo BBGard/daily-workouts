@@ -1,6 +1,6 @@
 import React from 'react';
-import { workouts } from '../Data/workoutData';
-import {  Typography, Box, Button, Card, CardActions, TextField,  CardMedia, Skeleton, CardContent, OutlinedInput } from '@mui/material';
+import { workouts, weightMuscleGroups, workoutTypes } from '../Data/workoutData';
+import {  Typography, Box, Button, Card, CardActions, TextField,  CardMedia, Skeleton, Tab, Tabs, CardContent, OutlinedInput } from '@mui/material';
 import { useState } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -16,6 +16,8 @@ const [workoutsToShow, setWorkoutsToShow] = useState(workouts); // workouts to s
 const [searchText, setSearchText] = useState([]); // search text
 const [muscleGroupsSelection, setMuscleGroupsSelection] = useState([]); // muscle groups
 const [workoutTypesSelection, setWorkoutTypesSelection] = useState([]); // workout types
+const [muscleGroupTabSelection, setMuscleGroupTabSelection] = useState("All"); // muscle groups
+
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -29,24 +31,7 @@ const MenuProps = {
 };
 
 // List of muscle groups and workout types
-const muscleGroups = [
-  "Abs",
-  "Back",
-  "Biceps",
-  "Chest",
-  "Full Body",
-  "Glutes",
-  "Legs",
-  "Shoulders",
-  "Triceps",
-];
-
-
-const workoutTypes = [
-  "Weights",
-  "Warm Up",
-  "Recovery",
-];
+const muscleGroups = weightMuscleGroups.sort();
 
 // Filter the workouts to show based on the selected muscle group and workout type
 const filterWorkouts = () => {
@@ -55,8 +40,6 @@ const filterWorkouts = () => {
 
   // If there is search text, filter workouts by search text
   if (searchText.length > 0) {
-    console.log("filtering by search text");
-    console.log(searchText);
 
     filteredWorkouts = allWorkouts.filter((workout) => {
       return (
@@ -127,6 +110,18 @@ const handleWorkoutTypeChange = (event) => {
     // On autofill we get a the stringified value.
     typeof value === "string" ? value.split(",") : value
   );
+}
+
+
+const handleMuscleGroupTabClick = (event, newValue) => {
+  setMuscleGroupTabSelection(newValue);
+  if (newValue === "All") {
+    setWorkoutsToShow(workouts);
+    return;
+  }
+
+  setWorkoutsToShow(workouts.filter((workout) => workout.group.includes(newValue)));
+
 }
 
   return (
@@ -222,7 +217,6 @@ const handleWorkoutTypeChange = (event) => {
             variant="contained"
             color="secondary"
             onClick={() => {
-              console.log("Clearing filters");
               setMuscleGroupsSelection([]);
               setWorkoutTypesSelection([]);
               setSearchText("");
@@ -235,6 +229,24 @@ const handleWorkoutTypeChange = (event) => {
       </Card>
 
       {/* TODO Add min max duration selections */}
+
+      <Card sx={{ maxWidth: 640, margin: "2rem auto", padding: "1rem" }}>
+
+      <Tabs
+        value={muscleGroupTabSelection}
+        onChange={handleMuscleGroupTabClick}
+        variant="scrollable"
+        // variant="fullWidth"
+        scrollButtons="auto"
+        aria-label="muscle group tabs"
+        sx={{ justifyContent: "center" }}
+      >
+        <Tab key="All" label="All" value="All" />
+        {muscleGroups.map((type) => (
+          <Tab key={type} label={type} value={type} />
+        ))}
+      </Tabs>
+      </Card>
 
       <Box
         sx={{

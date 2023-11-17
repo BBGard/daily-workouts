@@ -750,6 +750,13 @@ const weightMuscleGroups = [
   "Abs",
 ];
 
+// workout types
+const workoutTypes = [
+  "Weights",
+  "Recovery",
+  "Warm Up",
+];
+
 // Initialize workoutSchedule - note: Sunday is index 0
 const workoutSchedule = [
   {
@@ -782,4 +789,4 @@ const workoutSchedule = [
   },
 ];
 
-export { recoveryMuscleGroups, weightMuscleGroups, workouts, workoutSchedule };
+export { recoveryMuscleGroups, weightMuscleGroups, workouts, workoutTypes, workoutSchedule };
