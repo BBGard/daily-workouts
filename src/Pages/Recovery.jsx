@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
-import { workouts } from '../Data/workoutData';
-import {  Typography, Box, Button, Card, CardActions, TextField,  CardMedia, Skeleton, CardContent, OutlinedInput } from '@mui/material';
+import { workouts, recoveryMuscleGroups } from '../Data/workoutData';
+import {  Typography, Box, Button, Card, CardActions, TextField,  CardMedia, Skeleton, Tab, Tabs, CardContent, OutlinedInput } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -19,6 +19,9 @@ const Recovery = () => {
   const [workoutsToShow, setWorkoutsToShow] = useState(workouts.filter((workout) => workout.category === "Recovery")); // workouts to show
 const [searchText, setSearchText] = useState([]); // search text
 const [muscleGroupsSelection, setMuscleGroupsSelection] = useState([]); // muscle groups
+const [tabSelection, setTabSelection] = useState("All"); // muscle groups
+
+const muscleGroups = recoveryMuscleGroups.sort();
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -31,18 +34,7 @@ const MenuProps = {
   },
 };
 
-  // List of muscle groups for refining
-  const muscleGroups = [
-    "Abs",
-    "Back",
-    "Biceps",
-    "Chest",
-    "Full Body",
-    "Glutes",
-    "Legs",
-    "Shoulders",
-    "Triceps",
-  ];
+
 
   // Filter the workouts to show based on the selected muscle group and workout type
 const filterWorkouts = () => {
@@ -51,8 +43,6 @@ const filterWorkouts = () => {
 
   // If there is search text, filter workouts by search text
   if (searchText.length > 0) {
-    console.log("filtering by search text");
-    console.log(searchText);
 
     filteredWorkouts = recovery.filter((workout) => {
       return (
@@ -90,10 +80,19 @@ const handleMuscleChange = (event) => {
     target: { value },
   } = event;
   setMuscleGroupsSelection(
-    // On autofill we get a the stringified value.
+    // On autofill we get a stringified value.
     typeof value === "string" ? value.split(",") : value
   );
 };
+
+const handleTabClick = (event, newValue) => {
+  setTabSelection(newValue);
+  if (newValue === "All") {
+    setWorkoutsToShow(recovery);
+    return;
+  }
+  setWorkoutsToShow(recovery.filter((workout) => workout.group.includes(newValue)));
+}
 
   return (
     <Box sx={{ my: 4 }}>
@@ -166,15 +165,33 @@ const handleMuscleChange = (event) => {
             variant="contained"
             color="secondary"
             onClick={() => {
-              console.log("Clearing filters");
               setMuscleGroupsSelection([]);
               setSearchText("");
               setWorkoutsToShow(recovery);
+              setTabSelection("All");
             }}
           >
             Clear
           </Button>
         </CardActions>
+      </Card>
+
+      <Card sx={{ maxWidth: 640, margin: "2rem auto", padding: "1rem" }}>
+
+      <Tabs
+        value={tabSelection}
+        onChange={handleTabClick}
+        variant="scrollable"
+        // variant="fullWidth"
+        scrollButtons="auto"
+        aria-label="muscle group tabs"
+        sx={{ justifyContent: "center" }}
+      >
+        <Tab key="All" label="All" value="All" />
+        {muscleGroups.map((group) => (
+          <Tab key={group} label={group} value={group} />
+        ))}
+      </Tabs>
       </Card>
 
       <Box

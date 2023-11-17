@@ -336,7 +336,7 @@ const workouts = [
   {
     id: 31,
     category: "Recovery",
-    group: "Lower Back",
+    group: "Back",
     name: "Exercises for Lower Back Pain Stretches",
     link: "https://hasfit.com/workouts/home/low-back/20-min-exercises-for-lower-back-pain-stretches/",
     youtube: "https://www.youtube.com/watch?v=CirlwUzPYek",
@@ -380,7 +380,7 @@ const workouts = [
   {
     id: 35,
     category: "Recovery",
-    group: "Lower Back, Hip",
+    group: "Back, Hip",
     name: "Exercises for Lower Back and Hip Pain Relief",
     link: "https://hasfit.com/workouts/home/senior/exercises-for-lower-back-and-hip-pain-relief/",
     youtube: "https://www.youtube.com/watch?v=_lT5Cd4cDTc",
@@ -391,7 +391,7 @@ const workouts = [
   {
     id: 36,
     category: "Recovery",
-    group: "Knee, Leg",
+    group: "Knee, Legs",
     name: "Knee Strengthening Knee Stretches",
     link: "https://hasfit.com/workouts/home/senior/knee-strengthening-knee-stretches/",
     youtube: "https://www.youtube.com/watch?v=Ci9IwxLP5RE",
@@ -424,7 +424,7 @@ const workouts = [
   {
     id: 39,
     category: "Recovery",
-    group: "Lower Back",
+    group: "Back",
     name: "Lower Back Exercises for Lower Back Pain",
     link: "https://hasfit.com/exercises/lower-back/lower-back-exercises-for-lower-back-pain/",
     youtube: "https://www.youtube.com/watch?v=b4ZnvU3QkRM",
@@ -722,6 +722,34 @@ const workouts = [
 
 ];
 
+// Recovery Muscle Groups
+const recoveryMuscleGroups = [
+  "Full Body",
+  "Back",
+  "Shoulders",
+  "Knee",
+  "Hip",
+  "Foot",
+  "Heel",
+  "Pelvis",
+  "Sciatica",
+  "Posture",
+];
+
+// Workout Muscle Groups
+const weightMuscleGroups = [
+  "Full Body",
+  "Legs",
+  "Glutes",
+  "Chest",
+  "Triceps",
+  "Back",
+  "Biceps",
+  "Arms",
+  "Shoulders",
+  "Abs",
+];
+
 // Initialize workoutSchedule - note: Sunday is index 0
 const workoutSchedule = [
   {
@@ -754,4 +782,4 @@ const workoutSchedule = [
   },
 ];
 
-export { workouts, workoutSchedule };
+export { recoveryMuscleGroups, weightMuscleGroups, workouts, workoutSchedule };
