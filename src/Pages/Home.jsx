@@ -34,7 +34,6 @@ const Home = () => {
 
     // Generate today's workouts and recommended workout
     const generateTodaysWorkouts = (workoutData) => {
-      console.log("Generating todays workout");
       const lastGeneratedTimestamp = localStorage.getItem(
         "lastGeneratedTimestamp"
       );
@@ -100,8 +99,6 @@ const Home = () => {
   // Watch the selected workout
   function watchSelectedWorkout() {
 
-    // Log the recommended workout
-    console.log("Recommended workout", recommendedWorkout);
 
     // Increment the watch count
     recommendedWorkout.watchCount++;
@@ -118,8 +115,6 @@ const Home = () => {
     // Update allWorkouts to reflect the updated watch count
     setAllWorkouts(updatedWorkouts);
 
-    // Log the updated workout from allWorkouts
-    console.log("Updated workout", allWorkouts.find(workout => workout.name === recommendedWorkout.name));
 
     // Open the workout in a new tab
     window.open(recommendedWorkout.link, "_blank");
@@ -330,7 +325,7 @@ const Home = () => {
                   height: "15vh",
                 }}
               >
-                <Typography gutterBottom variant="h5" component="div" color={"text.tertiary"}>
+                <Typography gutterBottom variant="h5" component="div">
                   Recommended Warmup
                 </Typography>
                 <Typography variant="h7" color="text.primary">
