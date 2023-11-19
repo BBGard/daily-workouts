@@ -138,35 +138,11 @@ const Home = () => {
         sx={{
           my: 4,
           height: "100%",
-          maxHeight: "70vh",
+          // maxHeight: "70vh",
           justifyContent: "center",
           alignItems: "center",
         }}
       >
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={currentWorkoutSchedule === workoutScheduleAlt}
-                onChange={toggleWorkoutSchedule}
-              />
-            }
-            label="Use Alternative Workout Schedule"
-          />
-        </FormGroup>
-
-
-         <Typography
-              variant="h4"
-              component="h1"
-              align="center"
-              gutterBottom
-              marginTop={"1rem"}
-              flex="1"
-              color={"text.tertiary"}
-            >
-              Recommended Workout
-            </Typography>
         <Slide
           direction="right"
           timeout={500}
@@ -174,14 +150,49 @@ const Home = () => {
           mountOnEnter
           unmountOnExit
         >
-          <Card sx={{ maxWidth: 345, margin: "1rem auto"}}>
-
+          <Card sx={{ maxWidth: 540, margin: "1rem auto" }}>
+            <Typography
+              variant="h4"
+              component="h1"
+              align="center"
+              gutterBottom
+              marginTop={"1rem"}
+              flex="1"
+              color={"text.primary"}
+            >
+              Recommended Workout
+            </Typography>
+            <FormGroup
+              sx={{
+                justifyContent: "center",
+                alignItems: "center",
+                marginBottom: "2rem",
+              }}
+            >
+              <FormControlLabel
+                sx={{ color: "text.primary" }}
+                control={
+                  <Switch
+                    checked={currentWorkoutSchedule === workoutScheduleAlt}
+                    onChange={toggleWorkoutSchedule}
+                  />
+                }
+                label="Use Alternative Workout Schedule"
+              />
+            </FormGroup>
 
             {recommendedWorkout ? (
               <CardMedia
                 component="img"
                 alt="workout video screenshot"
-                height="190"
+                sx={{
+                  width: "100%",
+                  height: "auto",
+                  maxWidth: "400px",
+                  maxHeight: "220px",
+                  margin: "0 auto",
+                  borderRadius: "5px",
+                }}
                 image={recommendedWorkout.thumbnail}
               />
             ) : (
@@ -203,7 +214,7 @@ const Home = () => {
                 }}
               >
                 <Typography gutterBottom variant="h5" component="div">
-                  {workoutSchedule[new Date().getDay()].day}: {" "}
+                  {workoutSchedule[new Date().getDay()].day}{" "}
                   {workoutSchedule[new Date().getDay()].workout}
                 </Typography>
                 <Typography variant="h7" color="text.primary">
@@ -266,57 +277,45 @@ const Home = () => {
             </CardActions>
           </Card>
         </Slide>
-
-        <Slide
-          direction="left"
-          timeout={500}
-          in={true}
-          mountOnEnter
-          unmountOnExit
-        >
-          <ButtonGroup
-            sx={{ width: "100%", justifyContent: "center", marginTop: "2rem" }}
-            variant="text"
-            aria-label="text button group"
-          >
-            <Button
-              variant="contained"
-              size="large"
-              color="buttonSuccess"
-              sx={{ margin: "1rem auto" }}
-              href="/workouts"
-              onClick={() => {
-                // open workouts page
-                window.location.href = "/workouts";
-              }}
-            >
-              Find a Workout
-            </Button>
-          </ButtonGroup>
-        </Slide>
       </Box>
+
+      <Slide
+        direction="left"
+        timeout={500}
+        in={true}
+        mountOnEnter
+        unmountOnExit
+      >
+        <ButtonGroup
+          sx={{ width: "100%", justifyContent: "center"}}
+          variant="text"
+          aria-label="text button group"
+        >
+          <Button
+            variant="contained"
+            size="large"
+            color="buttonSuccess"
+            sx={{ margin: "1rem auto" }}
+            href="/workouts"
+            onClick={() => {
+              // open workouts page
+              window.location.href = "/workouts";
+            }}
+          >
+            Find a Workout
+          </Button>
+        </ButtonGroup>
+      </Slide>
+
       <Box
         sx={{
           my: 4,
           height: "100%",
-          maxHeight: "70vh",
+          // maxHeight: "70vh",
           justifyContent: "center",
           alignItems: "center",
         }}
       >
-        <Typography
-          variant="h4"
-          component="h2"
-          align="center"
-          gutterBottom
-          flex="1"
-          marginTop={"2rem"}
-          color={"text.tertiary"}
-
-        >
-          Need a Warmup?
-        </Typography>
-
         <Slide
           direction="right"
           timeout={500}
@@ -324,12 +323,30 @@ const Home = () => {
           mountOnEnter
           unmountOnExit
         >
-          <Card sx={{ maxWidth: 345, margin: "1rem auto"}}>
+          <Card sx={{ maxWidth: 540, margin: "1rem auto" }}>
+            <Typography
+              variant="h4"
+              component="h2"
+              align="center"
+              gutterBottom
+              flex="1"
+              margin={"2rem auto"}
+              color={"text.primary"}
+            >
+              Need a Warmup?
+            </Typography>
             {recommendedWarmup ? (
               <CardMedia
                 component="img"
                 alt="workout video screenshot"
-                height="190"
+                sx={{
+                  width: "100%",
+                  height: "auto",
+                  maxWidth: "400px",
+                  maxHeight: "220px",
+                  margin: "0 auto",
+                  borderRadius: "5px",
+                }}
                 image={recommendedWarmup.thumbnail}
               />
             ) : (
@@ -392,11 +409,9 @@ const Home = () => {
                     size="large"
                     variant="contained"
                     color="buttonSuccess"
-                    onClick={
-                      () => {
-                        window.open(recommendedWarmup.link, "_blank");
-                      }
-                    }
+                    onClick={() => {
+                      window.open(recommendedWarmup.link, "_blank");
+                    }}
                   >
                     Watch
                   </Button>

@@ -801,7 +801,7 @@ const workoutScheduleAlt = [
   {
     day: "Sunday",
     group: "Full Body",
-    category: "Weights",
+    category: "Recovery",
   },
   {
     day: "Monday",
