@@ -1,14 +1,19 @@
 import React from 'react';
-import { Card, CardActions, CardContent, CardMedia, Button, Typography, } from '@mui/material';
+import { Card, CardActions, CardContent, CardMedia, Button, Typography, FormGroup, FormControlLabel, Switch, } from '@mui/material';
 import { Skeleton, Slide } from "@mui/material";
+import { DialerSip } from '@mui/icons-material';
 
 export function WorkoutCard(props) {
 
   const workout = props.workout; // workout object - must contain name, duration, link, thumbnail
   const title = props.title; // title of the card - usually the name of the workout
   const subtitle = props.subtitle; // subtitle of the card - usually the type of workout
-  const size = props.size; // size of the card - large or small
+  const size = props.size ? props.size : "small"; // size of the card - large or small
   const incrementFunction = props.incrementFunction; // function to increment the workout
+  const hasToggle = props.hasToggle ? props.hasToggle : false; // boolean to determine if the card has a toggle button
+  const toggleFunction = props.toggleFunction ? props.toggleFunction : () => console.error("Missing Toggle Function"); // function to toggle the workout
+  const isChecked = props.isChecked ? props.isChecked : false; // boolean to determine if the toggle is checked
+
 
 
   if(size === "large") {
@@ -33,6 +38,30 @@ export function WorkoutCard(props) {
             >
               {title}
             </Typography>
+
+            {hasToggle ? (
+              <FormGroup
+              sx={{
+                justifyContent: "center",
+                alignItems: "center",
+                marginBottom: "2rem",
+              }}
+            >
+              <FormControlLabel
+                sx={{ color: "text.primary" }}
+                control={
+                  <Switch
+                    checked={isChecked}
+                    onChange={toggleFunction}
+                  />
+                }
+                label="Use Alternative Workout Schedule"
+              />
+            </FormGroup>
+            ) : (
+              <></>
+            )}
+
             {workout ? (
               <CardMedia
                 component="img"
