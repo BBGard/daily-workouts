@@ -3,18 +3,7 @@
  */
 import React, { useEffect, useState } from "react";
 import {
-  Typography,
   Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Slide,
-  Skeleton,
-  FormGroup,
-  FormControlLabel,
-  Switch,
   Tabs,
   Tab,
 } from "@mui/material";
@@ -25,7 +14,6 @@ const Home = () => {
   // Pick a random workout from the workout schedule
   const [recommendedWorkout, setRecommendedWorkout] = useState([]);
   const [todaysWorkouts, setTodaysWorkouts] = useState([]);
-  const [allWorkouts, setAllWorkouts] = useState(workouts);
   const [warmups, setWarmups] = useState();
   const [recovery, setRecovery] = useState();
   const [stretches, setStretches] = useState();
@@ -126,29 +114,7 @@ const Home = () => {
     }
   }
 
-  // Watch the selected workout
-  function watchSelectedWorkout() {
 
-
-    // Increment the watch count
-    recommendedWorkout.watchCount++;
-
-    // Find recommendedWorkout in allWorkouts and update it
-    const updatedWorkouts = allWorkouts.map((workout) => {
-      if (workout.name === recommendedWorkout.name) {
-        return recommendedWorkout;
-      } else {
-        return workout;
-      }
-    });
-
-    // Update allWorkouts to reflect the updated watch count
-    setAllWorkouts(updatedWorkouts);
-
-
-    // Open the workout in a new tab
-    window.open(recommendedWorkout.link, "_blank");
-  }
 
   // Toggle between the two workout schedules
   function toggleWorkoutSchedule() {
