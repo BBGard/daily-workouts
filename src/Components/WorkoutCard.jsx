@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardActions, CardContent, CardMedia, Button, Typography, FormGroup, FormControlLabel, Switch } from '@mui/material';
+import { Card, CardActions, CardContent, CardMedia, Button, Typography, } from '@mui/material';
 import { Skeleton, Slide } from "@mui/material";
 
 export function WorkoutCard(props) {
