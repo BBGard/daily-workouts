@@ -13,6 +13,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/fdflwO-HXkY/0.jpg",
     duration: "40 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 2,
@@ -24,6 +25,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/qmP9U6EkCYM/0.jpg",
     duration: "30 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 3,
@@ -35,6 +37,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/D-R3jwjdPXo/0.jpg",
     duration: "30 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 4,
@@ -46,6 +49,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/wNaNC0fFutI/0.jpg",
     duration: "20 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 5,
@@ -57,6 +61,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/X-glH8lPA7Q/0.jpg",
     duration: "30 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 6,
@@ -68,6 +73,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/5pMF6ei4AT8/0.jpg",
     duration: "45 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 7,
@@ -79,6 +85,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/fA8QFocWJ2M/0.jpg",
     duration: "30 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 8,
@@ -90,6 +97,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/JPTwaSapykE/0.jpg",
     duration: "30 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 9,
@@ -101,6 +109,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/USX_B3zEfFo/0.jpg",
     duration: "40 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 10,
@@ -112,6 +121,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/uNP7Cz0gwd0/0.jpg",
     duration: "30 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 11,
@@ -123,6 +133,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/FMpRjCDUdoM/0.jpg",
     duration: "30 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 12,
@@ -134,6 +145,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/tCcySgP5lZc/0.jpg",
     duration: "20 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 13,
@@ -145,6 +157,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/LkkvW9ZbAv4/0.jpg",
     duration: "20 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 14,
@@ -156,6 +169,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/iFraJa-uwbo/0.jpg",
     duration: "25 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 15,
@@ -167,6 +181,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/PInAyHosJEQ/0.jpg",
     duration: "40 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 16,
@@ -178,6 +193,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/6IdOLoYc0MM/0.jpg",
     duration: "40 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 17,
@@ -189,6 +205,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/6ekcJByFvRg/0.jpg",
     duration: "25 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 18,
@@ -196,10 +213,11 @@ const workouts = [
     group: "Arms, Shoulders",
     name: "Arms and Shoulders Workout",
     link: "https://hasfit.com/workouts/home/home-arms/40-min-arms-and-shoulders-workout/",
-    youtube:"https://www.youtube.com/watch?v=kEg9a8JoxOY",
+    youtube: "https://www.youtube.com/watch?v=kEg9a8JoxOY",
     thumbnail: "http://img.youtube.com/vi/kEg9a8JoxOY/0.jpg",
     duration: "40 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 19,
@@ -211,6 +229,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/w6Phd6VQ0xQ/0.jpg",
     duration: "15 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 20,
@@ -222,6 +241,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/GrHyZNThtD8/0.jpg",
     duration: "20 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 21,
@@ -233,6 +253,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/skde8_aWbFo/0.jpg",
     duration: "20 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 22,
@@ -244,6 +265,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/5hm_6rV1qGo/0.jpg",
     duration: "30 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 23,
@@ -255,6 +277,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/CC3dLVG4GH8/0.jpg",
     duration: "35 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 24,
@@ -266,6 +289,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/km4h2_IXBZY/0.jpg",
     duration: "20 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 25,
@@ -277,6 +301,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/2vl18gjB7R4/0.jpg",
     duration: "30 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 26,
@@ -288,6 +313,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/E7gC9sA0ibM/0.jpg",
     duration: "10 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 27,
@@ -299,6 +325,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/U-3Pa7NA0Ho/0.jpg",
     duration: "12 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 28,
@@ -310,6 +337,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/XzLojq_iKVk/0.jpg",
     duration: "10 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 29,
@@ -321,6 +349,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/qACdw1WeOws/0.jpg",
     duration: "20 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 30,
@@ -332,6 +361,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/AkgxIT2z0js/0.jpg",
     duration: "20 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 31,
@@ -343,6 +373,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/CirlwUzPYek/0.jpg",
     duration: "20 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 32,
@@ -354,6 +385,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/jzyRGiB9BZQ/0.jpg",
     duration: "20 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 33,
@@ -365,6 +397,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/JGLQS_ArIMY/0.jpg",
     duration: "20 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 34,
@@ -376,6 +409,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/-3Sn5wFF5SA/0.jpg",
     duration: "17 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 35,
@@ -387,6 +421,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/_lT5Cd4cDTc/0.jpg",
     duration: "30 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 36,
@@ -398,6 +433,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/Ci9IwxLP5RE/0.jpg",
     duration: "28 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 37,
@@ -405,10 +441,12 @@ const workouts = [
     group: "Shoulders",
     name: "Shoulder Stretches Strengthening for Pain Relief",
     link: "https://hasfit.com/workouts/home/senior/shoulder-stretches-strengthening-for-pain-relief/",
-    youtube: "https://www.youtube.com/watch?v=6vfamrwD7ks&embeds_referring_euri=https%3A%2F%2Fhasfit.com%2F&source_ve_path=OTY3MTQ&feature=emb_imp_woyt",
+    youtube:
+      "https://www.youtube.com/watch?v=6vfamrwD7ks&embeds_referring_euri=https%3A%2F%2Fhasfit.com%2F&source_ve_path=OTY3MTQ&feature=emb_imp_woyt",
     thumbnail: "http://img.youtube.com/vi/6vfamrwD7ks/0.jpg",
     duration: "20 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 38,
@@ -420,6 +458,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/j5VsVh8dtsc/0.jpg",
     duration: "25 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 39,
@@ -431,6 +470,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/b4ZnvU3QkRM/0.jpg",
     duration: "20 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 40,
@@ -442,6 +482,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/lyRQbwtESBc/0.jpg",
     duration: "7 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 41,
@@ -453,6 +494,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/Ie5SW9mqmuk/0.jpg",
     duration: "15 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 42,
@@ -464,6 +506,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/hSGPSPqycSw/0.jpg",
     duration: "15 min",
     watchCount: 0,
+    rating: 0,
   },
 
   {
@@ -476,6 +519,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/b0Z81IGUnGI/0.jpg",
     duration: "17 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 44,
@@ -487,6 +531,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/lrecexMFCQU/0.jpg",
     duration: "5 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 45,
@@ -498,6 +543,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/JYFqdBYdA4Q/0.jpg",
     duration: "45 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 46,
@@ -509,6 +555,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/CAofixQofYk/0.jpg",
     duration: "40 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 47,
@@ -520,6 +567,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/-c6q3ltSYKA/0.jpg",
     duration: "30 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 48,
@@ -531,6 +579,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/XfyNJtV1k3U/0.jpg",
     duration: "40 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 49,
@@ -542,6 +591,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/5rA16ipRflw/0.jpg",
     duration: "30 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 50,
@@ -553,6 +603,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/ktut5zU3n2Q/0.jpg",
     duration: "30 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 51,
@@ -564,6 +615,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/Lnzw9240u_s/0.jpg",
     duration: "30 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 52,
@@ -575,6 +627,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/MIgd3Ue8TeM/0.jpg",
     duration: "45 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 53,
@@ -586,6 +639,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/jeoF_T4kJDE/0.jpg",
     duration: "20 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 54,
@@ -597,6 +651,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/IQgL4NCQGSU/0.jpg",
     duration: "45 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 55,
@@ -608,6 +663,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/tN2jiQ83PNw/0.jpg",
     duration: "45 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 56,
@@ -619,6 +675,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/MZ-fKxyJFw0/0.jpg",
     duration: "40 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 57,
@@ -630,6 +687,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/CmAi5NRwhe8/0.jpg",
     duration: "30 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 58,
@@ -641,6 +699,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/445nEr4-uJM/0.jpg",
     duration: "30 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 59,
@@ -652,6 +711,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/mSzyeQHEjhU/0.jpg",
     duration: "30 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 60,
@@ -663,6 +723,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/Sl6q1igrxpk/0.jpg",
     duration: "30 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 61,
@@ -674,6 +735,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/l-w01ykM3lA/0.jpg",
     duration: "12 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 62,
@@ -685,6 +747,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/IXRcuTu7i-o/0.jpg",
     duration: "25 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 63,
@@ -696,6 +759,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/FRIm29rdTFM/0.jpg",
     duration: "25 min",
     watchCount: 0,
+    rating: 0,
   },
   {
     id: 64,
@@ -707,6 +771,7 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/XklVcpXN9ic/0.jpg",
     duration: "5 min",
     watchCount: 0,
+    rating: 1,
   },
   {
     id: 65,
@@ -718,8 +783,8 @@ const workouts = [
     thumbnail: "http://img.youtube.com/vi/dzbc60Wfsi0/0.jpg",
     duration: "20 min",
     watchCount: 0,
+    rating: 0,
   },
-
 ];
 
 // Recovery Muscle Groups
@@ -751,11 +816,7 @@ const weightMuscleGroups = [
 ];
 
 // workout types
-const workoutTypes = [
-  "Weights",
-  "Recovery",
-  "Warm Up",
-];
+const workoutTypes = ["Weights", "Recovery", "Warm Up"];
 
 // Initialize workoutSchedule - note: Sunday is index 0
 const workoutSchedule = [
@@ -835,5 +896,11 @@ const workoutScheduleAlt = [
   },
 ];
 
-
-export { recoveryMuscleGroups, weightMuscleGroups, workouts, workoutTypes, workoutSchedule, workoutScheduleAlt };
+export {
+  recoveryMuscleGroups,
+  weightMuscleGroups,
+  workouts,
+  workoutTypes,
+  workoutSchedule,
+  workoutScheduleAlt,
+};
