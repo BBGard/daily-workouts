@@ -761,32 +761,79 @@ const workoutTypes = [
 const workoutSchedule = [
   {
     day: "Sunday",
-    workout: "Recovery",
+    group: "Full Body",
+    category: "Recovery",
   },
   {
     day: "Monday",
-    workout: "Legs",
+    group: "Legs",
+    category: "Weights",
   },
   {
     day: "Tuesday",
-    workout: "Chest",
+    group: "Chest",
+    category: "Weights",
   },
   {
     day: "Wednesday",
-    workout: "Back",
+    group: "Back",
+    category: "Weights",
   },
   {
     day: "Thursday",
-    workout: "Shoulders",
+    group: "Shoulders",
+    category: "Weights",
   },
   {
     day: "Friday",
-    workout: "Arms",
+    group: "Arms",
+    category: "Weights",
   },
   {
     day: "Saturday",
-    workout: "Abs",
+    group: "Abs",
+    category: "Weights",
   },
 ];
 
-export { recoveryMuscleGroups, weightMuscleGroups, workouts, workoutTypes, workoutSchedule };
+// Alternative workoutSchedule - full body followed by recovery
+const workoutScheduleAlt = [
+  {
+    day: "Sunday",
+    group: "Full Body",
+    category: "Weights",
+  },
+  {
+    day: "Monday",
+    group: "Full Body",
+    category: "Weights",
+  },
+  {
+    day: "Tuesday",
+    group: "Full Body",
+    category: "Weights",
+  },
+  {
+    day: "Wednesday",
+    group: "Full Body",
+    category: "Recovery",
+  },
+  {
+    day: "Thursday",
+    group: "Full Body",
+    category: "Weights",
+  },
+  {
+    day: "Friday",
+    group: "Full Body",
+    category: "Weights",
+  },
+  {
+    day: "Saturday",
+    group: "Back",
+    category: "Weights",
+  },
+];
+
+
+export { recoveryMuscleGroups, weightMuscleGroups, workouts, workoutTypes, workoutSchedule, workoutScheduleAlt };

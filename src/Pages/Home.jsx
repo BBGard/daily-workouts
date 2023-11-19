@@ -13,8 +13,11 @@ import {
   CardMedia,
   Slide,
   Skeleton,
+  FormGroup,
+  FormControlLabel,
+  Switch,
 } from "@mui/material";
-import { workouts, workoutSchedule } from "../Data/workoutData";
+import { workouts, workoutSchedule, workoutScheduleAlt } from "../Data/workoutData";
 
 const Home = () => {
   // Pick a random workout from the workout schedule
@@ -23,6 +26,7 @@ const Home = () => {
   const [allWorkouts, setAllWorkouts] = useState(workouts);
   const [warmups, setWarmups] = useState();
   const [recommendedWarmup, setRecommendedWarmup] = useState([]);
+  const [currentWorkoutSchedule, setCurrentWorkoutSchedule] = useState(workoutSchedule);
 
 
   // On mount, load all workouts, generate today's workouts, and set the recommended workout
@@ -32,29 +36,22 @@ const Home = () => {
     setWarmups(workouts.filter(workout => workout.category.includes("Warm Up")));
     setRecommendedWarmup(workouts.filter(workout => workout.category.includes("Warm Up"))[0]);
 
-    // Generate today's workouts and recommended workout
+
+    // Generate today's workouts and recommended workout based on schedule
     const generateTodaysWorkouts = (workoutData) => {
-      console.log("Generating todays workout");
-      const lastGeneratedTimestamp = localStorage.getItem(
-        "lastGeneratedTimestamp"
-      );
       const currentDate = new Date();
 
-      // Check if the workouts need to be regenerated
-      if (
-        todaysWorkouts.length === 0 ||
-        !lastGeneratedTimestamp ||
-        currentDate.getDate() !== new Date(lastGeneratedTimestamp).getDate()
-      ) {
-
-        // Filter the workouts based on the current day
-        const workoutList = workoutData.filter((workout) =>
-          workout.group.includes(
-            // Javascript uses 0-6 for Sunday-Saturday
-            workoutSchedule[currentDate.getDay()].workout
-          ) &&
-          workout.category === "Weights"
-
+        // Filter the workouts based on the current day and schedule
+        const workoutList = workoutData.filter(
+          (workout) =>
+            workout.group.includes(
+              // Javascript uses 0-6 for Sunday-Saturday
+              currentWorkoutSchedule[currentDate.getDay()].group
+            ) &&
+            workout.category.includes(
+              // Javascript uses 0-6 for Sunday-Saturday
+              currentWorkoutSchedule[currentDate.getDay()].category
+            )
         );
 
         // Sort the workouts by watch count - to be propery implemented later
@@ -62,17 +59,14 @@ const Home = () => {
 
         setTodaysWorkouts(workoutList);
 
-        // Store the current date as the last generated timestamp
-        localStorage.setItem("lastGeneratedTimestamp", currentDate);
-
         // Set the recommended workout to the first workout in the list
         setRecommendedWorkout(workoutList[0]);
       }
-    };
+
 
      // Generate today's workouts and recommended workout
      generateTodaysWorkouts(workouts);
-  }, [todaysWorkouts.length]);
+  }, [todaysWorkouts.length, currentWorkoutSchedule]);
 
 
   // Increment the recommended workout
@@ -125,6 +119,22 @@ const Home = () => {
     window.open(recommendedWorkout.link, "_blank");
   }
 
+  // Toggle between the two workout schedules
+  function toggleWorkoutSchedule() {
+    console.log("Toggling workout schedule");
+
+    // If the current workout schedule is the default schedule, use the alternative schedule
+    if (currentWorkoutSchedule === workoutSchedule) {
+      setCurrentWorkoutSchedule(workoutScheduleAlt);
+    } else {
+      // Otherwise, use the default schedule
+      setCurrentWorkoutSchedule(workoutSchedule);
+    }
+
+    // Store the current workout schedule in local storage
+    localStorage.setItem("workoutSchedule", JSON.stringify(currentWorkoutSchedule));
+  }
+
 
   return (
     <>
@@ -137,6 +147,19 @@ const Home = () => {
           alignItems: "center",
         }}
       >
+        <FormGroup>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={currentWorkoutSchedule === workoutScheduleAlt}
+                onChange={toggleWorkoutSchedule}
+              />
+            }
+            label="Use Alternative Workout Schedule"
+          />
+        </FormGroup>
+
+
          <Typography
               variant="h4"
               component="h1"
