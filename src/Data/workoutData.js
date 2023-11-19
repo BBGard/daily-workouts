@@ -703,7 +703,7 @@ const workouts = [
   },
   {
     id: 59,
-    category: "Recovery",
+    category: "Recovery, Stretches",
     group: "Full Body",
     name: "Full Body Stretching Exercises",
     link: "https://hasfit.com/workouts/warm-up-cool-down-stretches-stretching/30-minute-full-body-stretch-routine/",
@@ -715,7 +715,7 @@ const workouts = [
   },
   {
     id: 60,
-    category: "Recovery",
+    category: "Recovery, Stretches",
     group: "Full Body",
     name: "Full Body Stretching Exercises",
     link: "https://hasfit.com/workouts/warm-up-cool-down-stretches-stretching/30-minute-full-body-stretching-exercises/",
@@ -727,7 +727,7 @@ const workouts = [
   },
   {
     id: 61,
-    category: "Recovery",
+    category: "Recovery, Stretches",
     group: "Full Body",
     name: "Full Body Dynamic Stretching Routine",
     link: "https://hasfit.com/workouts/warm-up-cool-down-stretches-stretching/dynamic-stretching-routine/",
@@ -739,7 +739,7 @@ const workouts = [
   },
   {
     id: 62,
-    category: "Recovery",
+    category: "Recovery, Stretches",
     group: "Full Body",
     name: "Full Body Stretching Exercises",
     link: "https://hasfit.com/workouts/home/flexibility-mobility/25-minute-full-body-stretching/",
@@ -751,7 +751,7 @@ const workouts = [
   },
   {
     id: 63,
-    category: "Recovery",
+    category: "Recovery, Stretches",
     group: "Full Body",
     name: "Morning Yoga Routine",
     link: "https://hasfit.com/workouts/yoga/morning-yoga-routine/",
@@ -763,7 +763,7 @@ const workouts = [
   },
   {
     id: 64,
-    category: "Warm Up",
+    category: "Warm Up, Stretches",
     group: "Full Body",
     name: "Warm Up",
     link: "https://hasfit.com/workouts/warm-up-cool-down-stretches-stretching/warm-up-before-workout/",
@@ -775,7 +775,7 @@ const workouts = [
   },
   {
     id: 65,
-    category: "Recovery",
+    category: "Recovery, Stretches",
     group: "Full Body",
     name: "Full Body Mobility Routine",
     link: "https://hasfit.com/workouts/warm-up-cool-down-stretches-stretching/mobility-wod/",
@@ -785,6 +785,18 @@ const workouts = [
     watchCount: 0,
     rating: 0,
   },
+  {
+    id: 66,
+    category: "Stretches",
+    group: "Full Body",
+    name: "Full Body Stretch",
+    link: "https://www.youtube.com/watch?v=g_tea8ZNk5A&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7",
+    youtube: "https://www.youtube.com/watch?v=g_tea8ZNk5A&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7",
+    thumbnail: "http://img.youtube.com/vi/g_tea8ZNk5A/0.jpg",
+    duration: "15 min",
+    watchCount: 0,
+    rating: 0,
+  }
 ];
 
 // Recovery Muscle Groups

@@ -23,11 +23,11 @@ import WorkoutCard from "../Components/WorkoutCard";
 const Recovery = () => {
   // Select only recovery routines from workout data
   const recovery = workouts.filter(
-    (workout) => workout.category === "Recovery"
-  );
+      (workout) => workout.category.includes("Recovery")
+    );
 
   const [workoutsToShow, setWorkoutsToShow] = useState(
-    workouts.filter((workout) => workout.category === "Recovery")
+    workouts.filter((workout) => workout.category.includes("Recovery"))
   ); // workouts to show
   const [searchText, setSearchText] = useState([]); // search text
   const [muscleGroupsSelection, setMuscleGroupsSelection] = useState([]); // muscle groups
