@@ -1,4 +1,5 @@
 # Daily Workouts
+Example Deployment: [https://daily-workouts.netlify.app/](https://daily-workouts.netlify.app/)
 A React app for daily workouts.
 
 - Offers workouts, warmups, stretches, and recovery routines.
