@@ -18,13 +18,11 @@ function App() {
       <Container
         component="main"
         maxWidth="xl"
-        // sx={{ height: "100%", minHeight: "100vh" }}
-        // Add a margin to account for height of AppBar
         sx={{
           display: "flex",
           flexDirection: "column",
           alignContent: "center",
-          justifyContent: "center",
+          justifyContent: "flex-start",
           alignItems: "stretch",
           height: "100%",
           minHeight: "calc(100vh - 5rem)",

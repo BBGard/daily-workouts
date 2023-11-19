@@ -151,7 +151,6 @@ const Home = () => {
 
   // Toggle between the two workout schedules
   function toggleWorkoutSchedule() {
-    console.log("Toggling workout schedule");
 
     // If the current workout schedule is the default schedule, use the alternative schedule
     if (currentWorkoutSchedule === workoutSchedule) {
@@ -172,13 +171,19 @@ const Home = () => {
 
   return (
     <>
+    <Box
+          sx={{
+            my: 1,
+            height: "100%",
+          }}
+        >
       <Tabs
         value={selectedTab}
         onChange={handleTabSelect}
         indicatorColor="primary"
         textColor="primary"
         variant="fullWidth"
-        sx={{ width: "100%", backgroundColor: "background.paper", borderRadius: "5px", paddingBottom: "0.1rem"}}
+        sx={{ width: "100%", maxWidth: 540, margin: "0 auto", backgroundColor: "background.paper", borderRadius: "5px", paddingBottom: "0.1rem"}}
         centered
       >
         <Tab label="Workout" />
@@ -188,15 +193,7 @@ const Home = () => {
       </Tabs>
 
       {selectedTab === 0 && (
-        <Box
-          sx={{
-            my: 4,
-            height: "100%",
-            // maxHeight: "70vh",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+
           <Slide
             direction="right"
             timeout={500}
@@ -331,19 +328,10 @@ const Home = () => {
               </CardActions>
             </Card>
           </Slide>
-        </Box>
       )}
 
       {selectedTab === 1 && (
-        <Box
-          sx={{
-            my: 4,
-            height: "100%",
-            // maxHeight: "70vh",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+
           <Slide
             direction="right"
             timeout={500}
@@ -459,19 +447,10 @@ const Home = () => {
               </CardActions>
             </Card>
           </Slide>
-        </Box>
       )}
 
       {selectedTab === 2 && (
-        <Box
-          sx={{
-            my: 4,
-            height: "100%",
-            // maxHeight: "70vh",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+
           <Slide
             direction="right"
             timeout={500}
@@ -588,19 +567,10 @@ const Home = () => {
             </Card>
 
           </Slide>
-        </Box>
       )}
 
       {selectedTab === 3 && (
-        <Box
-          sx={{
-            my: 4,
-            height: "100%",
-            // maxHeight: "70vh",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+
           <Slide
             direction="right"
             timeout={500}
@@ -723,8 +693,9 @@ const Home = () => {
             </Card>
 
           </Slide>
-        </Box>
       )}
+              </Box>
+
     </>
   );
 }

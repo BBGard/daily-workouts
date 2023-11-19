@@ -27,6 +27,7 @@ export function ResponsiveAppBar() {
   const [open, setOpen] = React.useState(false);
   const currentPage = window.location.pathname;
 
+
   const toggleDrawer = (inOpen) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
