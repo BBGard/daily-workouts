@@ -5,6 +5,7 @@ import Recovery from './Pages/Recovery';
 import Warmups from './Pages/Warmups';
 import Workouts from './Pages/Workouts';
 import ErrorPage from './Pages/ErrorPage';
+import Stretches from './Pages/Stretches';
 import { ResponsiveAppBar } from "./Components/ResponsiveAppBar";
 import {Container} from '@mui/material';
 import {ScrollToTopButton} from './Components/ScrollToTopButton';
@@ -34,6 +35,7 @@ function App() {
           <Route path="/recovery" element={<Recovery />} />
           <Route path="/warmups" element={<Warmups />} />
           <Route path="/workouts" element={<Workouts />} />
+          <Route path="/stretches" element={<Stretches />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
         <ScrollToTopButton />

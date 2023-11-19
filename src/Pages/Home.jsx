@@ -19,6 +19,7 @@ import {
   Tab,
 } from "@mui/material";
 import { workouts, workoutSchedule, workoutScheduleAlt } from "../Data/workoutData";
+import WorkoutCard from "../Components/WorkoutCard";
 
 const Home = () => {
   // Pick a random workout from the workout schedule
@@ -171,29 +172,35 @@ const Home = () => {
 
   return (
     <>
-    <Box
-          sx={{
-            my: 1,
-            height: "100%",
-          }}
-        >
-      <Tabs
-        value={selectedTab}
-        onChange={handleTabSelect}
-        indicatorColor="primary"
-        textColor="primary"
-        variant="fullWidth"
-        sx={{ width: "100%", maxWidth: 540, margin: "0 auto", backgroundColor: "background.paper", borderRadius: "5px", paddingBottom: "0.1rem"}}
-        centered
+      <Box
+        sx={{
+          my: 1,
+          height: "100%",
+        }}
       >
-        <Tab label="Workout" />
-        <Tab label="Warmup" />
-        <Tab label="Recover" />
-        <Tab label="Stretch" />
-      </Tabs>
+        <Tabs
+          value={selectedTab}
+          onChange={handleTabSelect}
+          indicatorColor="primary"
+          textColor="primary"
+          variant="fullWidth"
+          sx={{
+            width: "100%",
+            maxWidth: 540,
+            margin: "0 auto",
+            backgroundColor: "background.paper",
+            borderRadius: "5px",
+            paddingBottom: "0.1rem",
+          }}
+          centered
+        >
+          <Tab label="Workout" />
+          <Tab label="Warmup" />
+          <Tab label="Recover" />
+          <Tab label="Stretch" />
+        </Tabs>
 
-      {selectedTab === 0 && (
-
+        {selectedTab === 0 && (
           <Slide
             direction="right"
             timeout={500}
@@ -328,374 +335,39 @@ const Home = () => {
               </CardActions>
             </Card>
           </Slide>
-      )}
+        )}
 
-      {selectedTab === 1 && (
+        {selectedTab === 1 && (
+          <WorkoutCard
+            size="large"
+            title="Need a Warmup?"
+            subtitle="Recommended Warmup"
+            workout={recommendedWarmup}
+            incrementFunction={incrementRecommendedWarmup}
+          />
+        )}
 
-          <Slide
-            direction="right"
-            timeout={500}
-            in={true}
-            mountOnEnter
-            unmountOnExit
-          >
-            <Card sx={{ maxWidth: 540, margin: "1rem auto" }}>
-              <Typography
-                variant="h4"
-                component="h2"
-                align="center"
-                gutterBottom
-                flex="1"
-                margin={"2rem auto"}
-                color={"text.primary"}
-              >
-                Need a Warmup?
-              </Typography>
-              {recommendedWarmup ? (
-                <CardMedia
-                  component="img"
-                  alt="workout video screenshot"
-                  sx={{
-                    width: "100%",
-                    height: "auto",
-                    maxWidth: "400px",
-                    maxHeight: "220px",
-                    margin: "0 auto",
-                    borderRadius: "5px",
-                  }}
-                  image={recommendedWarmup.thumbnail}
-                />
-              ) : (
-                <Skeleton
-                  variant="rectangular"
-                  width={345}
-                  height={190}
-                  animation="wave"
-                />
-              )}
+        {selectedTab === 2 && (
+          <WorkoutCard
+            size="large"
+            title="Time to Recover?"
+            subtitle="Recommended Recovery"
+            workout={recommendedRecovery}
+            incrementFunction={incrementRecommendedRecovery}
+          />
+        )}
 
-              {recommendedWarmup ? (
-                <CardContent
-                  sx={{
-                    textAlign: "center",
-                    margin: "1rem auto",
-                    height: "15vh",
-                  }}
-                >
-                  <Typography gutterBottom variant="h5" component="div">
-                    Recommended Warmup
-                  </Typography>
-                  <Typography variant="h7" color="text.primary">
-                    {recommendedWarmup.name}
-                    <br></br>
-                    Duration: {recommendedWarmup.duration}
-                  </Typography>
-                </CardContent>
-              ) : (
-                <>
-                  <Skeleton
-                    variant="text"
-                    sx={{ fontSize: "2rem", margin: "0 1rem" }}
-                  />
-                  <Skeleton
-                    variant="text"
-                    sx={{ fontSize: "1rem", margin: "0 1rem" }}
-                  />
-                </>
-              )}
+        {selectedTab === 3 && (
+          <WorkoutCard
+            size="large"
+            title="Relax and Stretch"
+            subtitle="Recommended Stretch"
+            workout={recommendedStretch}
+            incrementFunction={incrementRecommendedStretch}
+          />
+        )}
 
-              <CardActions
-                sx={{
-                  justifyContent: "center",
-                  gap: "1rem",
-                  marginBottom: "1.5rem",
-                }}
-              >
-                {recommendedWarmup ? (
-                  <>
-                    <Button
-                      size="large"
-                      variant="contained"
-                      color="secondary"
-                      onClick={incrementRecommendedWarmup}
-                    >
-                      Next
-                    </Button>
-                    <Button
-                      size="large"
-                      variant="contained"
-                      color="buttonSuccess"
-                      onClick={() => {
-                        window.open(recommendedWarmup.link, "_blank");
-                      }}
-                    >
-                      Watch
-                    </Button>
-                  </>
-                ) : (
-                  <>
-                    <Skeleton
-                      variant="text"
-                      sx={{ width: "30%", fontSize: "2rem", margin: "0 1rem" }}
-                    />
-                    <Skeleton
-                      variant="text"
-                      sx={{ width: "30%", fontSize: "2rem", margin: "0 1rem" }}
-                    />
-                  </>
-                )}
-              </CardActions>
-            </Card>
-          </Slide>
-      )}
-
-      {selectedTab === 2 && (
-
-          <Slide
-            direction="right"
-            timeout={500}
-            in={true}
-            mountOnEnter
-            unmountOnExit
-          >
-             <Card sx={{ maxWidth: 540, margin: "1rem auto" }}>
-              <Typography
-                variant="h4"
-                component="h2"
-                align="center"
-                gutterBottom
-                flex="1"
-                margin={"2rem auto"}
-                color={"text.primary"}
-              >
-                Time to Recover!
-              </Typography>
-              {recommendedRecovery ? (
-                <CardMedia
-                  component="img"
-                  alt="workout video screenshot"
-                  sx={{
-                    width: "100%",
-                    height: "auto",
-                    maxWidth: "400px",
-                    maxHeight: "220px",
-                    margin: "0 auto",
-                    borderRadius: "5px",
-                  }}
-                  image={recommendedRecovery.thumbnail}
-                />
-              ) : (
-                <Skeleton
-                  variant="rectangular"
-                  width={345}
-                  height={190}
-                  animation="wave"
-                />
-              )}
-
-              {recommendedRecovery ? (
-                <CardContent
-                  sx={{
-                    textAlign: "center",
-                    margin: "1rem auto",
-                    height: "15vh",
-                  }}
-                >
-                  <Typography gutterBottom variant="h5" component="div">
-                    Recommended Recovery
-                  </Typography>
-                  <Typography variant="h7" color="text.primary">
-                    {recommendedRecovery.name}
-                    <br></br>
-                    Duration: {recommendedRecovery.duration}
-                  </Typography>
-                </CardContent>
-              ) : (
-                <>
-                  <Skeleton
-                    variant="text"
-                    sx={{ fontSize: "2rem", margin: "0 1rem" }}
-                  />
-                  <Skeleton
-                    variant="text"
-                    sx={{ fontSize: "1rem", margin: "0 1rem" }}
-                  />
-                </>
-              )}
-
-              <CardActions
-                sx={{
-                  justifyContent: "center",
-                  gap: "1rem",
-                  marginBottom: "1.5rem",
-                }}
-              >
-                {recommendedRecovery ? (
-                  <>
-                    <Button
-                      size="large"
-                      variant="contained"
-                      color="secondary"
-                      onClick={incrementRecommendedRecovery}
-                    >
-                      Next
-                    </Button>
-                    <Button
-                      size="large"
-                      variant="contained"
-                      color="buttonSuccess"
-                      onClick={() => {
-                        window.open(recommendedRecovery.link, "_blank");
-                      }}
-                    >
-                      Watch
-                    </Button>
-                  </>
-                ) : (
-                  <>
-                    <Skeleton
-                      variant="text"
-                      sx={{ width: "30%", fontSize: "2rem", margin: "0 1rem" }}
-                    />
-                    <Skeleton
-                      variant="text"
-                      sx={{ width: "30%", fontSize: "2rem", margin: "0 1rem" }}
-                    />
-                  </>
-                )}
-              </CardActions>
-            </Card>
-
-          </Slide>
-      )}
-
-      {selectedTab === 3 && (
-
-          <Slide
-            direction="right"
-            timeout={500}
-            in={true}
-            mountOnEnter
-            unmountOnExit
-          >
-             <Card sx={{ maxWidth: 540, margin: "1rem auto" }}>
-              <Typography
-                variant="h4"
-                component="h2"
-                align="center"
-                gutterBottom
-                flex="1"
-                margin={"2rem auto"}
-                color={"text.primary"}
-              >
-                Relax and Stretch
-              </Typography>
-              {recommendedStretch ? (
-                <CardMedia
-                  component="img"
-                  alt="workout video screenshot"
-                  sx={{
-                    width: "100%",
-                    height: "auto",
-                    maxWidth: "400px",
-                    maxHeight: "220px",
-                    margin: "0 auto",
-                    borderRadius: "5px",
-                  }}
-                  image={recommendedStretch.thumbnail}
-                />
-              ) : (
-                <Skeleton
-                  variant="rectangular"
-                  width={400}
-                  height={220}
-                  sx={{
-                    maxWidth: "400px",
-                    maxHeight: "220px",
-                    margin: "0 auto",
-                    borderRadius: "5px",
-                  }}
-                  animation="wave"
-                />
-              )}
-
-              {recommendedStretch ? (
-                <CardContent
-                  sx={{
-                    textAlign: "center",
-                    margin: "1rem auto",
-                    height: "15vh",
-                  }}
-                >
-                  <Typography gutterBottom variant="h5" component="div">
-                    Recommended Recovery
-                  </Typography>
-                  <Typography variant="h7" color="text.primary">
-                    {recommendedStretch.name}
-                    <br></br>
-                    Duration: {recommendedStretch.duration}
-                  </Typography>
-                </CardContent>
-              ) : (
-                <>
-                  <Skeleton
-                    variant="text"
-                    sx={{ fontSize: "2rem", margin: "0 1rem" }}
-                  />
-                  <Skeleton
-                    variant="text"
-                    sx={{ fontSize: "1rem", margin: "0 1rem" }}
-                  />
-                </>
-              )}
-
-              <CardActions
-                sx={{
-                  justifyContent: "center",
-                  gap: "1rem",
-                  marginBottom: "1.5rem",
-                }}
-              >
-                {recommendedStretch ? (
-                  <>
-                    <Button
-                      size="large"
-                      variant="contained"
-                      color="secondary"
-                      onClick={incrementRecommendedStretch}
-                    >
-                      Next
-                    </Button>
-                    <Button
-                      size="large"
-                      variant="contained"
-                      color="buttonSuccess"
-                      onClick={() => {
-                        window.open(recommendedStretch.link, "_blank");
-                      }}
-                    >
-                      Watch
-                    </Button>
-                  </>
-                ) : (
-                  <>
-                    <Skeleton
-                      variant="text"
-                      sx={{ width: "30%", fontSize: "2rem", margin: "0 1rem" }}
-                    />
-                    <Skeleton
-                      variant="text"
-                      sx={{ width: "30%", fontSize: "2rem", margin: "0 1rem" }}
-                    />
-                  </>
-                )}
-              </CardActions>
-            </Card>
-
-          </Slide>
-      )}
-              </Box>
-
+      </Box>
     </>
   );
 }

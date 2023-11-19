@@ -20,8 +20,9 @@ import WhatshotOutlinedIcon from '@mui/icons-material/WhatshotOutlined';
 import RestoreOutlinedIcon from '@mui/icons-material/RestoreOutlined';
 import HomeIcon from '@mui/icons-material/Home';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
 
-const pages = ['Workouts', 'Warmups', 'Recovery'];
+const pages = ['Workouts', 'Warmups', 'Recovery', 'Stretches'];
 
 export function ResponsiveAppBar() {
   const [open, setOpen] = React.useState(false);
@@ -164,7 +165,13 @@ export function ResponsiveAppBar() {
                           <RestoreOutlinedIcon
                             sx={{ display: { xs: "flex", md: "flex" }, mr: 1 }}
                           />
-                        ) : (
+                        ) :  page === "Stretches" ? (
+                          <SelfImprovementIcon
+                            sx={{ display: { xs: "flex", md: "flex" }, mr: 1 }}
+                          />
+                        )
+                        :
+                        (
                           <DirectionsRunIcon
                             sx={{ display: { xs: "flex", md: "flex" }, mr: 1 }}
                           />
