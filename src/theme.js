@@ -34,6 +34,7 @@ const theme = createTheme({
     background: {
       // default: '#282f3e',
       default: '#2f384b',
+      menu: '#1e232f',
     },
     card: {
       default: '#dc143c',

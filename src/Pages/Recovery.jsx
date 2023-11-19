@@ -125,7 +125,7 @@ const handleTabClick = (event, newValue) => {
             variant="outlined"
             sx={{color: "text.primary"}}
             onChange={(event) => {
-              setSearchText(event.target.value);
+              setSearchText(event.target.value.trimEnd());
             }}
             autoComplete="off"
           />
