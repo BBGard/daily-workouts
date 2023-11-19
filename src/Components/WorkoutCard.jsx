@@ -4,10 +4,10 @@ import { Skeleton, Slide } from "@mui/material";
 
 export function WorkoutCard(props) {
 
-  const workout = props.workout; // workout object
-  const title = props.title; // title of the card
-  const subtitle = props.subtitle; // subtitle of the card
-  const size = props.size; // size of the card
+  const workout = props.workout; // workout object - must contain name, duration, link, thumbnail
+  const title = props.title; // title of the card - usually the name of the workout
+  const subtitle = props.subtitle; // subtitle of the card - usually the type of workout
+  const size = props.size; // size of the card - large or small
   const incrementFunction = props.incrementFunction; // function to increment the workout
 
 
