@@ -763,7 +763,7 @@ const workouts = [
   },
   {
     id: 64,
-    category: "Warm Up, Stretch",
+    category: "Warm Up",
     group: "Full Body",
     name: "Warm Up",
     link: "https://hasfit.com/workouts/warm-up-cool-down-stretches-stretching/warm-up-before-workout/",
