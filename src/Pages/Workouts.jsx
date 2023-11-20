@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   workouts,
   weightMuscleGroups,
@@ -132,6 +132,22 @@ const Workouts = () => {
       workouts.filter((workout) => workout.group.includes(newValue))
     );
   };
+
+  // sort routines by score on each load
+  useEffect(() => {
+    // calculate a score for each workout based on watch count and rating
+    const workoutList = workouts;
+    workoutList.forEach((workout) => {
+      workout.score = workout.rating - workout.watchCount;
+    });
+
+    // sort the workouts by score
+    workoutList.sort((a, b) => (a.score > b.score ? -1 : 1));
+
+    // set the workouts to show
+    setWorkoutsToShow(workoutList);
+  }, []);
+
 
   return (
     <Box sx={{ my: 4 }}>

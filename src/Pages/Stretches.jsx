@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { workouts } from "../Data/workoutData";
 import {
@@ -17,11 +17,11 @@ import WorkoutCard from "../Components/WorkoutCard";
 const Stretches = () => {
   // Select only stretches from workout data
   const stretches = workouts.filter(
-      (workout) => workout.category.includes("Stretches")
+      (workout) => workout.category.includes("Stretch")
     );
 
   const [workoutsToShow, setWorkoutsToShow] = useState(
-    workouts.filter((workout) => workout.category.includes("Stretches"))
+    workouts.filter((workout) => workout.category.includes("Stretch"))
   ); // workouts to show
 
   const [searchText, setSearchText] = useState([]); // search text
@@ -49,7 +49,22 @@ const Stretches = () => {
     setWorkoutsToShow(filteredWorkouts);
   };
 
+  // Sort routines by score on each load
+  useEffect(() => {
+    // calculate a score for each workout based on watch count and rating
+    const stretchList = workouts.filter(
+      (workout) => workout.category.includes("Stretch")
+    );
+    stretchList.forEach((workout) => {
+      workout.score = workout.rating - workout.watchCount;
+    });
 
+    // sort the workouts by score
+    stretchList.sort((a, b) => (a.score > b.score ? -1 : 1));
+
+    // set the workouts to show
+    setWorkoutsToShow(stretchList);
+  }, []);
 
 
   return (
@@ -61,7 +76,7 @@ const Stretches = () => {
       textAlign={"center"}
       gutterBottom
     >
-      Mobility & Recovery
+      Stretches
     </Typography>
 
     <Card sx={{ maxWidth: 640, margin: "2rem auto", padding: "1rem" }}>
