@@ -1,7 +1,7 @@
 
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { workouts } from "../Data/workoutData";
+import { workouts, stretchMuscleGroups, sources } from "../Data/workoutData";
 import {
   Typography,
   Box,
@@ -9,7 +9,14 @@ import {
   Card,
   CardActions,
   TextField,
-
+  Tab,
+  Tabs,
+  OutlinedInput,
+  InputLabel,
+  MenuItem,
+  ListItemText,
+  Select,
+  Checkbox,
 } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import WorkoutCard from "../Components/WorkoutCard";
@@ -25,34 +32,113 @@ const Stretches = () => {
   ); // workouts to show
 
   const [searchText, setSearchText] = useState([]); // search text
-  // const [tabSelection, setTabSelection] = useState("All"); // muscle groups
+
+  const [muscleGroupsSelection, setMuscleGroupsSelection] = useState([]); // muscle groups
+  const [sourceSelection, setSourceSelection] = useState([]); // muscle groups
+  const [tabSelection, setTabSelection] = useState("All"); // muscle groups
+
+  const muscleGroups = stretchMuscleGroups.sort();
+
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
 
 
   // Filter the workouts based on search text
   const filterWorkouts = () => {
-    let filteredWorkouts; // workouts to show
+    let filteredWorkouts = stretches; // workouts to show
 
     // If there is search text, filter workouts by search text
     if (searchText.length > 0) {
-      filteredWorkouts = stretches.filter((workout) => {
+      filteredWorkouts = filteredWorkouts.filter((workout) => {
         return (
           workout.name.toLowerCase().includes(searchText.toLowerCase()) ||
           workout.category.toLowerCase().includes(searchText.toLowerCase()) ||
-          workout.group.toLowerCase().includes(searchText.toLowerCase())
+          workout.group.toLowerCase().includes(searchText.toLowerCase()) ||
+          workout.source.toLowerCase().includes(searchText.toLowerCase())
         );
       });
-    } else {
-      filteredWorkouts = stretches;
+    }
+
+    // If no muscle groups or workout types are selected show all workouts
+    if (muscleGroupsSelection.length === 0 && searchText.length === 0 && sourceSelection.length === 0) {
+      setWorkoutsToShow(sortByScore(workouts));
+      return;
+    }
+
+    // If muscle groups are selected, filter workouts by muscle group
+    if (muscleGroupsSelection.length > 0) {
+      filteredWorkouts = filteredWorkouts.filter((workout) => {
+        return muscleGroupsSelection.some((muscleGroup) => {
+          return workout.group.includes(muscleGroup);
+        });
+      });
+    }
+
+    // If sources are selected, filter workouts by source
+    if (sourceSelection.length > 0) {
+      filteredWorkouts = filteredWorkouts.filter((workout) => {
+        return sourceSelection.some((source) => {
+          return workout.source.toLowerCase().includes(source.toLowerCase());
+        });
+      });
     }
 
     // Set the workouts to show
-    setWorkoutsToShow(filteredWorkouts);
+    setWorkoutsToShow(sortByScore(filteredWorkouts));
+  };
+
+  const handleMuscleChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setMuscleGroupsSelection(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+
+  const handleSourceChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setSourceSelection(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+
+  const handleTabClick = (event, newValue) => {
+    setTabSelection(newValue);
+    if (newValue === "All") {
+      setWorkoutsToShow(sortByScore(workouts));
+      return;
+    }
+
+    const stretchList = sortByScore(workouts);
+    setWorkoutsToShow(
+      stretchList.filter((workout) => workout.group.includes(newValue))
+    );
+
   };
 
   // Sort routines by score on each load
   useEffect(() => {
-    // calculate a score for each workout based on watch count and rating
-    const stretchList = workouts.filter(
+
+    // set the workouts to show
+    setWorkoutsToShow(sortByScore(workouts));
+  }, []);
+
+  // Function to sort workouts by score
+  const sortByScore = (workoutList) => {
+    const stretchList = workoutList.filter(
       (workout) => workout.category.includes("Stretch")
     );
     stretchList.forEach((workout) => {
@@ -62,9 +148,8 @@ const Stretches = () => {
     // sort the workouts by score
     stretchList.sort((a, b) => (a.score > b.score ? -1 : 1));
 
-    // set the workouts to show
-    setWorkoutsToShow(stretchList);
-  }, []);
+    return stretchList;
+  };
 
 
   return (
@@ -97,12 +182,63 @@ const Stretches = () => {
           label="Type here to search"
           variant="outlined"
           sx={{ color: "text.primary" }}
+          value={searchText}
           onChange={(event) => {
             setSearchText(event.target.value.trimEnd());
           }}
           autoComplete="off"
         />
       </FormControl>
+
+      <FormControl
+          label="Muscle Group"
+          variant="outlined"
+          sx={{ marginTop: "1rem", width: "100%" }}
+        >
+          <InputLabel id="muscle-group-label">Muscle Group</InputLabel>
+          <Select
+            labelId="muscle-group-label"
+            id="muscle-group-checkbox"
+            multiple
+            value={muscleGroupsSelection}
+            onChange={handleMuscleChange}
+            input={<OutlinedInput label={"Muscle Group"} />}
+            renderValue={(selected) => selected.join(", ")}
+            MenuProps={MenuProps}
+          >
+            {muscleGroups.map((group) => (
+              <MenuItem key={group} value={group}>
+                <Checkbox checked={muscleGroupsSelection.indexOf(group) > -1} />
+                <ListItemText primary={group} />
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
+        <FormControl
+          label="Source"
+          variant="outlined"
+          sx={{ marginTop: "1rem", width: "100%" }}
+        >
+          <InputLabel id="source-label">Source</InputLabel>
+          <Select
+            labelId="source-label"
+            id="source-checkbox"
+            multiple
+            value={sourceSelection}
+            onChange={handleSourceChange}
+            input={<OutlinedInput label={"Source"} />}
+            renderValue={(selected) => selected.join(", ")}
+            MenuProps={MenuProps}
+          >
+            {sources.map((source) => (
+              <MenuItem key={source} value={source}>
+                <Checkbox checked={sourceSelection.indexOf(source) > -1} />
+                <ListItemText primary={source} />
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
 
 
       <CardActions
@@ -120,7 +256,9 @@ const Stretches = () => {
           color="secondary"
           onClick={() => {
             setSearchText("");
-            setWorkoutsToShow(stretches);
+            setWorkoutsToShow(sortByScore(workouts));
+            setMuscleGroupsSelection([]);
+            setSourceSelection([]);
           }}
         >
           Clear
@@ -128,6 +266,22 @@ const Stretches = () => {
       </CardActions>
     </Card>
 
+    <Card sx={{ maxWidth: 640, margin: "2rem auto", padding: "1rem" }}>
+        <Tabs
+          value={tabSelection}
+          onChange={handleTabClick}
+          variant="scrollable"
+          // variant="fullWidth"
+          scrollButtons="auto"
+          aria-label="muscle group tabs"
+          sx={{ justifyContent: "center" }}
+        >
+          <Tab key="All" label="All" value="All" />
+          {muscleGroups.map((group) => (
+            <Tab key={group} label={group} value={group} />
+          ))}
+        </Tabs>
+      </Card>
 
     <Box
       sx={{
@@ -138,9 +292,12 @@ const Stretches = () => {
         margin: "0 auto",
       }}
     >
-      {workoutsToShow.map((routine) => (
+      {workoutsToShow && workoutsToShow.length > 0 ? workoutsToShow.map((routine) => (
         <WorkoutCard key={routine.id} workout={routine} size="small" />
-      ))}
+      )) : (
+        <WorkoutCard type="missing"/>
+      )}
+
     </Box>
   </Box>
   );

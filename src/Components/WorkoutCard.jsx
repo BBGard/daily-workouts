@@ -11,6 +11,7 @@ import {
   Switch,
 } from "@mui/material";
 import { Skeleton, Slide } from "@mui/material";
+import notFoundImage from "../images/undraw_pilates_ltw9.svg";
 
 export function WorkoutCard(props) {
   const workout = props.workout; // workout object - must contain name, duration, link, thumbnail
@@ -23,8 +24,43 @@ export function WorkoutCard(props) {
     ? props.toggleFunction
     : () => console.error("Missing Toggle Function"); // function to toggle the workout
   const isChecked = props.isChecked ? props.isChecked : false; // boolean to determine if the toggle is checked
+  const type = props.type ? props.type : "workout"; // type of card - workout, warmup, recovery, stretch, missing
 
-  if (size === "large") {
+
+  if(type === "missing") {
+    return (
+      <Card
+        sx={{
+          maxWidth: 640,
+          width: "100%",
+          margin: "1rem auto",
+        }}
+      >
+        <CardContent
+          sx={{
+            textAlign: "center",
+            marginBottom: "1rem",
+          }}
+        >
+          <Typography variant="h5" color={"text.secondary"}>
+            {type === "missing" ? "No workouts found" : type}
+          </Typography>
+          <Typography variant="h6" component="div" color={"text.primary"}>
+            {type === "missing" ? "Try a different search" : type}
+          </Typography>
+        </CardContent>
+         <CardMedia
+            component="img"
+            alt="workout video screenshot"
+            // height="190"
+            image={notFoundImage}
+          />
+
+
+
+      </Card>
+    )
+  } else if (size === "large") {
     return (
       <Slide
         direction="right"
@@ -60,6 +96,8 @@ export function WorkoutCard(props) {
                   <Switch checked={isChecked} onChange={toggleFunction} />
                 }
                 label="Use Alternative Workout Schedule"
+                id="toggle-alternative-workout-schedule"
+                name="toggle-alternative-workout-schedule"
               />
             </FormGroup>
           ) : (
@@ -246,7 +284,9 @@ export function WorkoutCard(props) {
         </CardActions>
       </Card>
     );
-  } else {
+  }
+
+   else {
     return (
       <>
         <h1>Error</h1>

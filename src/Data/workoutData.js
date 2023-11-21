@@ -14,6 +14,7 @@ const workouts = [
     duration: "40 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 2,
@@ -26,6 +27,7 @@ const workouts = [
     duration: "30 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 3,
@@ -38,6 +40,7 @@ const workouts = [
     duration: "30 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 4,
@@ -50,6 +53,7 @@ const workouts = [
     duration: "20 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 5,
@@ -62,6 +66,7 @@ const workouts = [
     duration: "30 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 6,
@@ -74,6 +79,7 @@ const workouts = [
     duration: "45 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 7,
@@ -86,6 +92,7 @@ const workouts = [
     duration: "30 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 8,
@@ -98,6 +105,7 @@ const workouts = [
     duration: "30 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 9,
@@ -110,6 +118,7 @@ const workouts = [
     duration: "40 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 10,
@@ -122,6 +131,7 @@ const workouts = [
     duration: "30 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 11,
@@ -134,6 +144,7 @@ const workouts = [
     duration: "30 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 12,
@@ -146,6 +157,7 @@ const workouts = [
     duration: "20 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 13,
@@ -158,6 +170,7 @@ const workouts = [
     duration: "20 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 14,
@@ -170,6 +183,7 @@ const workouts = [
     duration: "25 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 15,
@@ -182,6 +196,7 @@ const workouts = [
     duration: "40 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 16,
@@ -194,6 +209,7 @@ const workouts = [
     duration: "40 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 17,
@@ -206,6 +222,7 @@ const workouts = [
     duration: "25 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 18,
@@ -218,6 +235,7 @@ const workouts = [
     duration: "40 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 19,
@@ -230,6 +248,7 @@ const workouts = [
     duration: "15 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 20,
@@ -242,6 +261,7 @@ const workouts = [
     duration: "20 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 21,
@@ -254,6 +274,7 @@ const workouts = [
     duration: "20 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 22,
@@ -266,6 +287,7 @@ const workouts = [
     duration: "30 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 23,
@@ -278,6 +300,7 @@ const workouts = [
     duration: "35 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 24,
@@ -290,6 +313,7 @@ const workouts = [
     duration: "20 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 25,
@@ -302,6 +326,7 @@ const workouts = [
     duration: "30 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 26,
@@ -314,6 +339,7 @@ const workouts = [
     duration: "10 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 27,
@@ -326,6 +352,7 @@ const workouts = [
     duration: "12 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 28,
@@ -338,6 +365,7 @@ const workouts = [
     duration: "10 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 29,
@@ -350,6 +378,7 @@ const workouts = [
     duration: "20 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 30,
@@ -362,6 +391,7 @@ const workouts = [
     duration: "20 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 31,
@@ -374,6 +404,7 @@ const workouts = [
     duration: "20 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 32,
@@ -386,6 +417,7 @@ const workouts = [
     duration: "20 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 33,
@@ -398,6 +430,7 @@ const workouts = [
     duration: "20 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 34,
@@ -410,6 +443,7 @@ const workouts = [
     duration: "17 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 35,
@@ -422,6 +456,7 @@ const workouts = [
     duration: "30 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 36,
@@ -434,6 +469,7 @@ const workouts = [
     duration: "28 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 37,
@@ -447,6 +483,7 @@ const workouts = [
     duration: "20 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 38,
@@ -459,6 +496,7 @@ const workouts = [
     duration: "25 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 39,
@@ -471,6 +509,7 @@ const workouts = [
     duration: "20 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 40,
@@ -483,6 +522,7 @@ const workouts = [
     duration: "7 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 41,
@@ -495,6 +535,7 @@ const workouts = [
     duration: "15 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 42,
@@ -507,6 +548,7 @@ const workouts = [
     duration: "15 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
 
   {
@@ -520,6 +562,7 @@ const workouts = [
     duration: "17 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 44,
@@ -532,6 +575,7 @@ const workouts = [
     duration: "5 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 45,
@@ -544,6 +588,7 @@ const workouts = [
     duration: "45 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 46,
@@ -556,6 +601,7 @@ const workouts = [
     duration: "40 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 47,
@@ -568,6 +614,7 @@ const workouts = [
     duration: "30 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 48,
@@ -580,6 +627,7 @@ const workouts = [
     duration: "40 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 49,
@@ -592,6 +640,7 @@ const workouts = [
     duration: "30 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 50,
@@ -604,6 +653,7 @@ const workouts = [
     duration: "30 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 51,
@@ -616,6 +666,7 @@ const workouts = [
     duration: "30 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 52,
@@ -628,6 +679,7 @@ const workouts = [
     duration: "45 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 53,
@@ -640,6 +692,7 @@ const workouts = [
     duration: "20 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 54,
@@ -652,6 +705,7 @@ const workouts = [
     duration: "45 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 55,
@@ -664,6 +718,7 @@ const workouts = [
     duration: "45 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 56,
@@ -676,6 +731,7 @@ const workouts = [
     duration: "40 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 57,
@@ -688,6 +744,7 @@ const workouts = [
     duration: "30 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 58,
@@ -700,6 +757,7 @@ const workouts = [
     duration: "30 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 59,
@@ -712,6 +770,7 @@ const workouts = [
     duration: "30 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 60,
@@ -724,6 +783,7 @@ const workouts = [
     duration: "30 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 61,
@@ -736,6 +796,7 @@ const workouts = [
     duration: "12 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 62,
@@ -748,18 +809,7 @@ const workouts = [
     duration: "25 min",
     watchCount: 0,
     rating: 0,
-  },
-  {
-    id: 63,
-    category: "Recovery, Stretch",
-    group: "Full Body",
-    name: "Morning Yoga Routine",
-    link: "https://hasfit.com/workouts/yoga/morning-yoga-routine/",
-    youtube: "https://www.youtube.com/watch?v=FRIm29rdTFM",
-    thumbnail: "http://img.youtube.com/vi/FRIm29rdTFM/0.jpg",
-    duration: "25 min",
-    watchCount: 0,
-    rating: 0,
+    source: "hasfit",
   },
   {
     id: 64,
@@ -772,6 +822,7 @@ const workouts = [
     duration: "5 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 65,
@@ -784,6 +835,7 @@ const workouts = [
     duration: "20 min",
     watchCount: 0,
     rating: 0,
+    source: "hasfit",
   },
   {
     id: 66,
@@ -791,12 +843,183 @@ const workouts = [
     group: "Full Body",
     name: "Full Body Stretch",
     link: "https://www.youtube.com/watch?v=g_tea8ZNk5A&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7",
-    youtube: "https://www.youtube.com/watch?v=g_tea8ZNk5A&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7",
+    youtube:
+      "https://www.youtube.com/watch?v=g_tea8ZNk5A&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7",
     thumbnail: "http://img.youtube.com/vi/g_tea8ZNk5A/0.jpg",
     duration: "15 min",
     watchCount: 0,
     rating: 2,
-  }
+    source: "Mady Morrison",
+  },
+  {
+    id: 67,
+    category: "Recovery, Stretch",
+    group: "Back",
+    name: "Back Pain Relief Stretches",
+    link: "https://www.youtube.com/watch?v=2eA2Koq6pTI&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=3",
+    youtube: "https://www.youtube.com/watch?v=2eA2Koq6pTI&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=3",
+    thumbnail: "http://img.youtube.com/vi/2eA2Koq6pTI/0.jpg",
+    duration: "10 min",
+    watchCount: 0,
+    rating: 0,
+    source: "Mady Morrison",
+  },
+  {
+    id: 68,
+    category: "Recovery, Stretch",
+    group: "Neck, Shoulders, Back",
+    name: "Stretches for Neck, Shoulder & Upper Back Pain Relief",
+    link: "https://www.youtube.com/watch?v=s-7lyvblFNI&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=2",
+    youtube: "https://www.youtube.com/watch?v=s-7lyvblFNI&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=2",
+    thumbnail: "http://img.youtube.com/vi/s-7lyvblFNI/0.jpg",
+    duration: "10 min",
+    watchCount: 0,
+    rating: 0,
+    source: "Mady Morrison",
+  },
+  {
+    id: 69,
+    category: "Stretch",
+    group: "Full Body",
+    name: "Morning Stretch",
+    link: "https://www.youtube.com/watch?v=sAf67xFS-qE&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=4",
+    youtube: "https://www.youtube.com/watch?v=sAf67xFS-qE&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=4",
+    thumbnail: "http://img.youtube.com/vi/sAf67xFS-qE/0.jpg",
+    duration: "5 min",
+    watchCount: 0,
+    rating: 0,
+    source: "Mady Morrison",
+  },
+  {
+    id: 70,
+    category: "Stretch",
+    group: "Full Body",
+    name: "Full Body Stretch | Gentle Routine for Flexibility, Relaxation & Stress Relief ",
+    link: "https://www.youtube.com/watch?v=CY6QP4ofwx4&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=5",
+    youtube: "https://www.youtube.com/watch?v=CY6QP4ofwx4&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=5",
+    thumbnail: "http://img.youtube.com/vi/CY6QP4ofwx4/0.jpg",
+    duration: "30 min",
+    watchCount: 0,
+    rating: 0,
+    source: "Mady Morrison",
+  },
+  {
+    id: 71,
+    category: "Stretch",
+    group: "Legs",
+    name: "Leg Stretch | Flexibility Routine for Hamstrings, Butt & Hips",
+    link: "https://www.youtube.com/watch?v=yMNLa17g9uc&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=6",
+    youtube: "https://www.youtube.com/watch?v=yMNLa17g9uc&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=6",
+    thumbnail: "http://img.youtube.com/vi/yMNLa17g9uc/0.jpg",
+    duration: "15 min",
+    watchCount: 0,
+    rating: 0,
+    source: "Mady Morrison",
+  },
+  {
+    id: 72,
+    category: "Stretch",
+    group: "Full Body",
+    name: "Morning Stretch for every day",
+    link: "https://www.youtube.com/watch?v=ihba9Lw0tv4&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=7",
+    youtube: "https://www.youtube.com/watch?v=ihba9Lw0tv4&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=7",
+    thumbnail: "http://img.youtube.com/vi/ihba9Lw0tv4/0.jpg",
+    duration: "10 min",
+    watchCount: 0,
+    rating: 0,
+    source: "Mady Morrison",
+  },
+  {
+    id: 73,
+    category: "Recovery, Stretch",
+    group: "Back, Posture",
+    name: "Fix your posture and reduce backpain",
+    link: "https://www.youtube.com/watch?v=BPlCatqZRPI&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=8",
+    youtube: "https://www.youtube.com/watch?v=BPlCatqZRPI&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=8",
+    thumbnail: "http://img.youtube.com/vi/BPlCatqZRPI/0.jpg",
+    duration: "10 min",
+    watchCount: 0,
+    rating: 0,
+    source: "Mady Morrison",
+  },
+  {
+    id: 74,
+    category: "Recovery, Stretch",
+    group: "Back, Hip",
+    name: "Stretches for Lower Back Pain Relief & Tight Hips",
+    link: "https://www.youtube.com/watch?v=HzXkMnvqojE&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=9",
+    youtube: "https://www.youtube.com/watch?v=HzXkMnvqojE&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=9",
+    thumbnail: "http://img.youtube.com/vi/HzXkMnvqojE/0.jpg",
+    duration: "15 min",
+    watchCount: 0,
+    rating: 0,
+    source: "Mady Morrison",
+  },
+  {
+    id: 75,
+    category: "Stretch",
+    group: "Full Body",
+    name: "Yoga Stretch for Stress & Anxiety Relief",
+    link: "https://www.youtube.com/watch?v=yqeirBfn2j4&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=10",
+    youtube: "https://www.youtube.com/watch?v=yqeirBfn2j4&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=10",
+    thumbnail: "http://img.youtube.com/vi/yqeirBfn2j4/0.jpg",
+    duration: "15 min",
+    watchCount: 0,
+    rating: 0,
+    source: "Mady Morrison",
+  },
+  {
+    id: 76,
+    category: "Stretch",
+    group: "Full Body",
+    name: "Netflix and Stretch | The best Stretches while watching TV and chilling on the Sofa!",
+    link: "https://www.youtube.com/watch?v=meWTyd7vY6I&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=11",
+    youtube: "https://www.youtube.com/watch?v=meWTyd7vY6I&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=11",
+    thumbnail: "http://img.youtube.com/vi/meWTyd7vY6I/0.jpg",
+    duration: "13 min",
+    watchCount: 0,
+    rating: 0,
+    source: "Mady Morrison",
+  },
+  {
+    id: 77,
+    category: "Stretch",
+    group: "Full Body",
+    name: "Morning Stretch",
+    link: "https://www.youtube.com/watch?v=4snu7NxD4nM&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=12",
+    youtube: "https://www.youtube.com/watch?v=4snu7NxD4nM&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=12",
+    thumbnail: "http://img.youtube.com/vi/4snu7NxD4nM/0.jpg",
+    duration: "15 min",
+    watchCount: 0,
+    rating: 0,
+    source: "Mady Morrison",
+  },
+  {
+    id: 78,
+    category: "Stretch, Warm Up",
+    group: "Full Body",
+    name: "Post-Run Stretch | Simple Cool Down after Running",
+    link: "https://www.youtube.com/watch?v=FbmLx-PahO4&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=13",
+    youtube: "https://www.youtube.com/watch?v=FbmLx-PahO4&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=13",
+    thumbnail: "http://img.youtube.com/vi/FbmLx-PahO4/0.jpg",
+    duration: "10 min",
+    watchCount: 0,
+    rating: 0,
+    source: "Mady Morrison",
+  },
+  {
+    id: 79,
+    category: "Stretch",
+    group: "Face",
+    name: "Daily Face Yoga",
+    link: "https://www.youtube.com/watch?v=4SBoTzwSQB8&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=14",
+    youtube: "https://www.youtube.com/watch?v=4SBoTzwSQB8&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7&index=14",
+    thumbnail: "http://img.youtube.com/vi/4SBoTzwSQB8/0.jpg",
+    duration: "8 min",
+    watchCount: 0,
+    rating: 0,
+    source: "Mady Morrison",
+  },
 ];
 
 // Recovery Muscle Groups
@@ -827,8 +1050,23 @@ const weightMuscleGroups = [
   "Abs",
 ];
 
+// Stretch Muscle Groups
+const stretchMuscleGroups = [
+  "Full Body",
+  "Back",
+  "Neck",
+  "Shoulders",
+  "Legs",
+  "Hip",
+  "Posture",
+  "Face",
+];
+
 // workout types
-const workoutTypes = ["Weights", "Recovery", "Warm Up"];
+const workoutTypes = ["Weights", "Recovery", "Warm Up", "Stretch"];
+
+// Sources
+const sources = ["HASfit", "Mady Morrison"];
 
 // Initialize workoutSchedule - note: Sunday is index 0
 const workoutSchedule = [
@@ -910,6 +1148,8 @@ const workoutScheduleAlt = [
 
 export {
   recoveryMuscleGroups,
+  sources,
+  stretchMuscleGroups,
   weightMuscleGroups,
   workouts,
   workoutTypes,
