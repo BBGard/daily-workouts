@@ -55,8 +55,42 @@ const Home = () => {
             )
         );
 
-        // Sort the workouts by watch count - to be propery implemented later
-        workoutList.sort((a, b) => (a.watchCount > b.watchCount ? 1 : -1));
+
+        // Create a "score" for each workout based on watch count and rating
+        workoutList.forEach((workout) => {
+          workout.score = workout.rating - workout.watchCount;
+        });
+
+        // Sort the workouts by score
+        workoutList.sort((a, b) => (a.score > b.score ? -1 : 1));
+
+        // Do the same for the warmups, recovery, and stretches
+        const warmupList = workouts.filter(workout => workout.category.includes("Warm Up"));
+        const recoveryList = workouts.filter(workout => workout.category.includes("Recovery"));
+        const stretchList = workouts.filter(workout => workout.category.includes("Stretch"));
+
+        warmupList.forEach((workout) => {
+          workout.score = workout.rating - workout.watchCount;
+        }
+        );
+        warmupList.sort((a, b) => (a.score > b.score ? -1 : 1));
+
+        recoveryList.forEach((workout) => {
+          workout.score = workout.rating - workout.watchCount;
+        }
+        );
+        recoveryList.sort((a, b) => (a.score > b.score ? -1 : 1));
+
+        stretchList.forEach((workout) => {
+          workout.score = workout.rating - workout.watchCount;
+        }
+        );
+        stretchList.sort((a, b) => (a.score > b.score ? -1 : 1));
+
+        // Set the recommended warmup, recovery, and stretch to the first workout in the list
+        setRecommendedWarmup(warmupList[0]);
+        setRecommendedRecovery(recoveryList[0]);
+        setRecommendedStretch(stretchList[0]);
 
         setTodaysWorkouts(workoutList);
 

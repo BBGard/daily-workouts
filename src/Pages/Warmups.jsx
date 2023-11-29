@@ -5,7 +5,7 @@ import WorkoutCard from "../Components/WorkoutCard";
 
 function Warmups() {
   // Select only warmups from workout data
-  const warmups = workouts.filter((workout) => workout.category === "Warm Up");
+  const warmups = workouts.filter((workout) => workout.category.includes("Warm Up"));
 
   return (
     <Box sx={{ my: 4 }}>
