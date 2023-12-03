@@ -141,25 +141,43 @@ export function WorkoutCard(props) {
                 margin: "1rem auto",
               }}
             >
-              <Typography gutterBottom variant="h5" component="div" sx={{fontWeight: "400", marginLeft: "0.2rem"}}>
-                {workout.name}
-              </Typography>
-              <Box sx={{display: "flex", gap: "0.5rem", alignItems: "center"}}>
-                <TimerOutlined sx={{color: "#FF2E00"}}/>
+              <Box sx={{ height: "5em" }}>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="div"
+                  sx={{ fontWeight: "400", marginLeft: "0.2rem" }}
+                >
+                  {workout.name}
+                </Typography>
+              </Box>
+              <Box
+                sx={{ display: "flex", gap: "0.5rem", alignItems: "center" }}
+              >
+                <TimerOutlined sx={{ color: "#FF2E00" }} />
                 <Typography variant="body1">Duration: </Typography>
-                <Typography variant="body1" sx={{fontWeight: "500"}}>{workout.duration}</Typography>
+                <Typography variant="body1" sx={{ fontWeight: "500" }}>
+                  {workout.duration}
+                </Typography>
               </Box>
-              <Box sx={{display: "flex", gap: "0.5rem", alignItems: "center"}}>
-                <RunCircleOutlined sx={{color: "#FF2E00"}}/>
+              <Box
+                sx={{ display: "flex", gap: "0.5rem", alignItems: "center" }}
+              >
+                <RunCircleOutlined sx={{ color: "#FF2E00" }} />
                 <Typography variant="body1">Workout Type: </Typography>
-                <Typography variant="body1" sx={{fontWeight: "500"}}>{workout.category}</Typography>
+                <Typography variant="body1" sx={{ fontWeight: "500" }}>
+                  {workout.category}
+                </Typography>
               </Box>
-              <Box sx={{display: "flex", gap: "0.5rem", alignItems: "center"}}>
-                <AccessibilityNewOutlined sx={{color: "#FF2E00"}}/>
+              <Box
+                sx={{ display: "flex", gap: "0.5rem", alignItems: "center" }}
+              >
+                <AccessibilityNewOutlined sx={{ color: "#FF2E00" }} />
                 <Typography variant="body1">Muscle Group: </Typography>
-                <Typography variant="body1" sx={{fontWeight: "500"}}>{workout.group}</Typography>
+                <Typography variant="body1" sx={{ fontWeight: "500" }}>
+                  {workout.group}
+                </Typography>
               </Box>
-
             </CardContent>
           ) : (
             <>
