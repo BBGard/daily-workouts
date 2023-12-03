@@ -10,6 +10,7 @@ import {
   FormGroup,
   FormControlLabel,
   // IconButton,
+  Divider,
   Switch,
 } from "@mui/material";
 import { Skeleton, Slide } from "@mui/material";
@@ -85,7 +86,6 @@ export function WorkoutCard(props) {
           >
             {title}
           </Typography>
-
           {hasToggle ? (
             <FormGroup
               sx={{
@@ -150,6 +150,7 @@ export function WorkoutCard(props) {
                 >
                   {workout.name}
                 </Typography>
+                <Divider />
               </Box>
               <Box
                 sx={{ display: "flex", gap: "0.5rem", alignItems: "center" }}
@@ -276,14 +277,17 @@ export function WorkoutCard(props) {
         >
           {workout != null ? (
             <>
-              <Typography
-                gutterBottom
-                variant="h5"
-                component="div"
-                sx={{ fontWeight: "400", marginLeft: "0.2rem" }}
-              >
-                {workout.name}
-              </Typography>
+              <Box sx={{ height: "5em" }}>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="div"
+                  sx={{ fontWeight: "400", marginLeft: "0.2rem" }}
+                >
+                  {workout.name}
+                </Typography>
+                <Divider />
+              </Box>
               <Box
                 sx={{ display: "flex", gap: "0.5rem", alignItems: "center" }}
               >

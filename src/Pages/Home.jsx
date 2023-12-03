@@ -6,7 +6,8 @@ import {
   Box,
   Tabs,
   Tab,
-  Card
+  Card,
+  Divider,
 } from "@mui/material";
 import { workouts, workoutSchedule, workoutScheduleAlt } from "../Data/workoutData";
 import WorkoutCard from "../Components/WorkoutCard";
@@ -199,6 +200,7 @@ const Home = () => {
             <Tab label="Recover" sx={{ fontWeight: "bold" }} />
             <Tab label="Stretch" sx={{ fontWeight: "bold" }} />
           </Tabs>
+          <Divider />
         </Card>
 
         {selectedTab === 0 && (
