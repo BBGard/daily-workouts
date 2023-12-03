@@ -6,6 +6,7 @@ import Warmups from './Pages/Warmups';
 import Workouts from './Pages/Workouts';
 import ErrorPage from './Pages/ErrorPage';
 import Stretches from './Pages/Stretches';
+import Auth from './Pages/SignIn';
 import { ResponsiveAppBar } from "./Components/ResponsiveAppBar";
 import {Container} from '@mui/material';
 import {ScrollToTopButton} from './Components/ScrollToTopButton';
@@ -18,7 +19,7 @@ function App() {
 
       <Container
         component="main"
-        maxWidth="xl"
+        // maxWidth="xl"
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -28,6 +29,7 @@ function App() {
           height: "100%",
           minHeight: "calc(100vh - 5rem)",
           marginTop: "5rem",
+          padding: { xs: 0, sm: 0, md: 0, lg: 0, xl: 0 },
         }}
       >
         <Routes>
@@ -37,6 +39,7 @@ function App() {
           <Route path="/workouts" element={<Workouts />} />
           <Route path="/stretches" element={<Stretches />} />
           <Route path="*" element={<ErrorPage />} />
+          <Route path='/auth' element={<Auth />} />
         </Routes>
         <ScrollToTopButton />
       </Container>

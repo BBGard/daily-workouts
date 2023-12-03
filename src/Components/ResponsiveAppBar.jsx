@@ -40,7 +40,7 @@ export function ResponsiveAppBar() {
 
   return (
     <Slide direction="down" timeout={500} in={true} mountOnEnter unmountOnExit>
-      <AppBar component={"nav"} color="secondary">
+      <AppBar component={"nav"} color="primary">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             {/* Mobile View */}
@@ -57,20 +57,25 @@ export function ResponsiveAppBar() {
                 mr: 2,
                 display: { xs: "flex", md: "flex" },
                 flexGrow: 1,
-                fontWeight: 700,
-                letterSpacing: ".3rem",
                 color: "inherit",
                 textDecoration: "none",
+                textTransform: "uppercase",
                 paddingLeft: "1rem",
               }}
             >
               Daily Workouts
             </Typography>
 
-            <Box sx={{ flexGrow: 1, bgcolor: "secondary.main", display: { xs: "flex", md: "none"}}}>
+            <Box
+              sx={{
+                flexGrow: 1,
+                backgroundColor: "primary.main",
+                display: { xs: "flex", md: "none" },
+              }}
+            >
               <IconButton
                 size="large"
-                aria-label="account of current user"
+                aria-label="open menu"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={open ? toggleDrawer(false) : toggleDrawer(true)}
@@ -82,32 +87,54 @@ export function ResponsiveAppBar() {
                 anchor={"right"}
                 open={open}
                 onClose={toggleDrawer(false)}
-                ModalProps={{keepMounted: true}}
+                ModalProps={{ keepMounted: true }}
                 sx={{
-                  display: { xs: 'block', md: 'none' },
-                  '& .MuiDrawer-paper': { color: 'white', bgcolor: 'secondary.main'},
+                  display: { xs: "block", md: "none" },
+                  "& .MuiDrawer-paper": {
+                    color: "white",
+                    bgcolor: "primary.main",
+                  },
                 }}
               >
                 <Box
                   sx={{
                     display: "flex",
-                    justifyContent: "flex-end",
+                    justifyContent: "space-between",
                     padding: "1rem",
-                    bgcolor: "secondary.main",
+                    bgcolor: "primary.main",
                   }}
                 >
+                  <Button
+                    variant="outlined"
+                    color="info"
+                    href="/auth"
+                    sx={{
+                      height: "50%",
+                      maxHeight: "2rem",
+                      alignSelf: "center",
+                      border: "2px solid",
+                      padding: "1rem",
+                      "&:hover": { border: "2px solid", color: "#A7C957" },
+                    }}
+                  >
+                    Sign In
+                  </Button>
                   <IconButton
                     size="large"
                     aria-label="close menu"
                     onClick={toggleDrawer(false)}
-                    color="buttonSuccess"
+                    color="info"
                   >
                     <CloseOutlinedIcon />
                   </IconButton>
                 </Box>
                 <Box
-                  sx={{ width: "50vw", maxWidth: "300px", marginTop: "10vh", bgcolor: "secondary.main",
-                }}
+                  sx={{
+                    width: "50vw",
+                    maxWidth: "300px",
+                    marginTop: "10vh",
+                    bgcolor: "primary.main",
+                  }}
                   role="presentation"
                   onClick={toggleDrawer(false)}
                   onKeyDown={toggleDrawer(false)}
@@ -117,7 +144,7 @@ export function ResponsiveAppBar() {
                       to={`/`}
                       style={{
                         textDecoration: "none",
-                        color: currentPage === `/` ? "#b2ff34" : "white",
+                        color: currentPage === `/` ? "#7EC4CF" : "inherit",
                         width: "100%",
                         height: "100%",
                         padding: "0.5rem",
@@ -144,13 +171,18 @@ export function ResponsiveAppBar() {
                         to={`/${page.toLowerCase()}`}
                         style={{
                           textDecoration: "none",
-                          color: currentPage === `${page.toLowerCase()}` ? "#b2ff34" : "white",
+                          color:
+                            currentPage === `/${page.toLowerCase()}`
+                              ? "#7EC4CF"
+                              : "inherit",
                           width: "100%",
                           height: "100%",
                           padding: "0.5rem",
                           margin: "0",
                           display: "flex",
                           alignItems: "center",
+                          "&:hover": {  color: "#A7C957" },
+
                         }}
                       >
                         {page === "Workouts" ? (
@@ -165,13 +197,11 @@ export function ResponsiveAppBar() {
                           <RestoreOutlinedIcon
                             sx={{ display: { xs: "flex", md: "flex" }, mr: 1 }}
                           />
-                        ) :  page === "Stretches" ? (
+                        ) : page === "Stretches" ? (
                           <SelfImprovementIcon
                             sx={{ display: { xs: "flex", md: "flex" }, mr: 1 }}
                           />
-                        )
-                        :
-                        (
+                        ) : (
                           <DirectionsRunIcon
                             sx={{ display: { xs: "flex", md: "flex" }, mr: 1 }}
                           />
@@ -221,18 +251,34 @@ export function ResponsiveAppBar() {
                     my: 2,
                     color:
                       currentPage === `/${page.toLowerCase()}`
-                        ? "#b2ff34"
-                        : "white",
+                        ? "#7EC4CF"
+                        : "inherit",
                     display: "block",
                     fontWeight:
                       currentPage === `/${page.toLowerCase()}`
                         ? "bold"
                         : "normal",
+                        "&:hover": {color: "#A7C957"}
                   }}
                 >
                   {page}
                 </Button>
               ))}
+              <Button
+                variant="outlined"
+                color="info"
+                href="/auth"
+                sx={{
+                  marginLeft: "1.5rem",
+                  height: "50%",
+                  maxHeight: "2rem",
+                  alignSelf: "center",
+                  border: "2px solid",
+                  "&:hover": { border: "2px solid", color: "#A7C957" },
+                }}
+              >
+                Sign In
+              </Button>
             </Box>
           </Toolbar>
         </Container>
