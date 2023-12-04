@@ -13,9 +13,19 @@ import {ScrollToTopButton} from './Components/ScrollToTopButton';
 
 
 function App() {
+  const [user, setUser] = React.useState(null);
+
+  React.useEffect(() => {
+    // Check if cookies contain user data
+    if (user === null && document.cookie.includes('user')) {
+      // If user data is found, set user state to the data
+      setUser(JSON.parse(document.cookie.split(';')[0].slice(5)));
+    }
+  }, [user]);
+
   return (
     <>
-      <ResponsiveAppBar />
+      <ResponsiveAppBar userData={user}/>
 
       <Container
         component="main"

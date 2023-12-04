@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import 'firebase/auth';
 import {auth, provider} from '../Config/firebase';
 import { signInWithPopup } from 'firebase/auth';
@@ -15,6 +16,8 @@ import {
 import fitnessImage from '../images/undraw_fitness_stats..svg';
 
 export const Auth = () => {
+
+  const navigate = useNavigate();
   const signInWithGoogle = async () => {
     try {
       const results = await signInWithPopup(auth, provider);
@@ -31,7 +34,7 @@ export const Auth = () => {
       document.cookie = `user=${JSON.stringify(userCookie)}; max-age=3600; path=/`;
 
       // Redirect to home page
-      window.location.href = '/';
+      navigate('/');
 
       console.log(results);
     }

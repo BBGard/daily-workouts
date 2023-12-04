@@ -2,6 +2,7 @@
  * @fileoverview This file provides the ResponsiveAppBar component.
  */
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -24,9 +25,11 @@ import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
 
 const pages = ['Workouts', 'Warmups', 'Recovery', 'Stretches'];
 
-export function ResponsiveAppBar() {
+export function ResponsiveAppBar(props) {
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const currentPage = window.location.pathname;
+  const userData = props.userData;
 
 
   const toggleDrawer = (inOpen) => (event) => {
@@ -36,6 +39,7 @@ export function ResponsiveAppBar() {
 
     setOpen(inOpen);
   };
+
 
 
   return (
@@ -104,21 +108,44 @@ export function ResponsiveAppBar() {
                     bgcolor: "primary.main",
                   }}
                 >
-                  <Button
-                    variant="outlined"
-                    color="info"
-                    href="/auth"
-                    sx={{
-                      height: "50%",
-                      maxHeight: "2rem",
-                      alignSelf: "center",
-                      border: "2px solid",
-                      padding: "1rem",
-                      "&:hover": { border: "2px solid", color: "#A7C957" },
-                    }}
-                  >
-                    Sign In
-                  </Button>
+                  {userData && userData.name ? (
+                     <Button
+                     onClick={() => {
+                       navigate(`/profile/${userData._id}`);
+                     }}
+                     variant="outlined"
+                     color="info"
+                     sx={{
+                       marginLeft: "1.5rem",
+                       height: "50%",
+                       maxHeight: "2rem",
+                       alignSelf: "center",
+                       border: "2px solid",
+                       "&:hover": { border: "2px solid", color: "#A7C957" },
+                     }}
+                   >
+                     {userData.name.split(" ")[0]}
+                   </Button>
+                  ) : (
+                    <Button
+                      variant="outlined"
+                      color="info"
+                      onClick={() => {
+                        navigate(`/auth`);
+                      }}
+                      sx={{
+                        height: "50%",
+                        maxHeight: "2rem",
+                        alignSelf: "center",
+                        border: "2px solid",
+                        padding: "1rem",
+                        "&:hover": { border: "2px solid", color: "#A7C957" },
+                      }}
+                    >
+                      Sign In
+                    </Button>
+                  )}
+
                   <IconButton
                     size="large"
                     aria-label="close menu"
@@ -181,8 +208,7 @@ export function ResponsiveAppBar() {
                           margin: "0",
                           display: "flex",
                           alignItems: "center",
-                          "&:hover": {  color: "#A7C957" },
-
+                          "&:hover": { color: "#A7C957" },
                         }}
                       >
                         {page === "Workouts" ? (
@@ -258,27 +284,48 @@ export function ResponsiveAppBar() {
                       currentPage === `/${page.toLowerCase()}`
                         ? "bold"
                         : "normal",
-                        "&:hover": {color: "#A7C957"}
+                    "&:hover": { color: "#A7C957" },
                   }}
                 >
                   {page}
                 </Button>
               ))}
-              <Button
-                variant="outlined"
-                color="info"
-                href="/auth"
-                sx={{
-                  marginLeft: "1.5rem",
-                  height: "50%",
-                  maxHeight: "2rem",
-                  alignSelf: "center",
-                  border: "2px solid",
-                  "&:hover": { border: "2px solid", color: "#A7C957" },
-                }}
-              >
-                Sign In
-              </Button>
+
+              {userData && userData.name ? (
+                <Button
+                  onClick={() => {
+                    navigate(`/profile/${userData._id}`);
+                  }}
+                  variant="outlined"
+                  color="info"
+                  sx={{
+                    marginLeft: "1.5rem",
+                    height: "50%",
+                    maxHeight: "2rem",
+                    alignSelf: "center",
+                    border: "2px solid",
+                    "&:hover": { border: "2px solid", color: "#A7C957" },
+                  }}
+                >
+                  {userData.name.split(" ")[0]}
+                </Button>
+              ) : (
+                <Button
+                  variant="outlined"
+                  color="info"
+                  href="/auth"
+                  sx={{
+                    marginLeft: "1.5rem",
+                    height: "50%",
+                    maxHeight: "2rem",
+                    alignSelf: "center",
+                    border: "2px solid",
+                    "&:hover": { border: "2px solid", color: "#A7C957" },
+                  }}
+                >
+                  Sign In
+                </Button>
+              )}
             </Box>
           </Toolbar>
         </Container>
