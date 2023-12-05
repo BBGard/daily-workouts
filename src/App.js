@@ -10,22 +10,15 @@ import Auth from './Pages/SignIn';
 import { ResponsiveAppBar } from "./Components/ResponsiveAppBar";
 import {Container} from '@mui/material';
 import {ScrollToTopButton} from './Components/ScrollToTopButton';
-
+import { useGetWorkoutData } from './hooks/useGetWorkoutData';
 
 function App() {
-  const [user, setUser] = React.useState(null);
+  const { allWorkoutData } = useGetWorkoutData();
 
-  React.useEffect(() => {
-    // Check if cookies contain user data
-    if (user === null && document.cookie.includes('user')) {
-      // If user data is found, set user state to the data
-      setUser(JSON.parse(document.cookie.split(';')[0].slice(5)));
-    }
-  }, [user]);
 
   return (
     <>
-      <ResponsiveAppBar userData={user}/>
+      <ResponsiveAppBar />
 
       <Container
         component="main"

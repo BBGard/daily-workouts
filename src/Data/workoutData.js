@@ -1144,7 +1144,20 @@ const workoutScheduleAlt = [
   },
 ];
 
+// Create object to store all workout data
+const workoutData = {
+  recoveryMuscleGroups,
+  sources,
+  stretchMuscleGroups,
+  weightMuscleGroups,
+  workouts,
+  workoutTypes,
+  workoutSchedule,
+  workoutScheduleAlt,
+};
+
 export {
+  workoutData,
   recoveryMuscleGroups,
   sources,
   stretchMuscleGroups,

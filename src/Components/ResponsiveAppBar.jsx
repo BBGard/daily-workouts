@@ -2,20 +2,12 @@
  * @fileoverview This file provides the ResponsiveAppBar component.
  */
 import * as React from 'react';
-import { useNavigate } from 'react-router-dom';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
+import { useNavigate, Link } from 'react-router-dom';
+
+import {AppBar, Avatar, Box, Toolbar, IconButton, Typography, Container, Button, MenuItem, Slide, Drawer} from '@mui/material';
+
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
-import { Slide } from '@mui/material';
-import Drawer from '@mui/material/Drawer';
-import { Link } from "react-router-dom";
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import WhatshotOutlinedIcon from '@mui/icons-material/WhatshotOutlined';
 import RestoreOutlinedIcon from '@mui/icons-material/RestoreOutlined';
@@ -23,13 +15,17 @@ import HomeIcon from '@mui/icons-material/Home';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
 
+import { useGetUserInfo } from '../hooks/useGetUserInfo';
+
 const pages = ['Workouts', 'Warmups', 'Recovery', 'Stretches'];
 
-export function ResponsiveAppBar(props) {
+export function ResponsiveAppBar() {
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const currentPage = window.location.pathname;
-  const userData = props.userData;
+  const userInfo = useGetUserInfo();
+  console.log(userInfo);
+
 
 
   const toggleDrawer = (inOpen) => (event) => {
@@ -108,24 +104,34 @@ export function ResponsiveAppBar(props) {
                     bgcolor: "primary.main",
                   }}
                 >
-                  {userData && userData.name ? (
-                     <Button
-                     onClick={() => {
-                       navigate(`/profile/${userData._id}`);
-                     }}
-                     variant="outlined"
-                     color="info"
-                     sx={{
-                       marginLeft: "1.5rem",
-                       height: "50%",
-                       maxHeight: "2rem",
-                       alignSelf: "center",
-                       border: "2px solid",
-                       "&:hover": { border: "2px solid", color: "#A7C957" },
-                     }}
-                   >
-                     {userData.name.split(" ")[0]}
-                   </Button>
+                  {userInfo && userInfo.user.name ? (
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+
+                      <Avatar
+                        alt={userInfo.user.name}
+                        src={userInfo.user.photo}
+                        onClick={() => {
+                          navigate(`/profile/${userInfo.user._id}`);
+                        }}
+                      />
+                      <Button
+                        onClick={() => {
+                          navigate(`/profile/${userInfo.user._id}`);
+                        }}
+                        variant="outlined"
+                        color="info"
+                        sx={{
+                          marginLeft: "1.5rem",
+                          height: "50%",
+                          maxHeight: "2rem",
+                          alignSelf: "center",
+                          border: "2px solid",
+                          "&:hover": { border: "2px solid", color: "#A7C957" },
+                        }}
+                      >
+                        {userInfo.user.name.split(" ")[0]}
+                      </Button>
+                    </Box>
                   ) : (
                     <Button
                       variant="outlined"
@@ -291,15 +297,23 @@ export function ResponsiveAppBar(props) {
                 </Button>
               ))}
 
-              {userData && userData.name ? (
+              {userInfo && userInfo.user.name ? (
+                <Box sx={{ display: "flex", alignItems: "center", marginLeft: "1.5rem", gap: "1rem"}}>
+
+                <Avatar
+                  alt={userInfo.user.name}
+                  src={userInfo.user.photo}
+                  onClick={() => {
+                    navigate(`/profile/${userInfo.user._id}`);
+                  }}
+                />
                 <Button
                   onClick={() => {
-                    navigate(`/profile/${userData._id}`);
+                    navigate(`/profile/${userInfo.user._id}`);
                   }}
                   variant="outlined"
                   color="info"
                   sx={{
-                    marginLeft: "1.5rem",
                     height: "50%",
                     maxHeight: "2rem",
                     alignSelf: "center",
@@ -307,8 +321,9 @@ export function ResponsiveAppBar(props) {
                     "&:hover": { border: "2px solid", color: "#A7C957" },
                   }}
                 >
-                  {userData.name.split(" ")[0]}
+                  {userInfo.user.name.split(" ")[0]}
                 </Button>
+              </Box>
               ) : (
                 <Button
                   variant="outlined"
