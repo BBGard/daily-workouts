@@ -9,7 +9,12 @@ export const useGetUserInfo = () => {
 
     user = JSON.parse(document.cookie.split(';')[0].slice(5));
   } else {
-    user = null;
+    user = {
+      name: null,
+      photo: null,
+      email: null,
+      token: null,
+    };
   }
 
 

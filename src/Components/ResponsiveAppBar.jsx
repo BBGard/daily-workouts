@@ -26,8 +26,6 @@ export function ResponsiveAppBar() {
   const userInfo = useGetUserInfo();
   console.log(userInfo);
 
-
-
   const toggleDrawer = (inOpen) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
@@ -104,7 +102,7 @@ export function ResponsiveAppBar() {
                     bgcolor: "primary.main",
                   }}
                 >
-                  {userInfo && userInfo.user.name ? (
+                  {userInfo && userInfo.user.name !== null ? (
                     <Box sx={{ display: "flex", alignItems: "center" }}>
 
                       <Avatar
@@ -297,7 +295,7 @@ export function ResponsiveAppBar() {
                 </Button>
               ))}
 
-              {userInfo && userInfo.user.name ? (
+              {userInfo && userInfo.user.name !== null ? (
                 <Box sx={{ display: "flex", alignItems: "center", marginLeft: "1.5rem", gap: "1rem"}}>
 
                 <Avatar
