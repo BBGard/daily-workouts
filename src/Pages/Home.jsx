@@ -184,14 +184,13 @@ const Home = () => {
             value={selectedTab}
             onChange={handleTabSelect}
             indicatorColor="secondary"
-            textColor="white"
             variant="fullWidth"
             sx={{
               width: "100%",
               maxWidth: 540,
               margin: "0 auto",
               "& .Mui-selected": {
-                color: "#fff",
+                color: "#ffffff",
                 backgroundColor: "secondary.main",
               },
             }}
