@@ -197,11 +197,14 @@ export function WorkoutCard(props) {
             sx={{
               justifyContent: "center",
               gap: "1rem",
-              marginBottom: "1.5rem",
+              marginBottom: "1rem",
             }}
           >
             {workout ? (
               <>
+                <Button size="large" variant="outlined" color="secondary" >
+                  All {}
+                </Button>
                 <Button
                   size="large"
                   variant="contained"
@@ -236,6 +239,14 @@ export function WorkoutCard(props) {
               </>
             )}
           </CardActions>
+          {/* <Divider /> */}
+          <CardActions
+            sx={{
+              justifyContent: "center",
+              gap: "1rem",
+              padding: "1rem 0",
+            }}
+          ></CardActions>
         </Card>
       </Slide>
     );
