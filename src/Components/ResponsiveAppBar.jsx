@@ -24,7 +24,7 @@ export function ResponsiveAppBar() {
   const [open, setOpen] = React.useState(false);
   const currentPage = window.location.pathname;
   const userInfo = useGetUserInfo();
-  console.log(userInfo);
+  // console.log(userInfo);
 
   const toggleDrawer = (inOpen) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -38,7 +38,7 @@ export function ResponsiveAppBar() {
 
   return (
     <Slide direction="down" timeout={500} in={true} mountOnEnter unmountOnExit>
-      <AppBar component={"nav"} color="primary">
+      <AppBar component={"nav"} color="primary" sx={{position: "sticky"}}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             {/* Mobile View */}

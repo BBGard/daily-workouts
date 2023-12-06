@@ -177,31 +177,35 @@ const Home = () => {
     <>
       <Box
         sx={{
-          my: 1,
           height: "100%",
         }}
       >
-        <Card sx={{ maxWidth: 540, margin: "0 auto", borderRadius: "0",}}>
-          <Tabs
+        <Tabs
             value={selectedTab}
             onChange={handleTabSelect}
             indicatorColor="secondary"
-            textColor="secondary"
+            textColor="white"
             variant="fullWidth"
             sx={{
               width: "100%",
               maxWidth: 540,
               margin: "0 auto",
+              "& .Mui-selected": {
+                color: "#fff",
+                backgroundColor: "secondary.main",
+              },
             }}
             centered
           >
-            <Tab label="Workout" sx={{ fontWeight: "bold" }} />
-            <Tab label="Warmup" sx={{ fontWeight: "bold" }} />
-            <Tab label="Recover" sx={{ fontWeight: "bold" }} />
-            <Tab label="Stretch" sx={{ fontWeight: "bold" }} />
+            <Tab label="Workout" sx={{ fontWeight: "600" }} />
+            <Tab label="Warmup" sx={{ fontWeight: "600" }} />
+            <Tab label="Recover" sx={{ fontWeight: "600" }} />
+            <Tab label="Stretch" sx={{ fontWeight: "600" }} />
           </Tabs>
           <Divider />
-        </Card>
+        {/* <Card sx={{ maxWidth: 540, margin: "0 auto", borderRadius: "0",}}>
+
+        </Card> */}
 
         {selectedTab === 0 && (
           <WorkoutCard

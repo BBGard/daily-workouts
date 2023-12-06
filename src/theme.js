@@ -58,26 +58,36 @@ const theme = createTheme({
     h1: {
       fontFamily: "Montserrat",
       fontWeight: 700,
+      fontSize: "1.8rem",
+
     },
     h2: {
       fontFamily: "Montserrat",
       fontWeight: 700,
+      fontSize: "1.6rem",
+
     },
     h3: {
       fontFamily: "Montserrat",
       fontWeight: 700,
+      fontSize: "1.5rem",
     },
     h4: {
       fontFamily: "Montserrat",
-      fontWeight: 500,
+      fontWeight: 600,
+      fontSize: "1.3rem",
     },
     h5: {
       fontFamily: "Roboto",
-      fontWeight: 400,
+      fontWeight: 600,
+      fontSize: "1.2em",
+
     },
     h6: {
       fontFamily: "Roboto",
       fontWeight: 400,
+      fontSize: "1.1rem",
+
     },
     subtitle1: {
       fontFamily: "Montserrat",
