@@ -25,7 +25,6 @@ export function ResponsiveAppBar() {
   const currentPage = window.location.pathname;
   const userInfo = useGetUserInfo();
   const [openLogout, setOpenLogout] = React.useState(false);
-  // console.log(userInfo);
 
   const toggleDrawer = (inOpen) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -43,6 +42,11 @@ export function ResponsiveAppBar() {
   const closeLogoutModal = () => {
     // Close the logout modal
     setOpenLogout(false);
+  }
+
+  const logoutUser = () => {
+    // Logout the user
+    console.log("logout here");
   }
 
 
@@ -115,82 +119,76 @@ export function ResponsiveAppBar() {
                 >
                   {userInfo && userInfo.user.name !== null ? (
                     <Box sx={{ display: "flex", alignItems: "center" }}>
-                      <Avatar
-                        alt={userInfo.user.name}
-                        src={userInfo.user.photo}
-                        onClick={() => {
-                          navigate(`/profile/${userInfo.user._id}`);
-                        }}
-                      />
                       <Button
                         // On click show logout modal
                         onClick={openLogoutModal}
                         variant="outlined"
                         color="info"
                         sx={{
-                          marginLeft: "1.5rem",
+                          marginRight: "1rem",
                           height: "50%",
                           maxHeight: "2rem",
                           alignSelf: "center",
                           border: "2px solid",
                           "&:hover": { border: "2px solid", color: "#A7C957" },
+                          textTransform: "capitalize",
                         }}
                       >
-                        {userInfo.user.name.split(" ")[0]}
+                        {/* {userInfo.user.name.split(" ")[0]} */}
+                        Log out
                       </Button>
+
                       <Modal
-                    open={openLogout}
-                    onClose={closeLogoutModal}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                  >
-                    <Card
-                      sx={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        width: 400,
-                        bgcolor: "background.paper",
-                        border: "2px solid #fff",
-                        borderRadius: "25px",
-                        boxShadow: 24,
-                        p: 4,
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        gap: "1rem",
-                      }}
-                    >
-                      <Typography
-                        id="modal-modal-title"
-                        variant="h5"
-                        component="h2"
+                        open={openLogout}
+                        onClose={closeLogoutModal}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
                       >
-                        Do you want to logout?
-                      </Typography>
-                      <div>
-                        <Button
-                          variant="contained"
-                          color="error"
-                          onClick={closeLogoutModal}
-                        >
-                          No
-                        </Button>
-                        <Button
-                          variant="contained"
-                          color="success"
-                          onClick={() => {
-                            console.log("logout here");
+                        <Card
+                          sx={{
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)",
+                            width: 400,
+                            bgcolor: "background.paper",
+                            border: "2px solid #fff",
+                            borderRadius: "25px",
+                            boxShadow: 24,
+                            p: 4,
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            gap: "1rem",
                           }}
-                          sx={{ marginLeft: "1rem" }}
                         >
-                          Yes
-                        </Button>
-                      </div>
-                    </Card>
-                  </Modal>
+                          <Typography
+                            id="modal-modal-title"
+                            variant="h5"
+                            component="h2"
+                          >
+                            Do you want to logout?
+                          </Typography>
+                          <div>
+                            <Button
+                              variant="contained"
+                              color="error"
+                              onClick={closeLogoutModal}
+                            >
+                              No
+                            </Button>
+                            <Button
+                              variant="contained"
+                              color="success"
+                              onClick={logoutUser}
+                              sx={{ marginLeft: "1rem" }}
+                            >
+                              Yes
+                            </Button>
+                          </div>
+                        </Card>
+                      </Modal>
                     </Box>
                   ) : (
                     <Button
@@ -206,9 +204,10 @@ export function ResponsiveAppBar() {
                         border: "2px solid",
                         padding: "1rem",
                         "&:hover": { border: "2px solid", color: "#A7C957" },
+                        textTransform: "capitalize",
                       }}
                     >
-                      Sign In
+                      Log In
                     </Button>
                   )}
 
@@ -221,11 +220,20 @@ export function ResponsiveAppBar() {
                     <CloseOutlinedIcon />
                   </IconButton>
                 </Box>
+
+                <Box sx={{ display: "flex", justifyContent: "center" }}>
+                  <Avatar
+                    sx={{ width: "5rem", height: "5rem" }}
+                    alt={userInfo?.user?.name || ""}
+                    src={userInfo?.user?.photo || ""}
+                  />
+                </Box>
+
                 <Box
                   sx={{
                     width: "50vw",
                     maxWidth: "300px",
-                    marginTop: "10vh",
+                    marginTop: "2rem",
                     bgcolor: "primary.main",
                   }}
                   role="presentation"
@@ -366,13 +374,6 @@ export function ResponsiveAppBar() {
                     gap: "1rem",
                   }}
                 >
-                  <Avatar
-                    alt={userInfo.user.name}
-                    src={userInfo.user.photo}
-                    onClick={() => {
-                      navigate(`/profile/${userInfo.user._id}`);
-                    }}
-                  />
                   <Button
                     onClick={openLogoutModal}
                     variant="outlined"
@@ -383,10 +384,13 @@ export function ResponsiveAppBar() {
                       alignSelf: "center",
                       border: "2px solid",
                       "&:hover": { border: "2px solid", color: "#A7C957" },
+                      textTransform: "capitalize",
                     }}
                   >
-                    {userInfo.user.name.split(" ")[0]}
+                    {/* {userInfo.user.name.split(" ")[0]} */}
+                    Log out
                   </Button>
+                  {/* <Avatar alt={userInfo.user.name} src={userInfo.user.photo} /> */}
                   <Modal
                     open={openLogout}
                     onClose={closeLogoutModal}
@@ -430,9 +434,7 @@ export function ResponsiveAppBar() {
                         <Button
                           variant="contained"
                           color="success"
-                          onClick={() => {
-                            console.log("logout here");
-                          }}
+                          onClick={logoutUser}
                           sx={{ marginLeft: "1rem" }}
                         >
                           Yes
@@ -453,12 +455,19 @@ export function ResponsiveAppBar() {
                     alignSelf: "center",
                     border: "2px solid",
                     "&:hover": { border: "2px solid", color: "#A7C957" },
+                    textTransform: "capitalize",
                   }}
                 >
-                  Sign In
+                  Log In
                 </Button>
               )}
+                  <Avatar
+                  sx={{alignSelf: "center", marginLeft: "1rem"}}
+                    alt={userInfo?.user?.name || ""}
+                    src={userInfo?.user?.photo || ""}
+                  />
             </Box>
+
           </Toolbar>
         </Container>
       </AppBar>

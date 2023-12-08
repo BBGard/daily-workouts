@@ -26,6 +26,8 @@ const Home = () => {
   const [currentWorkoutSchedule, setCurrentWorkoutSchedule] = useState(workoutSchedule);
   const [selectedTab, setSelectedTab] = useState(0);
 
+  // Console log user details
+
 
   // On mount, load all workouts, generate today's workouts, and set the recommended workout
   useEffect(() => {
