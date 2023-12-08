@@ -189,10 +189,6 @@ const Home = () => {
               width: "100%",
               maxWidth: 540,
               margin: "0 auto",
-              "& .Mui-selected": {
-                color: "#ffffff",
-                backgroundColor: "secondary.main",
-              },
             }}
             centered
           >

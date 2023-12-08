@@ -141,16 +141,17 @@ const theme = createTheme({
     //     },
     //   },
     // },
-    // MuiTab: {
-    //   styleOverrides: {
-    //     root: {
-    //       // Set text color
-    //       "&.Mui-selected": {
-    //         color: "#A7C957",
-    //       },
-    //     },
-    //   },
-    // },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          // Set text color
+          "&.Mui-selected": {
+              color: "#ffffff",
+              backgroundColor: "#FF2E00",
+            },
+        },
+      },
+    },
   },
 });
 
