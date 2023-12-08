@@ -10,13 +10,13 @@ import Auth from './Pages/SignIn';
 import { ResponsiveAppBar } from "./Components/ResponsiveAppBar";
 import {Container} from '@mui/material';
 import {ScrollToTopButton} from './Components/ScrollToTopButton';
-import { useGetWorkoutData } from './hooks/useGetWorkoutData';
+// import { useGetWorkoutData } from './hooks/useGetWorkoutData';
 
 
 function App() {
-  const { allWorkoutData } = useGetWorkoutData();
+  // const { allWorkoutData } = useGetWorkoutData();
 
-  console.log("In app.js: ", allWorkoutData)
+  // console.log("In app.js: ", allWorkoutData)
 
 
   return (

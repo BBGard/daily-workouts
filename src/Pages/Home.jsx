@@ -26,6 +26,7 @@ const Home = () => {
   const [currentWorkoutSchedule, setCurrentWorkoutSchedule] = useState(workoutSchedule);
   const [selectedTab, setSelectedTab] = useState(0);
 
+
   // Console log user details
 
 
