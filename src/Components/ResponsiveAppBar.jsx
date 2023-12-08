@@ -95,6 +95,7 @@ export function ResponsiveAppBar() {
                 flexGrow: 1,
                 backgroundColor: "primary.main",
                 display: { xs: "flex", md: "none" },
+                justifyContent: "flex-end",
               }}
             >
               <IconButton
