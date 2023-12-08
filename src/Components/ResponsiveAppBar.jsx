@@ -182,7 +182,7 @@ export function ResponsiveAppBar() {
                           variant="contained"
                           color="success"
                           onClick={() => {
-                            window.location.href = `/api/logout`;
+                            console.log("logout here");
                           }}
                           sx={{ marginLeft: "1rem" }}
                         >
@@ -431,7 +431,7 @@ export function ResponsiveAppBar() {
                           variant="contained"
                           color="success"
                           onClick={() => {
-                            window.location.href = `/api/logout`;
+                            console.log("logout here");
                           }}
                           sx={{ marginLeft: "1rem" }}
                         >
