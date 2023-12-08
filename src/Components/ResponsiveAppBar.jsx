@@ -4,7 +4,7 @@
 import * as React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-import {AppBar, Avatar, Box, Toolbar, IconButton, Typography, Container, Button, MenuItem, Slide, Drawer} from '@mui/material';
+import {AppBar, Avatar, Box, Card, Toolbar, IconButton, Typography, Container, Button, MenuItem, Slide, Drawer, Modal, ButtonGroup} from '@mui/material';
 
 import MenuIcon from '@mui/icons-material/Menu';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
@@ -24,6 +24,7 @@ export function ResponsiveAppBar() {
   const [open, setOpen] = React.useState(false);
   const currentPage = window.location.pathname;
   const userInfo = useGetUserInfo();
+  const [openLogout, setOpenLogout] = React.useState(false);
   // console.log(userInfo);
 
   const toggleDrawer = (inOpen) => (event) => {
@@ -34,11 +35,21 @@ export function ResponsiveAppBar() {
     setOpen(inOpen);
   };
 
+  const openLogoutModal = () => {
+    // Open the logout modal
+    setOpenLogout(true);
+  }
+
+  const closeLogoutModal = () => {
+    // Close the logout modal
+    setOpenLogout(false);
+  }
+
 
 
   return (
     <Slide direction="down" timeout={500} in={true} mountOnEnter unmountOnExit>
-      <AppBar component={"nav"} color="primary" sx={{position: "sticky"}}>
+      <AppBar component={"nav"} color="primary" sx={{ position: "sticky" }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             {/* Mobile View */}
@@ -104,7 +115,6 @@ export function ResponsiveAppBar() {
                 >
                   {userInfo && userInfo.user.name !== null ? (
                     <Box sx={{ display: "flex", alignItems: "center" }}>
-
                       <Avatar
                         alt={userInfo.user.name}
                         src={userInfo.user.photo}
@@ -113,9 +123,8 @@ export function ResponsiveAppBar() {
                         }}
                       />
                       <Button
-                        onClick={() => {
-                          navigate(`/profile/${userInfo.user._id}`);
-                        }}
+                        // On click show logout modal
+                        onClick={openLogoutModal}
                         variant="outlined"
                         color="info"
                         sx={{
@@ -129,6 +138,59 @@ export function ResponsiveAppBar() {
                       >
                         {userInfo.user.name.split(" ")[0]}
                       </Button>
+                      <Modal
+                    open={openLogout}
+                    onClose={closeLogoutModal}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
+                    <Card
+                      sx={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        width: 400,
+                        bgcolor: "background.paper",
+                        border: "2px solid #fff",
+                        borderRadius: "25px",
+                        boxShadow: 24,
+                        p: 4,
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        gap: "1rem",
+                      }}
+                    >
+                      <Typography
+                        id="modal-modal-title"
+                        variant="h5"
+                        component="h2"
+                      >
+                        Do you want to logout?
+                      </Typography>
+                      <div>
+                        <Button
+                          variant="contained"
+                          color="error"
+                          onClick={closeLogoutModal}
+                        >
+                          No
+                        </Button>
+                        <Button
+                          variant="contained"
+                          color="success"
+                          onClick={() => {
+                            window.location.href = `/api/logout`;
+                          }}
+                          sx={{ marginLeft: "1rem" }}
+                        >
+                          Yes
+                        </Button>
+                      </div>
+                    </Card>
+                  </Modal>
                     </Box>
                   ) : (
                     <Button
@@ -296,32 +358,89 @@ export function ResponsiveAppBar() {
               ))}
 
               {userInfo && userInfo.user.name !== null ? (
-                <Box sx={{ display: "flex", alignItems: "center", marginLeft: "1.5rem", gap: "1rem"}}>
-
-                <Avatar
-                  alt={userInfo.user.name}
-                  src={userInfo.user.photo}
-                  onClick={() => {
-                    navigate(`/profile/${userInfo.user._id}`);
-                  }}
-                />
-                <Button
-                  onClick={() => {
-                    navigate(`/profile/${userInfo.user._id}`);
-                  }}
-                  variant="outlined"
-                  color="info"
+                <Box
                   sx={{
-                    height: "50%",
-                    maxHeight: "2rem",
-                    alignSelf: "center",
-                    border: "2px solid",
-                    "&:hover": { border: "2px solid", color: "#A7C957" },
+                    display: "flex",
+                    alignItems: "center",
+                    marginLeft: "1.5rem",
+                    gap: "1rem",
                   }}
                 >
-                  {userInfo.user.name.split(" ")[0]}
-                </Button>
-              </Box>
+                  <Avatar
+                    alt={userInfo.user.name}
+                    src={userInfo.user.photo}
+                    onClick={() => {
+                      navigate(`/profile/${userInfo.user._id}`);
+                    }}
+                  />
+                  <Button
+                    onClick={openLogoutModal}
+                    variant="outlined"
+                    color="info"
+                    sx={{
+                      height: "50%",
+                      maxHeight: "2rem",
+                      alignSelf: "center",
+                      border: "2px solid",
+                      "&:hover": { border: "2px solid", color: "#A7C957" },
+                    }}
+                  >
+                    {userInfo.user.name.split(" ")[0]}
+                  </Button>
+                  <Modal
+                    open={openLogout}
+                    onClose={closeLogoutModal}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
+                    <Card
+                      sx={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        width: 400,
+                        bgcolor: "background.paper",
+                        border: "2px solid #fff",
+                        borderRadius: "25px",
+                        boxShadow: 24,
+                        p: 4,
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        gap: "1rem",
+                      }}
+                    >
+                      <Typography
+                        id="modal-modal-title"
+                        variant="h5"
+                        component="h2"
+                      >
+                        Do you want to logout?
+                      </Typography>
+                      <div>
+                        <Button
+                          variant="contained"
+                          color="error"
+                          onClick={closeLogoutModal}
+                        >
+                          No
+                        </Button>
+                        <Button
+                          variant="contained"
+                          color="success"
+                          onClick={() => {
+                            window.location.href = `/api/logout`;
+                          }}
+                          sx={{ marginLeft: "1rem" }}
+                        >
+                          Yes
+                        </Button>
+                      </div>
+                    </Card>
+                  </Modal>
+                </Box>
               ) : (
                 <Button
                   variant="outlined"
