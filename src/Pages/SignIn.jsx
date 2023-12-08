@@ -115,7 +115,6 @@ export const Auth = () => {
             }}
           >
             <Button
-              size="large"
               variant="contained"
               sx={{
                 width: { xs: "100%", md: "50%" },
@@ -125,20 +124,7 @@ export const Auth = () => {
               color="secondary"
               onClick={signInWithGoogle}
             >
-              Log In
-            </Button>
-            <Button
-              size="large"
-              variant="outlined"
-              color="secondary"
-              sx={{
-                width: { xs: "100%", md: "50%" },
-                maxWidth: "50vw",
-                borderRadius: "25px",
-                border: "2px solid",
-              }}
-            >
-              Sign Up
+              Log In With Google
             </Button>
           </Box>
         </CardActions>
