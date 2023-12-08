@@ -207,6 +207,7 @@ export function ResponsiveAppBar() {
                       variant="outlined"
                       color="info"
                       onClick={() => {
+                        toggleDrawer(false);
                         navigate(`/auth`);
                       }}
                       sx={{
