@@ -17,6 +17,10 @@ import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
 
 import { useGetUserInfo } from '../hooks/useGetUserInfo';
 
+import 'firebase/auth';
+import {auth} from '../Config/firebase';
+import { signOut } from 'firebase/auth';
+
 const pages = ['Workouts', 'Warmups', 'Recovery', 'Stretches'];
 
 export function ResponsiveAppBar() {
@@ -46,7 +50,14 @@ export function ResponsiveAppBar() {
 
   const logoutUser = () => {
     // Logout the user
-    console.log("logout here");
+    signOut(auth).then(() => {
+      // Remove the user cookie
+      document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      // Redirect to home page
+      navigate('/');
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 
 
