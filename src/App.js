@@ -16,6 +16,7 @@ import { useGetWorkoutData } from './hooks/useGetWorkoutData';
 function App() {
   const { allWorkoutData } = useGetWorkoutData();
 
+  console.log("In app.js: ", allWorkoutData)
 
 
   return (
