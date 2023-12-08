@@ -12,8 +12,10 @@ import {Container} from '@mui/material';
 import {ScrollToTopButton} from './Components/ScrollToTopButton';
 import { useGetWorkoutData } from './hooks/useGetWorkoutData';
 
+
 function App() {
   const { allWorkoutData } = useGetWorkoutData();
+
 
 
   return (

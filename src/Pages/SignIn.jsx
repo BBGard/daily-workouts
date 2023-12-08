@@ -15,6 +15,8 @@ import {
 } from "@mui/material";
 import fitnessImage from '../images/undraw_fitness_stats..svg';
 
+import { getFirestore, collection, doc, getDoc, setDoc } from 'firebase/firestore';
+
 export const Auth = () => {
 
   const navigate = useNavigate();
@@ -32,6 +34,27 @@ export const Auth = () => {
         token: token,
       };
       document.cookie = `user=${JSON.stringify(userCookie)}; max-age=3600; path=/`;
+
+      console.log("Signed in with Google");
+
+      // Setup user in database
+      const db = getFirestore();
+      const usersRef = collection(db, 'users');
+      const userRef = doc(usersRef, user.uid);
+      const userDoc = await getDoc(userRef);
+      if (!userDoc.exists()) {
+        await setDoc(userRef, {
+          name: user.displayName,
+          email: user.email,
+          photo: user.photoURL,
+          token: token,
+          watchCounts: [],
+          ratings: [],
+        });
+      }
+
+      // Console log the user
+      console.log(user);
 
       // Redirect to home page
       navigate('/');
