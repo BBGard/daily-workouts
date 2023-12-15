@@ -4,7 +4,7 @@
 import * as React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-import {AppBar, Avatar, Box, Card, Toolbar, IconButton, Typography, Container, Button, MenuItem, Slide, Drawer, Modal, ButtonGroup} from '@mui/material';
+import {AppBar, Avatar, Box, Card, Toolbar, IconButton, Typography, Container, Button, MenuItem, Slide, Drawer, Modal} from '@mui/material';
 
 import MenuIcon from '@mui/icons-material/Menu';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
