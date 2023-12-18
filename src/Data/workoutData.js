@@ -941,6 +941,16 @@ const workouts = [
 
     source: "Mady Morrison",
   },
+  {
+    id: 80,
+    category: "Weights",
+    group: "Back, Biceps",
+    name: "Back and Biceps Workout",
+    link: "https://www.youtube.com/watch?v=R6ScOtQnBNA",
+    thumbnail: "https://img.youtube.com/vi/R6ScOtQnBNA/0.jpg",
+    duration: "35 min",
+    source: "hasfit",
+  },
 ];
 
 // Recovery Muscle Groups
