@@ -6,7 +6,6 @@ import {
   Box,
   Tabs,
   Tab,
-  Card,
   Divider,
 } from "@mui/material";
 import { workouts, workoutSchedule, workoutScheduleAlt } from "../Data/workoutData";
