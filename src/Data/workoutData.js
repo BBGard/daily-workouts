@@ -1020,6 +1020,19 @@ const workouts = [
     rating: 0,
     source: "Mady Morrison",
   },
+  {
+    id: 80,
+    category: "Weights",
+    group: "Full Body",
+    name: "Full Body Workout",
+    link: "https://www.youtube.com/watch?v=xSrw3TZiTt4",
+    youtube: "https://www.youtube.com/watch?v=xSrw3TZiTt4",
+    thumbnail: "http://img.youtube.com/vi/xSrw3TZiTt4/0.jpg",
+    duration: "40 min",
+    watchCount: 0,
+    rating: 0,
+    source: "hasfit",
+  },
 ];
 
 // Recovery Muscle Groups
