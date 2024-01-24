@@ -30,26 +30,36 @@ export function ResponsiveAppBar() {
   const userInfo = useGetUserInfo();
   const [openLogout, setOpenLogout] = React.useState(false);
 
+  // Toggle the drawer
   const toggleDrawer = (inOpen) => (event) => {
+
+    // If the event is a keydown and the key is tab or shift, return
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
 
+    // Set the open state
     setOpen(inOpen);
+
+    // If the event target id is login-button, navigate to auth page
+    if (event.target.id === "login-button") {
+      navigate(`/auth`);
+    }
   };
 
+  // Open the logout modal
   const openLogoutModal = () => {
-    // Open the logout modal
     setOpenLogout(true);
   }
 
+  // Close the logout modal
   const closeLogoutModal = () => {
-    // Close the logout modal
     setOpenLogout(false);
   }
 
+  // Logout the user
   const logoutUser = () => {
-    // Logout the user
+
     signOut(auth).then(() => {
       // Remove the user cookie
       document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -61,7 +71,7 @@ export function ResponsiveAppBar() {
   }
 
 
-
+  // Return the AppBar
   return (
     <Slide direction="down" timeout={500} in={true} mountOnEnter unmountOnExit>
       <AppBar component={"nav"} color="primary" sx={{ position: "sticky" }}>
@@ -204,12 +214,11 @@ export function ResponsiveAppBar() {
                     </Box>
                   ) : (
                     <Button
+                      id="login-button"
                       variant="outlined"
                       color="info"
-                      onClick={() => {
-                        toggleDrawer(false);
-                        navigate(`/auth`);
-                      }}
+                      onClick={open ? toggleDrawer(false)  : toggleDrawer(true) }
+
                       sx={{
                         height: "50%",
                         maxHeight: "2rem",

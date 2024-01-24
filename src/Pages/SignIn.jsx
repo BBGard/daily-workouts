@@ -14,14 +14,17 @@ import {
   CardMedia,
 } from "@mui/material";
 import fitnessImage from '../images/undraw_fitness_stats..svg';
-
 import { getFirestore, collection, doc, getDoc, setDoc } from 'firebase/firestore';
 
 export const Auth = () => {
 
   const navigate = useNavigate();
+
+  // Sign in with Google
   const signInWithGoogle = async () => {
     try {
+      // console.log("attempt sign in");
+      // console.log("auth: ", auth);
       const results = await signInWithPopup(auth, provider);
 
       // Save login cookies
@@ -54,12 +57,12 @@ export const Auth = () => {
       }
 
       // Console log the user
-      console.log(user);
+      // console.log(user);
 
       // Redirect to home page
       navigate('/');
 
-      console.log(results);
+      // console.log(results);
     }
     catch(error) {
       console.log(error);
