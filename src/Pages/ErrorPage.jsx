@@ -1,31 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Typography, Button, Box } from '@mui/material';
+import errorImage from '../images/undraw_taken_re_yn20.svg';
 
 const ErrorPage = () => {
   return (
     <>
       <Box
         sx={{
-          my: 4,
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "flex-start",
           alignItems: "center",
           height: "100%",
           maxHeight: "70vh",
           maxWidth: "480px",
           flexDirection: "column",
-          margin: "0 auto", // added this line
+          margin: "0 auto",
         }}
       >
-        <Typography variant="h1" color={'white'}>404</Typography>
-        <Typography variant="h4" color={'white'} sx={{marginBottom:"1rem"}}>Whoops!</Typography>
-        <Typography variant="body1" color={'white'} textAlign={'center'}>
-          404 - That means 4 seconds on the way up and then 4 seconds on the way down, right?<br/>
-          Wait, that's not right. 404 means the page you're looking for doesn't exist.<br/>
-          You can either head back to our home page or chill here and catch your breath.
+        <img src={errorImage} alt="404 error" width="100%" />
+        <Typography variant="h1" color="#2e374a">404</Typography>
+        <Typography variant="h4" color="#2e374a"  sx={{marginBottom:"1rem"}}>Whoops!</Typography>
+        <Typography variant="h6" color="#2e374a" textAlign={'center'}>
+         This page has been taken...
         </Typography>
-        <Button component={Link} to="/" variant="contained" color="primary" sx={{margin:"2rem 0"}}>
+        <Button component={Link} to="/" variant="contained" color="secondary" sx={{margin:"2rem 0"}}>
           Go Home
         </Button>
       </Box>

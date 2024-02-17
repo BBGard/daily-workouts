@@ -2,19 +2,12 @@
  * @fileoverview This file provides the ResponsiveAppBar component.
  */
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
+import { useNavigate, Link } from 'react-router-dom';
+
+import {AppBar, Avatar, Box, Card, Toolbar, IconButton, Typography, Container, Button, MenuItem, Slide, Drawer, Modal} from '@mui/material';
+
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
-import { Slide } from '@mui/material';
-import Drawer from '@mui/material/Drawer';
-import { Link } from "react-router-dom";
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import WhatshotOutlinedIcon from '@mui/icons-material/WhatshotOutlined';
 import RestoreOutlinedIcon from '@mui/icons-material/RestoreOutlined';
@@ -22,25 +15,66 @@ import HomeIcon from '@mui/icons-material/Home';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
 
+import { useGetUserInfo } from '../hooks/useGetUserInfo';
+
+import 'firebase/auth';
+import {auth} from '../Config/firebase';
+import { signOut } from 'firebase/auth';
+
 const pages = ['Workouts', 'Warmups', 'Recovery', 'Stretches'];
 
 export function ResponsiveAppBar() {
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const currentPage = window.location.pathname;
+  const userInfo = useGetUserInfo();
+  const [openLogout, setOpenLogout] = React.useState(false);
 
-
+  // Toggle the drawer
   const toggleDrawer = (inOpen) => (event) => {
+
+    // If the event is a keydown and the key is tab or shift, return
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
 
+    // Set the open state
     setOpen(inOpen);
+
+    // If the event target id is login-button, navigate to auth page
+    if (event.target.id === "login-button") {
+      navigate(`/auth`);
+    }
   };
 
+  // Open the logout modal
+  const openLogoutModal = () => {
+    setOpenLogout(true);
+  }
 
+  // Close the logout modal
+  const closeLogoutModal = () => {
+    setOpenLogout(false);
+  }
+
+  // Logout the user
+  const logoutUser = () => {
+
+    signOut(auth).then(() => {
+      // Remove the user cookie
+      document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      // Redirect to home page
+      navigate('/');
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
+
+  // Return the AppBar
   return (
     <Slide direction="down" timeout={500} in={true} mountOnEnter unmountOnExit>
-      <AppBar component={"nav"} color="secondary">
+      <AppBar component={"nav"} color="primary" sx={{ position: "sticky" }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             {/* Mobile View */}
@@ -57,20 +91,26 @@ export function ResponsiveAppBar() {
                 mr: 2,
                 display: { xs: "flex", md: "flex" },
                 flexGrow: 1,
-                fontWeight: 700,
-                letterSpacing: ".3rem",
                 color: "inherit",
                 textDecoration: "none",
+                textTransform: "uppercase",
                 paddingLeft: "1rem",
               }}
             >
               Daily Workouts
             </Typography>
 
-            <Box sx={{ flexGrow: 1, bgcolor: "secondary.main", display: { xs: "flex", md: "none"}}}>
+            <Box
+              sx={{
+                flexGrow: 1,
+                backgroundColor: "primary.main",
+                display: { xs: "flex", md: "none" },
+                justifyContent: "flex-end",
+              }}
+            >
               <IconButton
                 size="large"
-                aria-label="account of current user"
+                aria-label="open menu"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={open ? toggleDrawer(false) : toggleDrawer(true)}
@@ -82,32 +122,142 @@ export function ResponsiveAppBar() {
                 anchor={"right"}
                 open={open}
                 onClose={toggleDrawer(false)}
-                ModalProps={{keepMounted: true}}
+                ModalProps={{ keepMounted: true }}
                 sx={{
-                  display: { xs: 'block', md: 'none' },
-                  '& .MuiDrawer-paper': { color: 'white', bgcolor: 'secondary.main'},
+                  display: { xs: "block", md: "none" },
+                  "& .MuiDrawer-paper": {
+                    color: "white",
+                    bgcolor: "primary.main",
+                  },
                 }}
               >
                 <Box
                   sx={{
                     display: "flex",
-                    justifyContent: "flex-end",
+                    justifyContent: "space-between",
                     padding: "1rem",
-                    bgcolor: "secondary.main",
+                    bgcolor: "primary.main",
                   }}
                 >
+                  {userInfo && userInfo.user.name !== null ? (
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                      <Button
+                        // On click show logout modal
+                        onClick={openLogoutModal}
+                        variant="outlined"
+                        color="info"
+                        sx={{
+                          marginRight: "1rem",
+                          height: "50%",
+                          maxHeight: "2rem",
+                          alignSelf: "center",
+                          border: "2px solid",
+                          "&:hover": { border: "2px solid", color: "#A7C957" },
+                          textTransform: "capitalize",
+                        }}
+                      >
+                        {/* {userInfo.user.name.split(" ")[0]} */}
+                        Log out
+                      </Button>
+
+                      <Modal
+                        open={openLogout}
+                        onClose={closeLogoutModal}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                      >
+                        <Card
+                          sx={{
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)",
+                            width: 400,
+                            bgcolor: "background.paper",
+                            border: "2px solid #fff",
+                            borderRadius: "25px",
+                            boxShadow: 24,
+                            p: 4,
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            gap: "1rem",
+                          }}
+                        >
+                          <Typography
+                            id="modal-modal-title"
+                            variant="h5"
+                            component="h2"
+                          >
+                            Do you want to logout?
+                          </Typography>
+                          <div>
+                            <Button
+                              variant="contained"
+                              color="error"
+                              onClick={closeLogoutModal}
+                            >
+                              No
+                            </Button>
+                            <Button
+                              variant="contained"
+                              color="success"
+                              onClick={logoutUser}
+                              sx={{ marginLeft: "1rem" }}
+                            >
+                              Yes
+                            </Button>
+                          </div>
+                        </Card>
+                      </Modal>
+                    </Box>
+                  ) : (
+                    <Button
+                      id="login-button"
+                      variant="outlined"
+                      color="info"
+                      onClick={open ? toggleDrawer(false)  : toggleDrawer(true) }
+
+                      sx={{
+                        height: "50%",
+                        maxHeight: "2rem",
+                        alignSelf: "center",
+                        border: "2px solid",
+                        padding: "1rem",
+                        "&:hover": { border: "2px solid", color: "#A7C957" },
+                        textTransform: "capitalize",
+                      }}
+                    >
+                      Log In
+                    </Button>
+                  )}
+
                   <IconButton
                     size="large"
                     aria-label="close menu"
                     onClick={toggleDrawer(false)}
-                    color="buttonSuccess"
+                    color="info"
                   >
                     <CloseOutlinedIcon />
                   </IconButton>
                 </Box>
+
+                <Box sx={{ display: "flex", justifyContent: "center" }}>
+                  <Avatar
+                    sx={{ width: "5rem", height: "5rem" }}
+                    alt={userInfo?.user?.name || ""}
+                    src={userInfo?.user?.photo || ""}
+                  />
+                </Box>
+
                 <Box
-                  sx={{ width: "50vw", maxWidth: "300px", marginTop: "10vh", bgcolor: "secondary.main",
-                }}
+                  sx={{
+                    width: "50vw",
+                    maxWidth: "300px",
+                    marginTop: "2rem",
+                    bgcolor: "primary.main",
+                  }}
                   role="presentation"
                   onClick={toggleDrawer(false)}
                   onKeyDown={toggleDrawer(false)}
@@ -117,7 +267,7 @@ export function ResponsiveAppBar() {
                       to={`/`}
                       style={{
                         textDecoration: "none",
-                        color: currentPage === `/` ? "#b2ff34" : "white",
+                        color: currentPage === `/` ? "#7EC4CF" : "inherit",
                         width: "100%",
                         height: "100%",
                         padding: "0.5rem",
@@ -144,13 +294,17 @@ export function ResponsiveAppBar() {
                         to={`/${page.toLowerCase()}`}
                         style={{
                           textDecoration: "none",
-                          color: currentPage === `${page.toLowerCase()}` ? "#b2ff34" : "white",
+                          color:
+                            currentPage === `/${page.toLowerCase()}`
+                              ? "#7EC4CF"
+                              : "inherit",
                           width: "100%",
                           height: "100%",
                           padding: "0.5rem",
                           margin: "0",
                           display: "flex",
                           alignItems: "center",
+                          "&:hover": { color: "#A7C957" },
                         }}
                       >
                         {page === "Workouts" ? (
@@ -165,13 +319,11 @@ export function ResponsiveAppBar() {
                           <RestoreOutlinedIcon
                             sx={{ display: { xs: "flex", md: "flex" }, mr: 1 }}
                           />
-                        ) :  page === "Stretches" ? (
+                        ) : page === "Stretches" ? (
                           <SelfImprovementIcon
                             sx={{ display: { xs: "flex", md: "flex" }, mr: 1 }}
                           />
-                        )
-                        :
-                        (
+                        ) : (
                           <DirectionsRunIcon
                             sx={{ display: { xs: "flex", md: "flex" }, mr: 1 }}
                           />
@@ -221,19 +373,123 @@ export function ResponsiveAppBar() {
                     my: 2,
                     color:
                       currentPage === `/${page.toLowerCase()}`
-                        ? "#b2ff34"
-                        : "white",
+                        ? "#7EC4CF"
+                        : "inherit",
                     display: "block",
                     fontWeight:
                       currentPage === `/${page.toLowerCase()}`
                         ? "bold"
                         : "normal",
+                    "&:hover": { color: "#A7C957" },
                   }}
                 >
                   {page}
                 </Button>
               ))}
+
+              {userInfo && userInfo.user.name !== null ? (
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginLeft: "1.5rem",
+                    gap: "1rem",
+                  }}
+                >
+                  <Button
+                    onClick={openLogoutModal}
+                    variant="outlined"
+                    color="info"
+                    sx={{
+                      height: "50%",
+                      maxHeight: "2rem",
+                      alignSelf: "center",
+                      border: "2px solid",
+                      "&:hover": { border: "2px solid", color: "#A7C957" },
+                      textTransform: "capitalize",
+                    }}
+                  >
+                    {/* {userInfo.user.name.split(" ")[0]} */}
+                    Log out
+                  </Button>
+                  {/* <Avatar alt={userInfo.user.name} src={userInfo.user.photo} /> */}
+                  <Modal
+                    open={openLogout}
+                    onClose={closeLogoutModal}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
+                    <Card
+                      sx={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        width: 400,
+                        bgcolor: "background.paper",
+                        border: "2px solid #fff",
+                        borderRadius: "25px",
+                        boxShadow: 24,
+                        p: 4,
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        gap: "1rem",
+                      }}
+                    >
+                      <Typography
+                        id="modal-modal-title"
+                        variant="h5"
+                        component="h2"
+                      >
+                        Do you want to logout?
+                      </Typography>
+                      <div>
+                        <Button
+                          variant="contained"
+                          color="error"
+                          onClick={closeLogoutModal}
+                        >
+                          No
+                        </Button>
+                        <Button
+                          variant="contained"
+                          color="success"
+                          onClick={logoutUser}
+                          sx={{ marginLeft: "1rem" }}
+                        >
+                          Yes
+                        </Button>
+                      </div>
+                    </Card>
+                  </Modal>
+                </Box>
+              ) : (
+                <Button
+                  variant="outlined"
+                  color="info"
+                  href="/auth"
+                  sx={{
+                    marginLeft: "1.5rem",
+                    height: "50%",
+                    maxHeight: "2rem",
+                    alignSelf: "center",
+                    border: "2px solid",
+                    "&:hover": { border: "2px solid", color: "#A7C957" },
+                    textTransform: "capitalize",
+                  }}
+                >
+                  Log In
+                </Button>
+              )}
+                  <Avatar
+                  sx={{alignSelf: "center", marginLeft: "1rem"}}
+                    alt={userInfo?.user?.name || ""}
+                    src={userInfo?.user?.photo || ""}
+                  />
             </Box>
+
           </Toolbar>
         </Container>
       </AppBar>

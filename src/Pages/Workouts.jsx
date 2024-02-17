@@ -238,7 +238,7 @@ const Workouts = () => {
           </Select>
         </FormControl>
         <FormControl sx={{ marginTop: "1rem", width: "100%" }}>
-          <InputLabel id="workout-type-label" >Workout Type</InputLabel>
+          <InputLabel id="workout-type-label">Workout Type</InputLabel>
           <Select
             labelId="workout-type-label"
             name="workout-type-checkbox"
@@ -288,14 +288,15 @@ const Workouts = () => {
         >
           <Button
             variant="contained"
-            color="buttonSuccess"
+            color="info"
             onClick={filterWorkouts}
+            width="100%"
           >
             Filter
           </Button>
           <Button
             variant="contained"
-            color="secondary"
+            color="primary"
             onClick={() => {
               setMuscleGroupsSelection([]);
               setWorkoutTypesSelection([]);
@@ -304,6 +305,7 @@ const Workouts = () => {
               setMuscleGroupTabSelection("All");
               setSourceSelection([]);
             }}
+            width="100%"
           >
             Clear
           </Button>
@@ -315,14 +317,21 @@ const Workouts = () => {
           value={muscleGroupTabSelection}
           onChange={handleMuscleGroupTabClick}
           variant="scrollable"
+          indicatorColor="secondary"
+          textColor="secondary"
           // variant="fullWidth"
           scrollButtons="auto"
           aria-label="muscle group tabs"
           sx={{ justifyContent: "center" }}
         >
-          <Tab key="All" label="All" value="All" />
+          <Tab key="All" label="All" value="All" sx={{ fontWeight: "bold" }} />
           {muscleGroups.map((type) => (
-            <Tab key={type} label={type} value={type} />
+            <Tab
+              key={type}
+              label={type}
+              value={type}
+              sx={{ fontWeight: "bold", }}
+            />
           ))}
         </Tabs>
       </Card>
@@ -336,10 +345,12 @@ const Workouts = () => {
           margin: "0 auto",
         }}
       >
-        {workoutsToShow && workoutsToShow.length > 0 ? workoutsToShow.map((workout) => (
-          <WorkoutCard key={workout.id} workout={workout} size="small" />
-        )) : (
-          <WorkoutCard type="missing"/>
+        {workoutsToShow && workoutsToShow.length > 0 ? (
+          workoutsToShow.map((workout) => (
+            <WorkoutCard key={workout.id} workout={workout} size="small" />
+          ))
+        ) : (
+          <WorkoutCard type="missing" />
         )}
       </Box>
     </Box>

@@ -154,43 +154,43 @@ const Stretches = () => {
 
   return (
     <Box sx={{ my: 4 }}>
-    <Typography
-      variant="h4"
-      component="h1"
-      color={"text.tertiary"}
-      textAlign={"center"}
-      gutterBottom
-    >
-      Stretches
-    </Typography>
-
-    <Card sx={{ maxWidth: 640, margin: "2rem auto", padding: "1rem" }}>
       <Typography
-        variant="h6"
-        component="h6"
-        color={"text.primary"}
-        textAlign={"left"}
+        variant="h4"
+        component="h1"
+        color={"text.tertiary"}
+        textAlign={"center"}
         gutterBottom
       >
-        Find a Routine
+        Stretches
       </Typography>
 
-      <FormControl sx={{ width: "100%" }}>
-        {/* Keyword search */}
-        <TextField
-          id="keyword-search"
-          label="Type here to search"
-          variant="outlined"
-          sx={{ color: "text.primary" }}
-          value={searchText}
-          onChange={(event) => {
-            setSearchText(event.target.value.trimEnd());
-          }}
-          autoComplete="off"
-        />
-      </FormControl>
+      <Card sx={{ maxWidth: 640, margin: "2rem auto", padding: "1rem" }}>
+        <Typography
+          variant="h6"
+          component="h6"
+          color={"text.primary"}
+          textAlign={"left"}
+          gutterBottom
+        >
+          Find a Routine
+        </Typography>
 
-      <FormControl
+        <FormControl sx={{ width: "100%" }}>
+          {/* Keyword search */}
+          <TextField
+            id="keyword-search"
+            label="Type here to search"
+            variant="outlined"
+            sx={{ color: "text.primary" }}
+            value={searchText}
+            onChange={(event) => {
+              setSearchText(event.target.value.trimEnd());
+            }}
+            autoComplete="off"
+          />
+        </FormControl>
+
+        <FormControl
           label="Muscle Group"
           variant="outlined"
           sx={{ marginTop: "1rem", width: "100%" }}
@@ -240,66 +240,75 @@ const Stretches = () => {
           </Select>
         </FormControl>
 
-
-      <CardActions
-        sx={{ justifyContent: "center", gap: "1rem", marginTop: "1rem" }}
-      >
-        <Button
-          variant="contained"
-          color="buttonSuccess"
-          onClick={filterWorkouts}
+        <CardActions
+          sx={{ justifyContent: "center", gap: "1rem", marginTop: "1rem" }}
         >
-          Filter
-        </Button>
-        <Button
-          variant="contained"
-          color="secondary"
-          onClick={() => {
-            setSearchText("");
-            setWorkoutsToShow(sortByScore(workouts));
-            setMuscleGroupsSelection([]);
-            setSourceSelection([]);
-          }}
-        >
-          Clear
-        </Button>
-      </CardActions>
-    </Card>
+          <Button
+            variant="contained"
+            color="info"
+            onClick={filterWorkouts}
+            width="100%"
+          >
+            Filter
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              setSearchText("");
+              setWorkoutsToShow(sortByScore(workouts));
+              setMuscleGroupsSelection([]);
+              setSourceSelection([]);
+            }}
+            width="100%"
+          >
+            Clear
+          </Button>
+        </CardActions>
+      </Card>
 
-    <Card sx={{ maxWidth: 640, margin: "2rem auto", padding: "1rem" }}>
+      <Card sx={{ maxWidth: 640, margin: "2rem auto", padding: "1rem" }}>
         <Tabs
           value={tabSelection}
           onChange={handleTabClick}
           variant="scrollable"
           // variant="fullWidth"
+          indicatorColor="secondary"
+          textColor="secondary"
           scrollButtons="auto"
           aria-label="muscle group tabs"
           sx={{ justifyContent: "center" }}
         >
-          <Tab key="All" label="All" value="All" />
+          <Tab key="All" label="All" value="All" sx={{ fontWeight: "bold" }} />
           {muscleGroups.map((group) => (
-            <Tab key={group} label={group} value={group} />
+            <Tab
+              key={group}
+              label={group}
+              value={group}
+              sx={{ fontWeight: "bold" }}
+            />
           ))}
         </Tabs>
       </Card>
 
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexWrap: "wrap",
-        margin: "0 auto",
-      }}
-    >
-      {workoutsToShow && workoutsToShow.length > 0 ? workoutsToShow.map((routine) => (
-        <WorkoutCard key={routine.id} workout={routine} size="small" />
-      )) : (
-        <WorkoutCard type="missing"/>
-      )}
-
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexWrap: "wrap",
+          margin: "0 auto",
+        }}
+      >
+        {workoutsToShow && workoutsToShow.length > 0 ? (
+          workoutsToShow.map((routine) => (
+            <WorkoutCard key={routine.id} workout={routine} size="small" />
+          ))
+        ) : (
+          <WorkoutCard type="missing" />
+        )}
+      </Box>
     </Box>
-  </Box>
   );
 };
 

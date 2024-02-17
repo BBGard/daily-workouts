@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Box,
   Card,
   CardActions,
   CardContent,
@@ -8,15 +9,19 @@ import {
   Typography,
   FormGroup,
   FormControlLabel,
+  // IconButton,
+  Divider,
   Switch,
 } from "@mui/material";
 import { Skeleton, Slide } from "@mui/material";
 import notFoundImage from "../images/undraw_pilates_ltw9.svg";
+import { TimerOutlined, RunCircleOutlined, AccessibilityNewOutlined } from "@mui/icons-material";
+// import { FavoriteBorderRounded } from "@mui/icons-material";
 
 export function WorkoutCard(props) {
   const workout = props.workout; // workout object - must contain name, duration, link, thumbnail
   const title = props.title; // title of the card - usually the name of the workout
-  const subtitle = props.subtitle; // subtitle of the card - usually the type of workout
+  // const subtitle = props.subtitle; // subtitle of the card - usually the type of workout
   const size = props.size ? props.size : "small"; // size of the card - large or small
   const incrementFunction = props.incrementFunction; // function to increment the workout
   const hasToggle = props.hasToggle ? props.hasToggle : false; // boolean to determine if the card has a toggle button
@@ -69,31 +74,33 @@ export function WorkoutCard(props) {
         mountOnEnter
         unmountOnExit
       >
-        <Card sx={{ maxWidth: 540, margin: "1rem auto" }}>
+        <Card sx={{ maxWidth: 540, margin: "0 auto", borderRadius: "0" }}>
           <Typography
             variant="h4"
             component="h2"
             align="center"
             gutterBottom
             flex="1"
-            margin={"2rem auto"}
+            margin={"1rem auto"}
             color={"text.primary"}
           >
             {title}
           </Typography>
-
           {hasToggle ? (
             <FormGroup
               sx={{
                 justifyContent: "center",
                 alignItems: "center",
-                marginBottom: "2rem",
+                marginBottom: "1rem",
               }}
             >
               <FormControlLabel
-                sx={{ color: "text.primary" }}
                 control={
-                  <Switch checked={isChecked} onChange={toggleFunction} />
+                  <Switch
+                    color="secondary"
+                    checked={isChecked}
+                    onChange={toggleFunction}
+                  />
                 }
                 label="Use Alternative Workout Schedule"
                 id="toggle-alternative-workout-schedule"
@@ -111,23 +118,17 @@ export function WorkoutCard(props) {
               sx={{
                 width: "100%",
                 height: "auto",
-                maxWidth: "400px",
-                maxHeight: "220px",
                 margin: "0 auto",
-                borderRadius: "5px",
               }}
               image={workout.thumbnail}
             />
           ) : (
             <Skeleton
               variant="rectangular"
-              width={400}
-              height={220}
+              width="100%"
               sx={{
-                maxWidth: "400px",
-                maxHeight: "220px",
+                height: "auto",
                 margin: "0 auto",
-                borderRadius: "5px",
               }}
               animation="wave"
             />
@@ -136,19 +137,48 @@ export function WorkoutCard(props) {
           {workout ? (
             <CardContent
               sx={{
-                textAlign: "center",
+                textAlign: "left",
                 margin: "1rem auto",
-                height: "15vh",
               }}
             >
-              <Typography gutterBottom variant="h5" component="div">
-                {subtitle}
-              </Typography>
-              <Typography variant="h7" color="text.primary">
-                {workout.name}
-                <br></br>
-                Duration: {workout.duration}
-              </Typography>
+              <Box sx={{ height: "5em" }}>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="div"
+                  sx={{ fontWeight: "400", marginLeft: "0.2rem" }}
+                >
+                  {workout.name}
+                </Typography>
+                <Divider />
+              </Box>
+              <Box
+                sx={{ display: "flex", gap: "0.5rem", alignItems: "center" }}
+              >
+                <TimerOutlined sx={{ color: "#FF2E00" }} />
+                <Typography variant="body1">Duration: </Typography>
+                <Typography variant="body1" sx={{ fontWeight: "500" }}>
+                  {workout.duration}
+                </Typography>
+              </Box>
+              <Box
+                sx={{ display: "flex", gap: "0.5rem", alignItems: "center" }}
+              >
+                <RunCircleOutlined sx={{ color: "#FF2E00" }} />
+                <Typography variant="body1">Workout Type: </Typography>
+                <Typography variant="body1" sx={{ fontWeight: "500" }}>
+                  {workout.category}
+                </Typography>
+              </Box>
+              <Box
+                sx={{ display: "flex", gap: "0.5rem", alignItems: "center" }}
+              >
+                <AccessibilityNewOutlined sx={{ color: "#FF2E00" }} />
+                <Typography variant="body1">Muscle Group: </Typography>
+                <Typography variant="body1" sx={{ fontWeight: "500" }}>
+                  {workout.group}
+                </Typography>
+              </Box>
             </CardContent>
           ) : (
             <>
@@ -167,26 +197,31 @@ export function WorkoutCard(props) {
             sx={{
               justifyContent: "center",
               gap: "1rem",
-              marginBottom: "1.5rem",
+              marginBottom: "1rem",
             }}
           >
             {workout ? (
               <>
+                <Button size="large" variant="outlined" color="secondary" >
+                  All {}
+                </Button>
                 <Button
                   size="large"
                   variant="contained"
-                  color="secondary"
+                  color="primary"
                   onClick={incrementFunction}
+                  width="100%"
                 >
                   Next
                 </Button>
                 <Button
                   size="large"
                   variant="contained"
-                  color="buttonSuccess"
+                  color="secondary"
                   onClick={() => {
                     window.open(workout.link, "_blank");
                   }}
+                  width="100%"
                 >
                   Watch
                 </Button>
@@ -204,13 +239,20 @@ export function WorkoutCard(props) {
               </>
             )}
           </CardActions>
+          {/* <Divider /> */}
+          <CardActions
+            sx={{
+              justifyContent: "center",
+              gap: "1rem",
+              padding: "1rem 0",
+            }}
+          ></CardActions>
         </Card>
       </Slide>
     );
   } else if (size === "small") {
     return (
       <Card
-        // key={workout.id}
         sx={{
           maxWidth: 345,
           width: "100%",
@@ -241,17 +283,49 @@ export function WorkoutCard(props) {
         )}
         <CardContent
           sx={{
-            textAlign: "center",
+            textAlign: "left",
           }}
         >
           {workout != null ? (
             <>
-              <Typography variant="body1" color={"text.secondary"}>
-                {workout.category}
-              </Typography>
-              <Typography variant="h6" component="div" color={"text.primary"}>
-                {workout.duration} {workout.name}
-              </Typography>
+              <Box sx={{ height: "5em" }}>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="div"
+                  sx={{ fontWeight: "400", marginLeft: "0.2rem" }}
+                >
+                  {workout.name}
+                </Typography>
+                <Divider />
+              </Box>
+              <Box
+                sx={{ display: "flex", gap: "0.5rem", alignItems: "center" }}
+              >
+                <TimerOutlined sx={{ color: "#FF2E00" }} />
+                <Typography variant="body1">Duration: </Typography>
+                <Typography variant="body1" sx={{ fontWeight: "500" }}>
+                  {workout.duration}
+                </Typography>
+              </Box>
+              <Box
+                sx={{ display: "flex", gap: "0.5rem", alignItems: "center" }}
+              >
+                <RunCircleOutlined sx={{ color: "#FF2E00" }} />
+                <Typography variant="body1">Workout Type: </Typography>
+                <Typography variant="body1" sx={{ fontWeight: "500" }}>
+                  {workout.category}
+                </Typography>
+              </Box>
+              <Box
+                sx={{ display: "flex", gap: "0.5rem", alignItems: "center" }}
+              >
+                <AccessibilityNewOutlined sx={{ color: "#FF2E00" }} />
+                <Typography variant="body1">Muscle Group: </Typography>
+                <Typography variant="body1" sx={{ fontWeight: "500" }}>
+                  {workout.group}
+                </Typography>
+              </Box>
             </>
           ) : (
             <Skeleton animation="wave" height={10} width="80%" />
@@ -268,10 +342,11 @@ export function WorkoutCard(props) {
           {workout != null ? (
             <Button
               variant="contained"
-              color="buttonSuccess"
+              color="secondary"
               onClick={() => {
                 window.open(workout.link, "_blank");
               }}
+              width="100%"
             >
               Watch
             </Button>

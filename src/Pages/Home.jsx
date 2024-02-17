@@ -6,9 +6,11 @@ import {
   Box,
   Tabs,
   Tab,
+  Divider,
 } from "@mui/material";
 import { workouts, workoutSchedule, workoutScheduleAlt } from "../Data/workoutData";
 import WorkoutCard from "../Components/WorkoutCard";
+
 
 const Home = () => {
   // Pick a random workout from the workout schedule
@@ -23,6 +25,8 @@ const Home = () => {
   const [currentWorkoutSchedule, setCurrentWorkoutSchedule] = useState(workoutSchedule);
   const [selectedTab, setSelectedTab] = useState(0);
 
+
+  // Console log user details
 
 
   // On mount, load all workouts, generate today's workouts, and set the recommended workout
@@ -170,41 +174,40 @@ const Home = () => {
     setSelectedTab(newValue);
   };
 
+
   return (
     <>
       <Box
         sx={{
-          my: 1,
           height: "100%",
         }}
       >
         <Tabs
-          value={selectedTab}
-          onChange={handleTabSelect}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="fullWidth"
-          sx={{
-            width: "100%",
-            maxWidth: 540,
-            margin: "0 auto",
-            backgroundColor: "background.paper",
-            borderRadius: "5px",
-            paddingBottom: "0.1rem",
-          }}
-          centered
-        >
-          <Tab label="Workout" />
-          <Tab label="Warmup" />
-          <Tab label="Recover" />
-          <Tab label="Stretch" />
-        </Tabs>
+            value={selectedTab}
+            onChange={handleTabSelect}
+            indicatorColor="secondary"
+            variant="fullWidth"
+            sx={{
+              width: "100%",
+              maxWidth: 540,
+              margin: "0 auto",
+            }}
+            centered
+          >
+            <Tab label="Workout" sx={{ fontWeight: "600" }} />
+            <Tab label="Warmup" sx={{ fontWeight: "600" }} />
+            <Tab label="Recover" sx={{ fontWeight: "600" }} />
+            <Tab label="Stretch" sx={{ fontWeight: "600" }} />
+          </Tabs>
+          <Divider />
+        {/* <Card sx={{ maxWidth: 540, margin: "0 auto", borderRadius: "0",}}>
+
+        </Card> */}
 
         {selectedTab === 0 && (
           <WorkoutCard
             size="large"
             title="Recommended Workout"
-            subtitle="Recommended Workout"
             workout={recommendedWorkout}
             incrementFunction={incrementRecommendedWorkout}
             hasToggle={true}
@@ -217,7 +220,6 @@ const Home = () => {
           <WorkoutCard
             size="large"
             title="Need a Warmup?"
-            subtitle="Recommended Warmup"
             workout={recommendedWarmup}
             incrementFunction={incrementRecommendedWarmup}
           />
@@ -227,7 +229,6 @@ const Home = () => {
           <WorkoutCard
             size="large"
             title="Time to Recover?"
-            subtitle="Recommended Recovery"
             workout={recommendedRecovery}
             incrementFunction={incrementRecommendedRecovery}
           />
@@ -237,12 +238,10 @@ const Home = () => {
           <WorkoutCard
             size="large"
             title="Relax and Stretch"
-            subtitle="Recommended Stretch"
             workout={recommendedStretch}
             incrementFunction={incrementRecommendedStretch}
           />
         )}
-
       </Box>
     </>
   );

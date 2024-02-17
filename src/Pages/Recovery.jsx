@@ -240,14 +240,15 @@ const Recovery = () => {
         >
           <Button
             variant="contained"
-            color="buttonSuccess"
+            color="info"
             onClick={filterWorkouts}
+            width="100%"
           >
             Filter
           </Button>
           <Button
             variant="contained"
-            color="secondary"
+            color="primary"
             onClick={() => {
               setMuscleGroupsSelection([]);
               setSearchText("");
@@ -255,6 +256,7 @@ const Recovery = () => {
               setTabSelection("All");
               setSourceSelection([]);
             }}
+            width="100%"
           >
             Clear
           </Button>
@@ -267,13 +269,20 @@ const Recovery = () => {
           onChange={handleTabClick}
           variant="scrollable"
           // variant="fullWidth"
+          indicatorColor="secondary"
+          textColor="secondary"
           scrollButtons="auto"
           aria-label="muscle group tabs"
           sx={{ justifyContent: "center" }}
         >
-          <Tab key="All" label="All" value="All" />
+          <Tab key="All" label="All" value="All" sx={{ fontWeight: "bold" }} />
           {muscleGroups.map((group) => (
-            <Tab key={group} label={group} value={group} />
+            <Tab
+              key={group}
+              label={group}
+              value={group}
+              sx={{ fontWeight: "bold" }}
+            />
           ))}
         </Tabs>
       </Card>
@@ -287,10 +296,12 @@ const Recovery = () => {
           margin: "0 auto",
         }}
       >
-        {workoutsToShow && workoutsToShow.length > 0 ? workoutsToShow.map((routine) => (
-          <WorkoutCard key={routine.id} workout={routine} size="small" />
-        )) : (
-          <WorkoutCard type="missing"/>
+        {workoutsToShow && workoutsToShow.length > 0 ? (
+          workoutsToShow.map((routine) => (
+            <WorkoutCard key={routine.id} workout={routine} size="small" />
+          ))
+        ) : (
+          <WorkoutCard type="missing" />
         )}
       </Box>
     </Box>

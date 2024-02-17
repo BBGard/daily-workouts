@@ -1,0 +1,21 @@
+[debug] [2023-11-29T22:47:49.273Z] ----------------------------------------------------------------------
+[debug] [2023-11-29T22:47:49.276Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\gonzo\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2023-11-29T22:47:49.276Z] CLI Version:   12.9.1
+[debug] [2023-11-29T22:47:49.276Z] Platform:      win32
+[debug] [2023-11-29T22:47:49.277Z] Node Version:  v20.6.1
+[debug] [2023-11-29T22:47:49.277Z] Time:          Thu Nov 30 2023 09:47:49 GMT+1100 (Australian Eastern Daylight Time)
+[debug] [2023-11-29T22:47:49.277Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-11-29T22:47:49.283Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-11-29T22:47:49.284Z] > authorizing via signed-in user (gonzogardiner@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\gonzo\git\daily-workouts
+
