@@ -288,7 +288,7 @@ const Workouts = () => {
         >
           <Button
             variant="contained"
-            color="success"
+            color="info"
             onClick={filterWorkouts}
             width="100%"
           >
