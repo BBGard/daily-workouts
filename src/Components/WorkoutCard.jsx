@@ -202,8 +202,8 @@ export function WorkoutCard(props) {
           >
             {workout ? (
               <>
-                <Button size="large" variant="outlined" color="secondary" >
-                  All {}
+                <Button size="large" variant="outlined" color="secondary" href="/workouts">
+                  All
                 </Button>
                 <Button
                   size="large"
