@@ -14,6 +14,8 @@ All workouts are sourced from HASfit.com.
 2. Run `npm install` to install dependencies.
 3. Run `npm start` to start the development server.
 4. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+5. Configure `supabase.config.js` with your own supabase credentials
+6. Run `npm run seed ` to setup initial data in supabase
 
 ## Deployment
 1. Run `npm run build` to build the app for production.

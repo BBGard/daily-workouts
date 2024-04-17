@@ -1,33 +1,37 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Home from './Pages/Home';
-import Recovery from './Pages/Recovery';
-import Warmups from './Pages/Warmups';
-import Workouts from './Pages/Workouts';
-import ErrorPage from './Pages/ErrorPage';
-import Stretches from './Pages/Stretches';
-import Auth from './Pages/SignIn';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Home from "./Pages/Home";
+import Recovery from "./Pages/Recovery";
+import Warmups from "./Pages/Warmups";
+import Workouts from "./Pages/Workouts";
+import ErrorPage from "./Pages/ErrorPage";
+import Stretches from "./Pages/Stretches";
+import Auth from "./Pages/SignIn";
 import { ResponsiveAppBar } from "./Components/ResponsiveAppBar";
-import {Container} from '@mui/material';
-import {ScrollToTopButton} from './Components/ScrollToTopButton';
+import { Container } from "@mui/material";
+import { ScrollToTopButton } from "./Components/ScrollToTopButton";
 // import { useGetWorkoutData } from './hooks/useGetWorkoutData';
 
-// import { supabase } from './Config/supabase.config';
+import { supabase } from './Config/supabase.config';
 
-
-async function App() {
+function App() {
   // const { allWorkoutData } = useGetWorkoutData();
 
   // console.log("In app.js: ", allWorkoutData)
 
 
+
+
   // Supabase test
-  // const { data, error } = await supabase
-  // .from('workouts')
-  // .select()
+  async function supaBaseTest() {
+    console.log("initialize test");
 
-  // console.log("Data: ", data);
+    const { data, error } = await supabase.from("workouts").select();
 
+    console.log("Data: ", data);
+  }
+
+  supaBaseTest();
 
   return (
     <>
