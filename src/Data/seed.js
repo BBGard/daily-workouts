@@ -39,7 +39,7 @@ const seedSupabaseDatabase = async () => {
   // }
 
   // Test add one workout to bd
-  const { data, error } = await supabase.from('workouts').insert(formattedWorkouts[0]);
+  const { data, error } = await supabase.from('workouts').insert(formattedWorkouts);
 
   if(error) {
     console.error(error);
