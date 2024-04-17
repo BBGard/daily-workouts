@@ -12,11 +12,21 @@ import {Container} from '@mui/material';
 import {ScrollToTopButton} from './Components/ScrollToTopButton';
 // import { useGetWorkoutData } from './hooks/useGetWorkoutData';
 
+// import { supabase } from './Config/supabase.config';
 
-function App() {
+
+async function App() {
   // const { allWorkoutData } = useGetWorkoutData();
 
   // console.log("In app.js: ", allWorkoutData)
+
+
+  // Supabase test
+  // const { data, error } = await supabase
+  // .from('workouts')
+  // .select()
+
+  // console.log("Data: ", data);
 
 
   return (

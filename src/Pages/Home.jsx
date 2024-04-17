@@ -183,26 +183,23 @@ const Home = () => {
         }}
       >
         <Tabs
-            value={selectedTab}
-            onChange={handleTabSelect}
-            indicatorColor="secondary"
-            variant="fullWidth"
-            sx={{
-              width: "100%",
-              maxWidth: 540,
-              margin: "0 auto",
-            }}
-            centered
-          >
-            <Tab label="Workout" sx={{ fontWeight: "600" }} />
-            <Tab label="Warmup" sx={{ fontWeight: "600" }} />
-            <Tab label="Recover" sx={{ fontWeight: "600" }} />
-            <Tab label="Stretch" sx={{ fontWeight: "600" }} />
-          </Tabs>
-          <Divider />
-        {/* <Card sx={{ maxWidth: 540, margin: "0 auto", borderRadius: "0",}}>
-
-        </Card> */}
+          value={selectedTab}
+          onChange={handleTabSelect}
+          indicatorColor="secondary"
+          variant="fullWidth"
+          sx={{
+            width: "100%",
+            maxWidth: 540,
+            margin: "0 auto",
+          }}
+          centered
+        >
+          <Tab label="Workout" sx={{ fontWeight: "600" }} />
+          <Tab label="Warmup" sx={{ fontWeight: "600" }} />
+          <Tab label="Recover" sx={{ fontWeight: "600" }} />
+          <Tab label="Stretch" sx={{ fontWeight: "600" }} />
+        </Tabs>
+        <Divider />
 
         {selectedTab === 0 && (
           <WorkoutCard
