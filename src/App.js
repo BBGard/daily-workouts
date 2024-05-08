@@ -6,7 +6,7 @@ import Warmups from "./Pages/Warmups";
 import Workouts from "./Pages/Workouts";
 import ErrorPage from "./Pages/ErrorPage";
 import Stretches from "./Pages/Stretches";
-import Auth from "./Pages/SignIn";
+import SignIn from "./Pages/SignIn";
 import { ResponsiveAppBar } from "./Components/ResponsiveAppBar";
 import { Container } from "@mui/material";
 import { ScrollToTopButton } from "./Components/ScrollToTopButton";
@@ -32,6 +32,7 @@ function App() {
   }
 
   supaBaseTest();
+
 
   return (
     <>
@@ -59,12 +60,13 @@ function App() {
           <Route path="/workouts" element={<Workouts />} />
           <Route path="/stretches" element={<Stretches />} />
           <Route path="*" element={<ErrorPage />} />
-          <Route path="/auth" element={<Auth />} />
+          <Route path="/auth" element={<SignIn />} />
         </Routes>
         <ScrollToTopButton />
       </Container>
     </>
   );
+
 }
 
 export default App;
