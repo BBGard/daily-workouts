@@ -20,8 +20,6 @@ function App() {
   // console.log("In app.js: ", allWorkoutData)
 
 
-
-
   // Supabase test
   async function supaBaseTest() {
     console.log("initialize test");
