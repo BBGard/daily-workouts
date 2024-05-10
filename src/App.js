@@ -12,7 +12,7 @@ import { Container } from "@mui/material";
 import { ScrollToTopButton } from "./Components/ScrollToTopButton";
 // import { useGetWorkoutData } from './hooks/useGetWorkoutData';
 
-import { supabase } from './Config/supabase.config';
+// import { supabase } from './Config/supabase.config';
 
 function App() {
   // const { allWorkoutData } = useGetWorkoutData();
@@ -20,16 +20,16 @@ function App() {
   // console.log("In app.js: ", allWorkoutData)
 
 
-  // Supabase test
-  async function supaBaseTest() {
-    console.log("initialize test");
+  // // Supabase test
+  // async function supaBaseTest() {
+  //   console.log("initialize test");
 
-    const { data, error } = await supabase.from("workouts").select();
+  //   const { data, error } = await supabase.from("workouts").select();
 
-    console.log("Data: ", data);
-  }
+  //   console.log("Data: ", data);
+  // }
 
-  supaBaseTest();
+  // supaBaseTest();
 
 
   return (

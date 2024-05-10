@@ -9,7 +9,9 @@ import {
   Divider,
 } from "@mui/material";
 import { workouts, workoutSchedule, workoutScheduleAlt } from "../Data/workoutData";
+// import { workoutSchedule, workoutScheduleAlt } from "../Data/workoutData";
 import WorkoutCard from "../Components/WorkoutCard";
+// import { useGetWorkoutData } from "../hooks/useGetWorkoutData";
 
 
 const Home = () => {
@@ -24,6 +26,7 @@ const Home = () => {
   const [recommendedStretch, setRecommendedStretch] = useState([]);
   const [currentWorkoutSchedule, setCurrentWorkoutSchedule] = useState(workoutSchedule);
   const [selectedTab, setSelectedTab] = useState(0);
+  // const { workouts } =  useGetWorkoutData();
 
 
   // Console log user details
@@ -32,13 +35,17 @@ const Home = () => {
   // On mount, load all workouts, generate today's workouts, and set the recommended workout
   useEffect(() => {
 
+    if (!workouts || workouts.length === 0) return; // Check if workout data is available
+
+    console.log("here is the workout data: ", workouts);
+
     // Setup Data
-    setWarmups(workouts.filter(workout => workout.category.includes("Warm Up")));
-    setRecommendedWarmup(workouts.filter(workout => workout.category.includes("Warm Up"))[0]);
-    setRecovery(workouts.filter(workout => workout.category.includes("Recovery")));
-    setRecommendedRecovery(workouts.filter(workout => workout.category.includes("Recovery"))[0]);
-    setStretches(workouts.filter(workout => workout.category.includes("Stretch")));
-    setRecommendedStretch(workouts.filter(workout => workout.category.includes("Stretch"))[0]);
+    setWarmups(workouts?.filter(workout => workout.category.includes("Warm Up")));
+    setRecommendedWarmup(workouts?.filter(workout => workout.category.includes("Warm Up"))[0]);
+    setRecovery(workouts?.filter(workout => workout.category.includes("Recovery")));
+    setRecommendedRecovery(workouts?.filter(workout => workout.category.includes("Recovery"))[0]);
+    setStretches(workouts?.filter(workout => workout.category.includes("Stretch")));
+    setRecommendedStretch(workouts?.filter(workout => workout.category.includes("Stretch"))[0]);
 
 
 
@@ -105,7 +112,7 @@ const Home = () => {
 
      // Generate today's workouts and recommended workout
      generateTodaysWorkouts(workouts);
-  }, [todaysWorkouts.length, currentWorkoutSchedule]);
+  }, [workouts, todaysWorkouts.length, currentWorkoutSchedule]);
 
 
   // Increment the recommended workout
