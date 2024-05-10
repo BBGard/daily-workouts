@@ -10,27 +10,14 @@ import SignIn from "./Pages/SignIn";
 import { ResponsiveAppBar } from "./Components/ResponsiveAppBar";
 import { Container } from "@mui/material";
 import { ScrollToTopButton } from "./Components/ScrollToTopButton";
+import { useGetWorkoutData } from "./hooks/useGetWorkoutData";
+
 // import { useGetWorkoutData } from './hooks/useGetWorkoutData';
 
 // import { supabase } from './Config/supabase.config';
 
 function App() {
-  // const { allWorkoutData } = useGetWorkoutData();
-
-  // console.log("In app.js: ", allWorkoutData)
-
-
-  // // Supabase test
-  // async function supaBaseTest() {
-  //   console.log("initialize test");
-
-  //   const { data, error } = await supabase.from("workouts").select();
-
-  //   console.log("Data: ", data);
-  // }
-
-  // supaBaseTest();
-
+  const workoutData  = useGetWorkoutData();
 
   return (
     <>
@@ -52,11 +39,11 @@ function App() {
         <ResponsiveAppBar />
 
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/recovery" element={<Recovery />} />
-          <Route path="/warmups" element={<Warmups />} />
-          <Route path="/workouts" element={<Workouts />} />
-          <Route path="/stretches" element={<Stretches />} />
+        <Route path="/" element={<Home workoutData={workoutData} />} />
+          <Route path="/recovery" element={<Recovery workoutData={workoutData} />} />
+          <Route path="/warmups" element={<Warmups workoutData={workoutData} />} />
+          <Route path="/workouts" element={<Workouts workoutData={workoutData} />} />
+          <Route path="/stretches" element={<Stretches workoutData={workoutData} />} />
           <Route path="*" element={<ErrorPage />} />
           <Route path="/auth" element={<SignIn />} />
         </Routes>

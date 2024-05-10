@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../Config/supabase.config";
-import { workoutSchedule, workoutScheduleAlt } from "../Data/workoutData";
+// import { workoutSchedule, workoutScheduleAlt } from "../Data/workoutData";
 
 async function getAllWorkoutData() {
-  console.log("grabbing data");
-
   const { data, error } = await supabase.from("workouts").select();
 
   if (error) {
@@ -12,22 +10,151 @@ async function getAllWorkoutData() {
     return;
   }
 
-  console.log("Workout Data: ", data);
   return data;
 }
 
 export const useGetWorkoutData = () => {
+  /////////////////////////////////////////////////////////////////////
+  // Workout variables
+  /////////////////////////////////////////////////////////////////////
+  const workoutTypes = ["Weights", "Recovery", "Warm Up", "Stretch"];
+
+  // Recovery Muscle Groups
+  const recoveryMuscleGroups = [
+    "Full Body",
+    "Back",
+    "Shoulders",
+    "Knee",
+    "Hip",
+    "Foot",
+    "Heel",
+    "Pelvis",
+    "Sciatica",
+    "Posture",
+  ];
+
+  // Workout Muscle Groups
+  const weightMuscleGroups = [
+    "Full Body",
+    "Legs",
+    "Glutes",
+    "Chest",
+    "Triceps",
+    "Back",
+    "Biceps",
+    "Arms",
+    "Shoulders",
+    "Abs",
+  ];
+
+  // Stretch Muscle Groups
+  const stretchMuscleGroups = [
+    "Full Body",
+    "Back",
+    "Neck",
+    "Shoulders",
+    "Legs",
+    "Hip",
+    "Posture",
+    "Face",
+  ];
+  // Initialize workoutSchedule - note: Sunday is index 0
+  const workoutSchedule = [
+    {
+      day: "Sunday",
+      group: "Full Body",
+      category: "Recovery",
+    },
+    {
+      day: "Monday",
+      group: "Legs",
+      category: "Weights",
+    },
+    {
+      day: "Tuesday",
+      group: "Chest",
+      category: "Weights",
+    },
+    {
+      day: "Wednesday",
+      group: "Back",
+      category: "Weights",
+    },
+    {
+      day: "Thursday",
+      group: "Shoulders",
+      category: "Weights",
+    },
+    {
+      day: "Friday",
+      group: "Arms",
+      category: "Weights",
+    },
+    {
+      day: "Saturday",
+      group: "Abs",
+      category: "Weights",
+    },
+  ];
+
+  // Alternative workoutSchedule - full body followed by recovery
+  const workoutScheduleAlt = [
+    {
+      day: "Sunday",
+      group: "Full Body",
+      category: "Recovery",
+    },
+    {
+      day: "Monday",
+      group: "Full Body",
+      category: "Weights",
+    },
+    {
+      day: "Tuesday",
+      group: "Full Body",
+      category: "Weights",
+    },
+    {
+      day: "Wednesday",
+      group: "Full Body",
+      category: "Recovery",
+    },
+    {
+      day: "Thursday",
+      group: "Full Body",
+      category: "Weights",
+    },
+    {
+      day: "Friday",
+      group: "Full Body",
+      category: "Weights",
+    },
+    {
+      day: "Saturday",
+      group: "Full Body",
+      category: "Weights",
+    },
+  ];
+
+  /////////////////////////////////////////////////////////////////////
+  // State variables
+  /////////////////////////////////////////////////////////////////////
   const [cachedWorkoutData, setCachedWorkoutData] = useState(null);
-  const [recommendedWorkout, setRecommendedWorkout] = useState([]);
-  const [todaysWorkouts, setTodaysWorkouts] = useState([]);
+  const [workouts, setWorkouts] = useState([]); // allWorkouts
   const [warmups, setWarmups] = useState();
   const [recovery, setRecovery] = useState();
   const [stretches, setStretches] = useState();
+  const [recommendedWorkout, setRecommendedWorkout] = useState([]);
+  const [todaysWorkouts, setTodaysWorkouts] = useState([]);
   const [recommendedWarmup, setRecommendedWarmup] = useState([]);
   const [recommendedRecovery, setRecommendedRecovery] = useState([]);
   const [recommendedStretch, setRecommendedStretch] = useState([]);
   const [currentWorkoutSchedule, setCurrentWorkoutSchedule] =
     useState(workoutSchedule);
+
+  /////////////////////////////////////////////////////////////////////
+  // Functions
+  /////////////////////////////////////////////////////////////////////
 
   // If the current workout schedule is the default schedule, use the alternative schedule
   const switchCurrentWorkoutSchedule = () => {
@@ -60,7 +187,7 @@ export const useGetWorkoutData = () => {
     } else {
       setRecommendedWarmup(warmups[0]);
     }
-  }
+  };
 
   // Increment the recommended recovery
   const incrementRecommendedRecovery = () => {
@@ -71,7 +198,7 @@ export const useGetWorkoutData = () => {
     } else {
       setRecommendedRecovery(recovery[0]);
     }
-  }
+  };
 
   // Increment the recommended stretch
   const incrementRecommendedStretch = () => {
@@ -82,8 +209,11 @@ export const useGetWorkoutData = () => {
     } else {
       setRecommendedStretch(stretches[0]);
     }
-  }
+  };
 
+  /////////////////////////////////////////////////////////////////////
+  // React useEffect
+  /////////////////////////////////////////////////////////////////////
   // On mount, load all workouts, generate today's workouts, and set the recommended workout
   useEffect(() => {
     // Get all workout data from the database
@@ -176,7 +306,7 @@ export const useGetWorkoutData = () => {
     // getWorkoutData().then((data) => {
     //   generateTodaysWorkouts(data);
     // });
-    if(cachedWorkoutData) {
+    if (cachedWorkoutData) {
       console.log("cached!");
       generateTodaysWorkouts(cachedWorkoutData);
     } else {
@@ -185,9 +315,7 @@ export const useGetWorkoutData = () => {
         generateTodaysWorkouts(data);
       });
     }
-
   }, [currentWorkoutSchedule, cachedWorkoutData]);
-
 
   const workoutData = {
     recommendedWorkout,
@@ -200,12 +328,17 @@ export const useGetWorkoutData = () => {
     recommendedStretch,
     currentWorkoutSchedule,
     workoutScheduleAlt,
+    workouts,
+    recoveryMuscleGroups,
+    weightMuscleGroups,
+    stretchMuscleGroups,
+    workoutTypes,
     incrementRecommendedRecovery,
     incrementRecommendedStretch,
     incrementRecommendedWarmup,
     switchCurrentWorkoutSchedule,
     incrementRecommendedWorkout,
-  }
+  };
 
   return workoutData;
 };

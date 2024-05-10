@@ -9,26 +9,27 @@ import {
   Divider,
 } from "@mui/material";
 import WorkoutCard from "../Components/WorkoutCard";
-import { useGetWorkoutData } from "../hooks/useGetWorkoutData";
+// import { useGetWorkoutData } from "../hooks/useGetWorkoutData";
 
 
-const Home = () => {
+const Home = (props) => {
  const [selectedTab, setSelectedTab] = useState(0); // 0: Workout, 1: Warmup, 2: Recovery, 3: Stretch
 
- // Get the workout data from the custom hook
+ // Destructure the workoutData object
   const {
     recommendedWorkout,
     recommendedWarmup,
     recommendedRecovery,
     recommendedStretch,
-    currentWorkoutSchedule,
-    workoutScheduleAlt,
-    switchCurrentWorkoutSchedule,
     incrementRecommendedWorkout,
     incrementRecommendedWarmup,
     incrementRecommendedRecovery,
     incrementRecommendedStretch,
-  } = useGetWorkoutData();
+    workoutScheduleAlt,
+    currentWorkoutSchedule,
+    switchCurrentWorkoutSchedule,
+  } = props.workoutData;
+
 
 
   // Function to toggle between the two workout schedules
