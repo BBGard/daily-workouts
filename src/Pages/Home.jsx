@@ -1,62 +1,42 @@
 /**
  * @fileoverview Home page for the app. Displays the recommended workout for the day.
  */
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Tabs,
   Tab,
   Divider,
 } from "@mui/material";
-// import { workouts, workoutSchedule, workoutScheduleAlt } from "../Data/workoutData";
-// import { workoutSchedule, workoutScheduleAlt } from "../Data/workoutData";
 import WorkoutCard from "../Components/WorkoutCard";
 import { useGetWorkoutData } from "../hooks/useGetWorkoutData";
 
 
 const Home = () => {
-  // Pick a random workout from the workout schedule
-  // const [recommendedWorkout, setRecommendedWorkout] = useState([]);
-  // const [todaysWorkouts, setTodaysWorkouts] = useState([]);
-  // const [warmups, setWarmups] = useState();
-  // const [recovery, setRecovery] = useState();
-  // const [stretches, setStretches] = useState();
-  // const [recommendedWarmup, setRecommendedWarmup] = useState([]);
-  // const [recommendedRecovery, setRecommendedRecovery] = useState([]);
-  // const [recommendedStretch, setRecommendedStretch] = useState([]);
-  // const [currentWorkoutSchedule, setCurrentWorkoutSchedule] = useState(workoutSchedule);
-  const [selectedTab, setSelectedTab] = useState(0);
+ const [selectedTab, setSelectedTab] = useState(0); // 0: Workout, 1: Warmup, 2: Recovery, 3: Stretch
 
-
-  // Console log user details
+ // Get the workout data from the custom hook
   const {
-    allWorkoutData,
     recommendedWorkout,
     recommendedWarmup,
     recommendedRecovery,
     recommendedStretch,
     currentWorkoutSchedule,
+    workoutScheduleAlt,
     switchCurrentWorkoutSchedule,
     incrementRecommendedWorkout,
     incrementRecommendedWarmup,
     incrementRecommendedRecovery,
     incrementRecommendedStretch,
-    workoutScheduleAlt,
   } = useGetWorkoutData();
 
 
-
-
-
-
-
-
-  // Toggle between the two workout schedules
+  // Function to toggle between the two workout schedules
   function toggleWorkoutSchedule() {
     switchCurrentWorkoutSchedule();
   }
 
-  // Handle tab selection
+  // Function to handle tab selection
   const handleTabSelect = (event, newValue) => {
     setSelectedTab(newValue);
   };
@@ -96,7 +76,6 @@ const Home = () => {
             incrementFunction={incrementRecommendedWorkout}
             hasToggle={true}
             toggleFunction={toggleWorkoutSchedule}
-            // isChecked={currentWorkoutSchedule === workoutScheduleAlt}
             isChecked={currentWorkoutSchedule === workoutScheduleAlt}
           />
         )}
