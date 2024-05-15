@@ -25,6 +25,7 @@ import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
 import WorkoutCard from "../Components/WorkoutCard";
 
+
 const Workouts = () => {
   const [workoutsToShow, setWorkoutsToShow] = useState(workouts); // workouts to show
   const [searchText, setSearchText] = useState([]); // search text

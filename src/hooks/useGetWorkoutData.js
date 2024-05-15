@@ -1,19 +1,16 @@
 import { useEffect, useState } from "react";
-import { supabase } from "../Config/supabase.config";
+// import { supabase } from "../Config/supabase.config";
+import useSupabase from "./useSupabase";
+import useWorkoutQuery from "./useWorkoutQuery";
 // import { workoutSchedule, workoutScheduleAlt } from "../Data/workoutData";
 
-async function getAllWorkoutData() {
-  const { data, error } = await supabase.from("workouts").select();
 
-  if (error) {
-    console.error(error);
-    return;
-  }
-
-  return data;
-}
 
 export const useGetWorkoutData = () => {
+  const { data, isLoading, isError } = useWorkoutQuery();
+
+  // const client = useSupabase();
+
   /////////////////////////////////////////////////////////////////////
   // Workout variables
   /////////////////////////////////////////////////////////////////////
@@ -139,7 +136,7 @@ export const useGetWorkoutData = () => {
   /////////////////////////////////////////////////////////////////////
   // State variables
   /////////////////////////////////////////////////////////////////////
-  const [cachedWorkoutData, setCachedWorkoutData] = useState(null);
+  // const [cachedWorkoutData, setCachedWorkoutData] = useState(null);
   const [workouts, setWorkouts] = useState([]); // allWorkouts
   const [warmups, setWarmups] = useState();
   const [recovery, setRecovery] = useState();
@@ -155,6 +152,20 @@ export const useGetWorkoutData = () => {
   /////////////////////////////////////////////////////////////////////
   // Functions
   /////////////////////////////////////////////////////////////////////
+
+  // Get all workout data from the database
+  // async function getAllWorkoutData() {
+  //   console.log("get all workout data!");
+
+  //   const { data, error } = await client.from("workouts").select();
+
+  //   if (error) {
+  //     console.error(error);
+  //     return;
+  //   }
+
+  //   return data;
+  // }
 
   // If the current workout schedule is the default schedule, use the alternative schedule
   const switchCurrentWorkoutSchedule = () => {
@@ -217,9 +228,23 @@ export const useGetWorkoutData = () => {
   // On mount, load all workouts, generate today's workouts, and set the recommended workout
   useEffect(() => {
     // Get all workout data from the database
-    const getWorkoutData = async () => {
-      const data = await getAllWorkoutData();
-      setCachedWorkoutData(data);
+    // const getWorkoutData = async () => {
+    //   // const data = await getAllWorkoutData();
+    //   // setCachedWorkoutData(data);
+    //   setWarmups(
+    //     data.filter((workout) => workout.category.includes("Warm Up"))
+    //   );
+    //   setRecovery(
+    //     data.filter((workout) => workout.category.includes("Recovery"))
+    //   );
+    //   setStretches(
+    //     data.filter((workout) => workout.category.includes("Stretch"))
+    //   );
+    //   return data;
+    // };
+
+    // Generate today's workouts and recommended workout based on schedule
+    const generateTodaysWorkouts = (workoutData) => {
       setWarmups(
         data.filter((workout) => workout.category.includes("Warm Up"))
       );
@@ -229,11 +254,7 @@ export const useGetWorkoutData = () => {
       setStretches(
         data.filter((workout) => workout.category.includes("Stretch"))
       );
-      return data;
-    };
 
-    // Generate today's workouts and recommended workout based on schedule
-    const generateTodaysWorkouts = (workoutData) => {
       const currentDate = new Date();
 
       // Filter the workouts based on the current day and schedule
@@ -303,19 +324,23 @@ export const useGetWorkoutData = () => {
     };
 
     // Generate today's workouts and recommended workout
+    if(data) {
+      generateTodaysWorkouts(data);
+    }
+
     // getWorkoutData().then((data) => {
     //   generateTodaysWorkouts(data);
     // });
-    if (cachedWorkoutData) {
-      console.log("cached!");
-      generateTodaysWorkouts(cachedWorkoutData);
-    } else {
-      console.log("grab from db!");
-      getWorkoutData().then((data) => {
-        generateTodaysWorkouts(data);
-      });
-    }
-  }, [currentWorkoutSchedule, cachedWorkoutData]);
+    // if (cachedWorkoutData) {
+    //   console.log("cached!");
+    //   generateTodaysWorkouts(cachedWorkoutData);
+    // } else {
+    //   console.log("grab from db!");
+    //   getWorkoutData().then((data) => {
+    //     generateTodaysWorkouts(data);
+    //   });
+    // }
+  }, [currentWorkoutSchedule, data]);
 
   const workoutData = {
     recommendedWorkout,

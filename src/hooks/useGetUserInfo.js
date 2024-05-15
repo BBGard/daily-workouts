@@ -2,16 +2,18 @@
  * @returns {object} userInfo
  */
 import { useState, useEffect, useMemo } from "react";
-import { supabase } from "../Config/supabase.config";
+// import { supabase } from "../Config/supabase.config";
+import useSupabase from "./useSupabase";
 
 export const useGetUserInfo = () => {
+  const client = useSupabase();
   const [session, setSession] = useState(null); // Initialize session state
 
   // Fetch session
   useEffect(() => {
     const fetchSession = async () => {
       try {
-        const { data: session } = await supabase.auth.getSession(); // Get session data
+        const { data: session } = await client.auth.getSession(); // Get session data
         setSession(session); // Set session state
       } catch (error) {
         console.error("Error fetching session:", error);
@@ -21,7 +23,7 @@ export const useGetUserInfo = () => {
     fetchSession();
 
     // Subscribe to session changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = client.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
 

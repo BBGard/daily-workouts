@@ -9,13 +9,27 @@ import {
   Divider,
 } from "@mui/material";
 import WorkoutCard from "../Components/WorkoutCard";
-// import { useGetWorkoutData } from "../hooks/useGetWorkoutData";
+import { useGetWorkoutData } from "../hooks/useGetWorkoutData";
 
 
 const Home = (props) => {
  const [selectedTab, setSelectedTab] = useState(0); // 0: Workout, 1: Warmup, 2: Recovery, 3: Stretch
 
  // Destructure the workoutData object
+  // const {
+  //   recommendedWorkout,
+  //   recommendedWarmup,
+  //   recommendedRecovery,
+  //   recommendedStretch,
+  //   incrementRecommendedWorkout,
+  //   incrementRecommendedWarmup,
+  //   incrementRecommendedRecovery,
+  //   incrementRecommendedStretch,
+  //   workoutScheduleAlt,
+  //   currentWorkoutSchedule,
+  //   switchCurrentWorkoutSchedule,
+  // } = props.workoutData??{};
+
   const {
     recommendedWorkout,
     recommendedWarmup,
@@ -28,7 +42,7 @@ const Home = (props) => {
     workoutScheduleAlt,
     currentWorkoutSchedule,
     switchCurrentWorkoutSchedule,
-  } = props.workoutData;
+  } = useGetWorkoutData();
 
 
 

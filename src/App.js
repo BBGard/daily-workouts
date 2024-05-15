@@ -11,44 +11,77 @@ import { ResponsiveAppBar } from "./Components/ResponsiveAppBar";
 import { Container } from "@mui/material";
 import { ScrollToTopButton } from "./Components/ScrollToTopButton";
 import { useGetWorkoutData } from "./hooks/useGetWorkoutData";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-// import { useGetWorkoutData } from './hooks/useGetWorkoutData';
 
-// import { supabase } from './Config/supabase.config';
 
 function App() {
-  const workoutData  = useGetWorkoutData();
+  const queryClient = new QueryClient();
+  // const workoutData  = useGetWorkoutData();
 
   return (
     <>
-      <Container
-        component="main"
-        maxWidth="100%"
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignContent: "center",
-          justifyContent: "flex-start",
-          alignItems: "stretch",
-          height: "100%",
-          // minHeight: "calc(100vh - 5rem)",
-          // marginTop: "3.5rem",
-          padding: { xs: 0, sm: 0, md: 0, lg: 0, xl: 0 },
-        }}
-      >
-        <ResponsiveAppBar />
+    <QueryClientProvider client={queryClient}>
+        <Container
+          component="main"
+          maxWidth="100%"
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignContent: "center",
+            justifyContent: "flex-start",
+            alignItems: "stretch",
+            height: "100%",
+            // minHeight: "calc(100vh - 5rem)",
+            // marginTop: "3.5rem",
+            padding: { xs: 0, sm: 0, md: 0, lg: 0, xl: 0 },
+          }}
+        >
+          <ResponsiveAppBar />
 
-        <Routes>
-        <Route path="/" element={<Home workoutData={workoutData} />} />
-          <Route path="/recovery" element={<Recovery workoutData={workoutData} />} />
-          <Route path="/warmups" element={<Warmups workoutData={workoutData} />} />
-          <Route path="/workouts" element={<Workouts workoutData={workoutData} />} />
-          <Route path="/stretches" element={<Stretches workoutData={workoutData} />} />
-          <Route path="*" element={<ErrorPage />} />
-          <Route path="/auth" element={<SignIn />} />
-        </Routes>
-        <ScrollToTopButton />
-      </Container>
+          <Routes>
+          <Route path="/" element={<Home />} />
+            <Route
+              path="/recovery"
+              element={<Recovery />}
+            />
+            <Route
+              path="/warmups"
+              element={<Warmups />}
+            />
+            <Route
+              path="/workouts"
+              element={<Workouts  />}
+            />
+            <Route
+              path="/stretches"
+              element={<Stretches />}
+            />
+            <Route path="*" element={<ErrorPage />} />
+            <Route path="/auth" element={<SignIn />} />
+            {/* <Route path="/" element={<Home workoutData={workoutData} />} />
+            <Route
+              path="/recovery"
+              element={<Recovery workoutData={workoutData} />}
+            />
+            <Route
+              path="/warmups"
+              element={<Warmups workoutData={workoutData} />}
+            />
+            <Route
+              path="/workouts"
+              element={<Workouts workoutData={workoutData} />}
+            />
+            <Route
+              path="/stretches"
+              element={<Stretches workoutData={workoutData} />}
+            />
+            <Route path="*" element={<ErrorPage />} />
+            <Route path="/auth" element={<SignIn />} /> */}
+          </Routes>
+          <ScrollToTopButton />
+        </Container>
+        </QueryClientProvider>
     </>
   );
 
