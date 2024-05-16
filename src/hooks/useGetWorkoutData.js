@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 // import { supabase } from "../Config/supabase.config";
-import useSupabase from "./useSupabase";
+// import useSupabase from "./useSupabase";
 import useWorkoutQuery from "./useWorkoutQuery";
 // import { workoutSchedule, workoutScheduleAlt } from "../Data/workoutData";
 
@@ -148,34 +148,25 @@ export const useGetWorkoutData = () => {
   const [recommendedStretch, setRecommendedStretch] = useState([]);
   const [currentWorkoutSchedule, setCurrentWorkoutSchedule] =
     useState(workoutSchedule);
+  const [usingAltSchedule, setUsingAltSchedule] = useState(false);
 
   /////////////////////////////////////////////////////////////////////
   // Functions
   /////////////////////////////////////////////////////////////////////
 
-  // Get all workout data from the database
-  // async function getAllWorkoutData() {
-  //   console.log("get all workout data!");
-
-  //   const { data, error } = await client.from("workouts").select();
-
-  //   if (error) {
-  //     console.error(error);
-  //     return;
-  //   }
-
-  //   return data;
-  // }
 
   // If the current workout schedule is the default schedule, use the alternative schedule
   const switchCurrentWorkoutSchedule = () => {
-    if (currentWorkoutSchedule === workoutSchedule) {
-      setCurrentWorkoutSchedule(workoutScheduleAlt);
-    } else {
-      // Otherwise, use the default schedule
 
+    // Compare the current workout schedule to the default schedule - using JSON.stringify otherwise it will compare the objects reference
+    if (JSON.stringify(currentWorkoutSchedule) === JSON.stringify(workoutSchedule)) {
+      setCurrentWorkoutSchedule(workoutScheduleAlt);
+      setUsingAltSchedule(true);
+    } else {
       setCurrentWorkoutSchedule(workoutSchedule);
+      setUsingAltSchedule(false);
     }
+
   };
 
   // Increment the recommended workout
@@ -245,6 +236,9 @@ export const useGetWorkoutData = () => {
 
     // Generate today's workouts and recommended workout based on schedule
     const generateTodaysWorkouts = (workoutData) => {
+
+      setWorkouts(data);
+
       setWarmups(
         data.filter((workout) => workout.category.includes("Warm Up"))
       );
@@ -343,6 +337,8 @@ export const useGetWorkoutData = () => {
   }, [currentWorkoutSchedule, data]);
 
   const workoutData = {
+    isLoading,
+    isError,
     recommendedWorkout,
     todaysWorkouts,
     warmups,
@@ -363,6 +359,7 @@ export const useGetWorkoutData = () => {
     incrementRecommendedWarmup,
     switchCurrentWorkoutSchedule,
     incrementRecommendedWorkout,
+    usingAltSchedule,
   };
 
   return workoutData;

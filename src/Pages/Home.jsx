@@ -12,43 +12,14 @@ import WorkoutCard from "../Components/WorkoutCard";
 import { useGetWorkoutData } from "../hooks/useGetWorkoutData";
 
 
-const Home = (props) => {
+const Home = () => {
  const [selectedTab, setSelectedTab] = useState(0); // 0: Workout, 1: Warmup, 2: Recovery, 3: Stretch
-
- // Destructure the workoutData object
-  // const {
-  //   recommendedWorkout,
-  //   recommendedWarmup,
-  //   recommendedRecovery,
-  //   recommendedStretch,
-  //   incrementRecommendedWorkout,
-  //   incrementRecommendedWarmup,
-  //   incrementRecommendedRecovery,
-  //   incrementRecommendedStretch,
-  //   workoutScheduleAlt,
-  //   currentWorkoutSchedule,
-  //   switchCurrentWorkoutSchedule,
-  // } = props.workoutData??{};
-
-  const {
-    recommendedWorkout,
-    recommendedWarmup,
-    recommendedRecovery,
-    recommendedStretch,
-    incrementRecommendedWorkout,
-    incrementRecommendedWarmup,
-    incrementRecommendedRecovery,
-    incrementRecommendedStretch,
-    workoutScheduleAlt,
-    currentWorkoutSchedule,
-    switchCurrentWorkoutSchedule,
-  } = useGetWorkoutData();
-
+  const workoutData = useGetWorkoutData();
 
 
   // Function to toggle between the two workout schedules
   function toggleWorkoutSchedule() {
-    switchCurrentWorkoutSchedule();
+    workoutData.switchCurrentWorkoutSchedule();
   }
 
   // Function to handle tab selection
@@ -83,24 +54,27 @@ const Home = (props) => {
         </Tabs>
         <Divider />
 
+
+
         {selectedTab === 0 && (
           <WorkoutCard
             size="large"
             title="Recommended Workout"
-            workout={recommendedWorkout}
-            incrementFunction={incrementRecommendedWorkout}
+            workout={workoutData.recommendedWorkout}
+            incrementFunction={workoutData.incrementRecommendedWorkout}
             hasToggle={true}
             toggleFunction={toggleWorkoutSchedule}
-            isChecked={currentWorkoutSchedule === workoutScheduleAlt}
+            isChecked={workoutData.usingAltSchedule}
           />
         )}
+
 
         {selectedTab === 1 && (
           <WorkoutCard
             size="large"
             title="Need a Warmup?"
-            workout={recommendedWarmup}
-            incrementFunction={incrementRecommendedWarmup}
+            workout={workoutData.recommendedWarmup}
+            incrementFunction={workoutData.incrementRecommendedWarmup}
           />
         )}
 
@@ -108,8 +82,8 @@ const Home = (props) => {
           <WorkoutCard
             size="large"
             title="Time to Recover?"
-            workout={recommendedRecovery}
-            incrementFunction={incrementRecommendedRecovery}
+            workout={workoutData.recommendedRecovery}
+            incrementFunction={workoutData.incrementRecommendedRecovery}
           />
         )}
 
@@ -117,10 +91,12 @@ const Home = (props) => {
           <WorkoutCard
             size="large"
             title="Relax and Stretch"
-            workout={recommendedStretch}
-            incrementFunction={incrementRecommendedStretch}
+            workout={workoutData.recommendedStretch}
+            incrementFunction={workoutData.incrementRecommendedStretch}
           />
         )}
+
+
       </Box>
     </>
   );
