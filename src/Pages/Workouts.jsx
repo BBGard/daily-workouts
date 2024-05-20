@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import {
-  workouts,
-  weightMuscleGroups,
-  workoutTypes,
+  // workouts,
+  // weightMuscleGroups,
+  // workoutTypes,
   sources,
 } from "../Data/workoutData";
 import {
@@ -24,14 +24,16 @@ import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
 import WorkoutCard from "../Components/WorkoutCard";
+import { useGetWorkoutData } from "../hooks/useGetWorkoutData";
+
 
 
 const Workouts = () => {
-  const [workoutsToShow, setWorkoutsToShow] = useState(workouts); // workouts to show
+  const workoutData = useGetWorkoutData();
+  const [workoutsToShow, setWorkoutsToShow] = useState(workoutData.workouts); // workouts to show
   const [searchText, setSearchText] = useState([]); // search text
   const [muscleGroupsSelection, setMuscleGroupsSelection] = useState([]); // muscle groups
   const [workoutTypesSelection, setWorkoutTypesSelection] = useState([]); // workout types
-  const [sourceSelection, setSourceSelection] = useState([]); // muscle groups
   const [muscleGroupTabSelection, setMuscleGroupTabSelection] = useState("All"); // muscle groups
 
   const ITEM_HEIGHT = 48;
@@ -46,11 +48,11 @@ const Workouts = () => {
   };
 
   // List of muscle groups and workout types
-  const muscleGroups = weightMuscleGroups.sort();
+  // const muscleGroups = workoutData.weightMuscleGroups.sort();
 
   // Filter the workouts to show based on the selected muscle group and workout type
   const filterWorkouts = () => {
-    let filteredWorkouts = workouts; // workouts to show
+    let filteredWorkouts = workoutData.workouts; // workouts to show
 
     // If there is search text, filter workouts by search text
     if (searchText.length > 0) {
@@ -68,10 +70,9 @@ const Workouts = () => {
     if (
       muscleGroupsSelection.length === 0 &&
       workoutTypesSelection.length === 0 &&
-      searchText.length === 0 &&
-      sourceSelection.length === 0
+      searchText.length === 0
     ) {
-      setWorkoutsToShow(sortByScore(workouts));
+      setWorkoutsToShow(sortByScore(workoutData.workouts));
       return;
     }
 
@@ -93,14 +94,6 @@ const Workouts = () => {
       });
     }
 
-     // If sources are selected, filter workouts by source
-     if (sourceSelection.length > 0) {
-      filteredWorkouts = filteredWorkouts.filter((workout) => {
-        return sourceSelection.some((source) => {
-          return workout.source.toLowerCase().includes(source.toLowerCase());
-        });
-      });
-    }
 
     // Set the workouts to show
     setWorkoutsToShow(sortByScore(filteredWorkouts));
@@ -116,15 +109,6 @@ const Workouts = () => {
     );
   };
 
-  const handleSourceChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setSourceSelection(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
-  };
 
   const handleWorkoutTypeChange = (event) => {
     const {
@@ -139,11 +123,11 @@ const Workouts = () => {
   const handleMuscleGroupTabClick = (event, newValue) => {
     setMuscleGroupTabSelection(newValue);
     if (newValue === "All") {
-      setWorkoutsToShow(workouts);
+      setWorkoutsToShow(workoutData.workouts);
       return;
     }
 
-    const sortedWorkouts = sortByScore(workouts);
+    const sortedWorkouts = sortByScore(workoutData.workouts);
     setWorkoutsToShow(
       sortedWorkouts.filter((workout) => workout.group.includes(newValue))
     );
@@ -152,26 +136,27 @@ const Workouts = () => {
   // sort routines by score on each load
   useEffect(() => {
     // set the workouts to show
-    setWorkoutsToShow(sortByScore(workouts));
-  }, []);
+    setWorkoutsToShow(sortByScore(workoutData.workouts));
+  }, [workoutData.workouts]);
 
-  // Function to sort workouts by score
+  // TODO Function to sort workouts by score
   const sortByScore = (workoutList) => {
-    const fullList = workoutList.filter(
-      (workout) =>
-        workout.category.includes("Recovery") ||
-        workout.category.includes("Stretch") ||
-        workout.category.includes("Warm Up") ||
-        workout.category.includes("Weights")
-    );
-    fullList.forEach((workout) => {
-      workout.score = workout.rating - workout.watchCount;
-    });
+    return workoutList;
+    // const fullList = workoutList.filter(
+    //   (workout) =>
+    //     workout.category.includes("Recovery") ||
+    //     workout.category.includes("Stretch") ||
+    //     workout.category.includes("Warm Up") ||
+    //     workout.category.includes("Weights")
+    // );
+    // fullList.forEach((workout) => {
+    //   workout.score = workout.rating - workout.watchCount;
+    // });
 
-    // sort the workouts by score
-    fullList.sort((a, b) => (a.score > b.score ? -1 : 1));
+    // // sort the workouts by score
+    // fullList.sort((a, b) => (a.score > b.score ? -1 : 1));
 
-    return fullList;
+    // return fullList;
   };
 
 
@@ -230,10 +215,10 @@ const Workouts = () => {
             renderValue={(selected) => selected.join(", ")}
             MenuProps={MenuProps}
           >
-            {muscleGroups.map((group) => (
-              <MenuItem key={group} value={group}>
-                <Checkbox checked={muscleGroupsSelection.indexOf(group) > -1} />
-                <ListItemText primary={group} />
+            {workoutData.weightMuscleGroups.map((group) => (
+              <MenuItem key={group.id} value={group.muscle_group}>
+                <Checkbox checked={muscleGroupsSelection.indexOf(group.muscle_group) > -1} />
+                <ListItemText primary={group.muscle_group} />
               </MenuItem>
             ))}
           </Select>
@@ -250,7 +235,7 @@ const Workouts = () => {
             renderValue={(selected) => selected.join(", ")}
             MenuProps={MenuProps}
           >
-            {workoutTypes.map((type) => (
+            {workoutData.workoutTypes.map((type) => (
               <MenuItem key={type} value={type}>
                 <Checkbox checked={workoutTypesSelection.indexOf(type) > -1} />
                 <ListItemText primary={type} />
@@ -259,30 +244,6 @@ const Workouts = () => {
           </Select>
         </FormControl>
 
-        <FormControl
-          label="Source"
-          variant="outlined"
-          sx={{ marginTop: "1rem", width: "100%" }}
-        >
-          <InputLabel id="source-label">Source</InputLabel>
-          <Select
-            labelId="source-label"
-            id="source-checkbox"
-            multiple
-            value={sourceSelection}
-            onChange={handleSourceChange}
-            input={<OutlinedInput label={"Source"} />}
-            renderValue={(selected) => selected.join(", ")}
-            MenuProps={MenuProps}
-          >
-            {sources.map((source) => (
-              <MenuItem key={source} value={source}>
-                <Checkbox checked={sourceSelection.indexOf(source) > -1} />
-                <ListItemText primary={source} />
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
 
         <CardActions
           sx={{ justifyContent: "center", gap: "1rem", marginTop: "1rem" }}
@@ -302,9 +263,8 @@ const Workouts = () => {
               setMuscleGroupsSelection([]);
               setWorkoutTypesSelection([]);
               setSearchText("");
-              setWorkoutsToShow(workouts);
+              setWorkoutsToShow(workoutData.workouts);
               setMuscleGroupTabSelection("All");
-              setSourceSelection([]);
             }}
             width="100%"
           >
@@ -326,11 +286,11 @@ const Workouts = () => {
           sx={{ justifyContent: "center" }}
         >
           <Tab key="All" label="All" value="All" sx={{ fontWeight: "bold" }} />
-          {muscleGroups.map((type) => (
+          {workoutData.weightMuscleGroups.map((type) => (
             <Tab
-              key={type}
-              label={type}
-              value={type}
+              key={type.id}
+              label={type.muscle_group}
+              value={type.muscle_group}
               sx={{ fontWeight: "bold", }}
             />
           ))}
