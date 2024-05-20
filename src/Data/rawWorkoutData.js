@@ -583,8 +583,8 @@ const workouts = [
     category: "Stretch",
     group: "Full Body",
     name: "Full Body Stretch",
-    youtube:
-      "https://www.youtube.com/watch?v=g_tea8ZNk5A&list=PL-G7EJFoxFceiY2Ij3oxIizEqji5mnWZ7",
+    link:
+      "https://www.youtube.com/watch?v=g_tea8ZNk5A7",
     thumbnail: "http://img.youtube.com/vi/g_tea8ZNk5A/0.jpg",
     duration: "15 min",
     watchCount: 0,
