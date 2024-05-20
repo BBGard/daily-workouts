@@ -1,60 +1,24 @@
 import { useEffect, useState } from "react";
-// import { supabase } from "../Config/supabase.config";
-// import useSupabase from "./useSupabase";
-import useWorkoutQuery from "./useWorkoutQuery";
-// import { workoutSchedule, workoutScheduleAlt } from "../Data/workoutData";
+import useFetchWorkouts from "./useFetchWorkouts";
+import useFetchMuscleGroups from "./useFetchMuscleGroups";
 
 
 
 export const useGetWorkoutData = () => {
-  const { data, isLoading, isError } = useWorkoutQuery();
+  // Get the workout data from the database
+  const { data: workouts, isLoading, isError } = useFetchWorkouts();
 
-  // const client = useSupabase();
+  // Get the muscle group data from the database
+  const { data: muscleGroups } = useFetchMuscleGroups();
+  const { recoveryMuscleGroups, weightMuscleGroups, stretchMuscleGroups } = muscleGroups || { recoveryMuscleGroups: [], weightMuscleGroups: [], stretchMuscleGroups: [] };
 
-  /////////////////////////////////////////////////////////////////////
-  // Workout variables
-  /////////////////////////////////////////////////////////////////////
-  const workoutTypes = ["Weights", "Recovery", "Warm Up", "Stretch"];
+  // Select unique categories from the workouts
+  const workoutTypes = workouts
+  ? [...new Set(workouts
+      .map(workout => workout.category)
+      .filter(category => !category.includes(',')))]
+  : [];
 
-  // Recovery Muscle Groups
-  const recoveryMuscleGroups = [
-    "Full Body",
-    "Back",
-    "Shoulders",
-    "Knee",
-    "Hip",
-    "Foot",
-    "Heel",
-    "Pelvis",
-    "Sciatica",
-    "Posture",
-  ];
-
-  // Workout Muscle Groups
-  const weightMuscleGroups = [
-    "Full Body",
-    "Legs",
-    "Glutes",
-    "Chest",
-    "Triceps",
-    "Back",
-    "Biceps",
-    "Arms",
-    "Shoulders",
-    "Abs",
-  ];
-
-  // Stretch Muscle Groups
-  const stretchMuscleGroups = [
-    "Full Body",
-    "Back",
-    "Neck",
-    "Shoulders",
-    "Legs",
-    "Hip",
-    "Posture",
-    "Face",
-  ];
   // Initialize workoutSchedule - note: Sunday is index 0
   const workoutSchedule = [
     {
@@ -136,8 +100,6 @@ export const useGetWorkoutData = () => {
   /////////////////////////////////////////////////////////////////////
   // State variables
   /////////////////////////////////////////////////////////////////////
-  // const [cachedWorkoutData, setCachedWorkoutData] = useState(null);
-  const [workouts, setWorkouts] = useState([]); // allWorkouts
   const [warmups, setWarmups] = useState();
   const [recovery, setRecovery] = useState();
   const [stretches, setStretches] = useState();
@@ -149,6 +111,8 @@ export const useGetWorkoutData = () => {
   const [currentWorkoutSchedule, setCurrentWorkoutSchedule] =
     useState(workoutSchedule);
   const [usingAltSchedule, setUsingAltSchedule] = useState(false);
+
+
 
   /////////////////////////////////////////////////////////////////////
   // Functions
@@ -218,41 +182,26 @@ export const useGetWorkoutData = () => {
   /////////////////////////////////////////////////////////////////////
   // On mount, load all workouts, generate today's workouts, and set the recommended workout
   useEffect(() => {
-    // Get all workout data from the database
-    // const getWorkoutData = async () => {
-    //   // const data = await getAllWorkoutData();
-    //   // setCachedWorkoutData(data);
-    //   setWarmups(
-    //     data.filter((workout) => workout.category.includes("Warm Up"))
-    //   );
-    //   setRecovery(
-    //     data.filter((workout) => workout.category.includes("Recovery"))
-    //   );
-    //   setStretches(
-    //     data.filter((workout) => workout.category.includes("Stretch"))
-    //   );
-    //   return data;
-    // };
 
     // Generate today's workouts and recommended workout based on schedule
-    const generateTodaysWorkouts = (workoutData) => {
+    const generateTodaysWorkouts = () => {
 
-      setWorkouts(data);
+      // setWorkouts(data);
 
       setWarmups(
-        data.filter((workout) => workout.category.includes("Warm Up"))
+        workouts.filter((workout) => workout.category.includes("Warm Up"))
       );
       setRecovery(
-        data.filter((workout) => workout.category.includes("Recovery"))
+        workouts.filter((workout) => workout.category.includes("Recovery"))
       );
       setStretches(
-        data.filter((workout) => workout.category.includes("Stretch"))
+        workouts.filter((workout) => workout.category.includes("Stretch"))
       );
 
       const currentDate = new Date();
 
       // Filter the workouts based on the current day and schedule
-      const workoutList = workoutData.filter(
+      const workoutList = workouts.filter(
         (workout) =>
           workout.group.includes(
             // Javascript uses 0-6 for Sunday-Saturday
@@ -300,15 +249,15 @@ export const useGetWorkoutData = () => {
       // setRecommendedRecovery(recoveryList[0]);
       // setRecommendedStretch(stretchList[0]);
       setRecommendedWarmup(
-        workoutData.filter((workout) => workout.category.includes("Warm Up"))[0]
+        workouts.filter((workout) => workout.category.includes("Warm Up"))[0]
       );
       setRecommendedRecovery(
-        workoutData.filter((workout) =>
+        workouts.filter((workout) =>
           workout.category.includes("Recovery")
         )[0]
       );
       setRecommendedStretch(
-        workoutData.filter((workout) => workout.category.includes("Stretch"))[0]
+        workouts.filter((workout) => workout.category.includes("Stretch"))[0]
       );
 
       setTodaysWorkouts(workoutList);
@@ -318,8 +267,8 @@ export const useGetWorkoutData = () => {
     };
 
     // Generate today's workouts and recommended workout
-    if(data) {
-      generateTodaysWorkouts(data);
+    if(workouts) {
+      generateTodaysWorkouts(workouts);
     }
 
     // getWorkoutData().then((data) => {
@@ -334,7 +283,7 @@ export const useGetWorkoutData = () => {
     //     generateTodaysWorkouts(data);
     //   });
     // }
-  }, [currentWorkoutSchedule, data]);
+  }, [currentWorkoutSchedule, workouts]);
 
   const workoutData = {
     isLoading,

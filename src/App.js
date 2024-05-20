@@ -10,21 +10,14 @@ import SignIn from "./Pages/SignIn";
 import { ResponsiveAppBar } from "./Components/ResponsiveAppBar";
 import { Container } from "@mui/material";
 import { ScrollToTopButton } from "./Components/ScrollToTopButton";
-import { useGetWorkoutData } from "./hooks/useGetWorkoutData";
+// import { useGetWorkoutData } from "./hooks/useGetWorkoutData";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 
 
 function App() {
   // const queryClient = new QueryClient();
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        // globally default to 60 seconds
-        staleTime: 1000 * 60,
-      },
-    },
-  })
+  const queryClient = new QueryClient();
   // const workoutData  = useGetWorkoutData();
 
   return (

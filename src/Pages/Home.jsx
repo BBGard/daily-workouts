@@ -17,6 +17,7 @@ const Home = () => {
   const workoutData = useGetWorkoutData();
 
 
+
   // Function to toggle between the two workout schedules
   function toggleWorkoutSchedule() {
     workoutData.switchCurrentWorkoutSchedule();
