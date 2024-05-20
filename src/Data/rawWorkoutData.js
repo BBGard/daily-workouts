@@ -9,7 +9,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=fdflwO-HXkY",
     thumbnail: "http://img.youtube.com/vi/fdflwO-HXkY/0.jpg",
     duration: "40 min",
-    source: "hasfit",
   },
   {
     id: 2,
@@ -19,7 +18,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=qmP9U6EkCYM",
     thumbnail: "http://img.youtube.com/vi/qmP9U6EkCYM/0.jpg",
     duration: "30 min",
-    source: "hasfit",
   },
   {
     id: 3,
@@ -29,7 +27,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=D-R3jwjdPXo",
     thumbnail: "http://img.youtube.com/vi/D-R3jwjdPXo/0.jpg",
     duration: "30 min",
-    source: "hasfit",
   },
   {
     id: 4,
@@ -39,7 +36,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=wNaNC0fFutI",
     thumbnail: "http://img.youtube.com/vi/wNaNC0fFutI/0.jpg",
     duration: "20 min",
-    source: "hasfit",
   },
   {
     id: 5,
@@ -49,7 +45,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=X-glH8lPA7Q",
     thumbnail: "http://img.youtube.com/vi/X-glH8lPA7Q/0.jpg",
     duration: "30 min",
-    source: "hasfit",
   },
   {
     id: 6,
@@ -59,7 +54,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=5pMF6ei4AT8",
     thumbnail: "http://img.youtube.com/vi/5pMF6ei4AT8/0.jpg",
     duration: "45 min",
-    source: "hasfit",
   },
   {
     id: 7,
@@ -69,7 +63,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=fA8QFocWJ2M",
     thumbnail: "http://img.youtube.com/vi/fA8QFocWJ2M/0.jpg",
     duration: "30 min",
-    source: "hasfit",
   },
   {
     id: 8,
@@ -79,7 +72,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=JPTwaSapykE",
     thumbnail: "http://img.youtube.com/vi/JPTwaSapykE/0.jpg",
     duration: "30 min",
-    source: "hasfit",
   },
   {
     id: 9,
@@ -89,7 +81,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=USX_B3zEfFo",
     thumbnail: "http://img.youtube.com/vi/USX_B3zEfFo/0.jpg",
     duration: "40 min",
-    source: "hasfit",
   },
   {
     id: 10,
@@ -99,7 +90,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=uNP7Cz0gwd0",
     thumbnail: "http://img.youtube.com/vi/uNP7Cz0gwd0/0.jpg",
     duration: "30 min",
-    source: "hasfit",
   },
   {
     id: 11,
@@ -109,7 +99,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=FMpRjCDUdoM",
     thumbnail: "http://img.youtube.com/vi/FMpRjCDUdoM/0.jpg",
     duration: "30 min",
-    source: "hasfit",
   },
   {
     id: 12,
@@ -119,7 +108,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=tCcySgP5lZc",
     thumbnail: "http://img.youtube.com/vi/tCcySgP5lZc/0.jpg",
     duration: "20 min",
-    source: "hasfit",
   },
   {
     id: 13,
@@ -129,7 +117,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=LkkvW9ZbAv4",
     thumbnail: "http://img.youtube.com/vi/LkkvW9ZbAv4/0.jpg",
     duration: "20 min",
-    source: "hasfit",
   },
   {
     id: 14,
@@ -139,7 +126,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=iFraJa-uwbo",
     thumbnail: "http://img.youtube.com/vi/iFraJa-uwbo/0.jpg",
     duration: "25 min",
-    source: "hasfit",
   },
   {
     id: 15,
@@ -149,7 +135,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=PInAyHosJEQ",
     thumbnail: "http://img.youtube.com/vi/PInAyHosJEQ/0.jpg",
     duration: "40 min",
-    source: "hasfit",
   },
   {
     id: 16,
@@ -159,7 +144,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=6IdOLoYc0MM",
     thumbnail: "http://img.youtube.com/vi/6IdOLoYc0MM/0.jpg",
     duration: "40 min",
-    source: "hasfit",
   },
   {
     id: 17,
@@ -169,7 +153,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=6ekcJByFvRg",
     thumbnail: "http://img.youtube.com/vi/6ekcJByFvRg/0.jpg",
     duration: "25 min",
-    source: "hasfit",
   },
   {
     id: 18,
@@ -179,7 +162,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=kEg9a8JoxOY",
     thumbnail: "http://img.youtube.com/vi/kEg9a8JoxOY/0.jpg",
     duration: "40 min",
-    source: "hasfit",
   },
   {
     id: 19,
@@ -189,7 +171,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=w6Phd6VQ0xQ",
     thumbnail: "http://img.youtube.com/vi/w6Phd6VQ0xQ/0.jpg",
     duration: "15 min",
-    source: "hasfit",
   },
   {
     id: 20,
@@ -199,7 +180,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=GrHyZNThtD8",
     thumbnail: "http://img.youtube.com/vi/GrHyZNThtD8/0.jpg",
     duration: "20 min",
-    source: "hasfit",
   },
   {
     id: 21,
@@ -209,7 +189,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=skde8_aWbFo",
     thumbnail: "http://img.youtube.com/vi/skde8_aWbFo/0.jpg",
     duration: "20 min",
-    source: "hasfit",
   },
   {
     id: 22,
@@ -219,7 +198,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=5hm_6rV1qGo",
     thumbnail: "http://img.youtube.com/vi/5hm_6rV1qGo/0.jpg",
     duration: "30 min",
-    source: "hasfit",
   },
   {
     id: 23,
@@ -229,7 +207,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=CC3dLVG4GH8",
     thumbnail: "http://img.youtube.com/vi/CC3dLVG4GH8/0.jpg",
     duration: "35 min",
-    source: "hasfit",
   },
   {
     id: 24,
@@ -239,7 +216,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=km4h2_IXBZY",
     thumbnail: "http://img.youtube.com/vi/km4h2_IXBZY/0.jpg",
     duration: "20 min",
-    source: "hasfit",
   },
   {
     id: 25,
@@ -249,7 +225,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=2vl18gjB7R4",
     thumbnail: "http://img.youtube.com/vi/2vl18gjB7R4/0.jpg",
     duration: "30 min",
-    source: "hasfit",
   },
   {
     id: 26,
@@ -259,7 +234,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=E7gC9sA0ibM",
     thumbnail: "http://img.youtube.com/vi/E7gC9sA0ibM/0.jpg",
     duration: "10 min",
-    source: "hasfit",
   },
   {
     id: 27,
@@ -269,7 +243,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=U-3Pa7NA0Ho",
     thumbnail: "http://img.youtube.com/vi/U-3Pa7NA0Ho/0.jpg",
     duration: "12 min",
-    source: "hasfit",
   },
   {
     id: 28,
@@ -279,7 +252,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=XzLojq_iKVk",
     thumbnail: "http://img.youtube.com/vi/XzLojq_iKVk/0.jpg",
     duration: "10 min",
-    source: "hasfit",
   },
   {
     id: 29,
@@ -289,7 +261,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=qACdw1WeOws",
     thumbnail: "http://img.youtube.com/vi/qACdw1WeOws/0.jpg",
     duration: "20 min",
-    source: "hasfit",
   },
   {
     id: 30,
@@ -299,7 +270,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=AkgxIT2z0js",
     thumbnail: "http://img.youtube.com/vi/AkgxIT2z0js/0.jpg",
     duration: "20 min",
-    source: "hasfit",
   },
   {
     id: 31,
@@ -309,7 +279,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=CirlwUzPYek",
     thumbnail: "http://img.youtube.com/vi/CirlwUzPYek/0.jpg",
     duration: "20 min",
-    source: "hasfit",
   },
   {
     id: 32,
@@ -319,7 +288,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=jzyRGiB9BZQ",
     thumbnail: "http://img.youtube.com/vi/jzyRGiB9BZQ/0.jpg",
     duration: "20 min",
-    source: "hasfit",
   },
   {
     id: 33,
@@ -329,7 +297,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=JGLQS_ArIMY",
     thumbnail: "http://img.youtube.com/vi/JGLQS_ArIMY/0.jpg",
     duration: "20 min",
-    source: "hasfit",
   },
   {
     id: 34,
@@ -339,7 +306,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=-3Sn5wFF5SA",
     thumbnail: "http://img.youtube.com/vi/-3Sn5wFF5SA/0.jpg",
     duration: "17 min",
-    source: "hasfit",
   },
   {
     id: 35,
@@ -349,7 +315,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=_lT5Cd4cDTc",
     thumbnail: "http://img.youtube.com/vi/_lT5Cd4cDTc/0.jpg",
     duration: "30 min",
-    source: "hasfit",
   },
   {
     id: 36,
@@ -359,18 +324,15 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=Ci9IwxLP5RE",
     thumbnail: "http://img.youtube.com/vi/Ci9IwxLP5RE/0.jpg",
     duration: "28 min",
-    source: "hasfit",
   },
   {
     id: 37,
     category: "Recovery",
     group: "Shoulders",
     name: "Shoulder Stretches Strengthening for Pain Relief",
-    youtube:
-      "https://www.youtube.com/watch?v=6vfamrwD7ks&embeds_referring_euri=https%3A%2F%2Fhasfit.com%2F&source_ve_path=OTY3MTQ&feature=emb_imp_woyt",
+    link: "https://www.youtube.com/watch?v=6vfamrwD7ks",
     thumbnail: "http://img.youtube.com/vi/6vfamrwD7ks/0.jpg",
     duration: "20 min",
-    source: "hasfit",
   },
   {
     id: 38,
@@ -380,7 +342,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=j5VsVh8dtsc",
     thumbnail: "http://img.youtube.com/vi/j5VsVh8dtsc/0.jpg",
     duration: "25 min",
-    source: "hasfit",
   },
   {
     id: 39,
@@ -390,7 +351,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=b4ZnvU3QkRM",
     thumbnail: "http://img.youtube.com/vi/b4ZnvU3QkRM/0.jpg",
     duration: "20 min",
-    source: "hasfit",
   },
   {
     id: 40,
@@ -400,7 +360,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=lyRQbwtESBc",
     thumbnail: "http://img.youtube.com/vi/lyRQbwtESBc/0.jpg",
     duration: "7 min",
-    source: "hasfit",
   },
   {
     id: 41,
@@ -410,7 +369,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=Ie5SW9mqmuk",
     thumbnail: "http://img.youtube.com/vi/Ie5SW9mqmuk/0.jpg",
     duration: "15 min",
-    source: "hasfit",
   },
   {
     id: 42,
@@ -420,7 +378,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=hSGPSPqycSw",
     thumbnail: "http://img.youtube.com/vi/hSGPSPqycSw/0.jpg",
     duration: "15 min",
-    source: "hasfit",
   },
 
   {
@@ -431,7 +388,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=b0Z81IGUnGI",
     thumbnail: "http://img.youtube.com/vi/b0Z81IGUnGI/0.jpg",
     duration: "17 min",
-    source: "hasfit",
   },
   {
     id: 44,
@@ -441,7 +397,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=lrecexMFCQU",
     thumbnail: "http://img.youtube.com/vi/lrecexMFCQU/0.jpg",
     duration: "5 min",
-    source: "hasfit",
   },
   {
     id: 45,
@@ -451,7 +406,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=JYFqdBYdA4Q",
     thumbnail: "http://img.youtube.com/vi/JYFqdBYdA4Q/0.jpg",
     duration: "45 min",
-    source: "hasfit",
   },
   {
     id: 46,
@@ -461,7 +415,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=CAofixQofYk",
     thumbnail: "http://img.youtube.com/vi/CAofixQofYk/0.jpg",
     duration: "40 min",
-    source: "hasfit",
   },
   {
     id: 47,
@@ -471,7 +424,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=-c6q3ltSYKA",
     thumbnail: "http://img.youtube.com/vi/-c6q3ltSYKA/0.jpg",
     duration: "30 min",
-    source: "hasfit",
   },
   {
     id: 48,
@@ -481,7 +433,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=XfyNJtV1k3U",
     thumbnail: "http://img.youtube.com/vi/XfyNJtV1k3U/0.jpg",
     duration: "40 min",
-    source: "hasfit",
   },
   {
     id: 49,
@@ -491,7 +442,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=5rA16ipRflw",
     thumbnail: "http://img.youtube.com/vi/5rA16ipRflw/0.jpg",
     duration: "30 min",
-    source: "hasfit",
   },
   {
     id: 50,
@@ -501,7 +451,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=ktut5zU3n2Q",
     thumbnail: "http://img.youtube.com/vi/ktut5zU3n2Q/0.jpg",
     duration: "30 min",
-    source: "hasfit",
   },
   {
     id: 51,
@@ -511,7 +460,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=Lnzw9240u_s",
     thumbnail: "http://img.youtube.com/vi/Lnzw9240u_s/0.jpg",
     duration: "30 min",
-    source: "hasfit",
   },
   {
     id: 52,
@@ -521,7 +469,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=MIgd3Ue8TeM",
     thumbnail: "http://img.youtube.com/vi/MIgd3Ue8TeM/0.jpg",
     duration: "45 min",
-    source: "hasfit",
   },
   {
     id: 53,
@@ -531,7 +478,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=jeoF_T4kJDE",
     thumbnail: "http://img.youtube.com/vi/jeoF_T4kJDE/0.jpg",
     duration: "20 min",
-    source: "hasfit",
   },
   {
     id: 54,
@@ -541,7 +487,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=IQgL4NCQGSU",
     thumbnail: "http://img.youtube.com/vi/IQgL4NCQGSU/0.jpg",
     duration: "45 min",
-    source: "hasfit",
   },
   {
     id: 55,
@@ -551,7 +496,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=tN2jiQ83PNw",
     thumbnail: "http://img.youtube.com/vi/tN2jiQ83PNw/0.jpg",
     duration: "45 min",
-    source: "hasfit",
   },
   {
     id: 56,
@@ -561,7 +505,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=MZ-fKxyJFw0",
     thumbnail: "http://img.youtube.com/vi/MZ-fKxyJFw0/0.jpg",
     duration: "40 min",
-    source: "hasfit",
   },
   {
     id: 57,
@@ -571,7 +514,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=CmAi5NRwhe8",
     thumbnail: "http://img.youtube.com/vi/CmAi5NRwhe8/0.jpg",
     duration: "30 min",
-    source: "hasfit",
   },
   {
     id: 58,
@@ -581,7 +523,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=445nEr4-uJM",
     thumbnail: "http://img.youtube.com/vi/445nEr4-uJM/0.jpg",
     duration: "30 min",
-    source: "hasfit",
   },
   {
     id: 59,
@@ -591,7 +532,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=mSzyeQHEjhU",
     thumbnail: "http://img.youtube.com/vi/mSzyeQHEjhU/0.jpg",
     duration: "30 min",
-    source: "hasfit",
   },
   {
     id: 60,
@@ -601,7 +541,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=Sl6q1igrxpk",
     thumbnail: "http://img.youtube.com/vi/Sl6q1igrxpk/0.jpg",
     duration: "30 min",
-    source: "hasfit",
   },
   {
     id: 61,
@@ -611,7 +550,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=l-w01ykM3lA",
     thumbnail: "http://img.youtube.com/vi/l-w01ykM3lA/0.jpg",
     duration: "12 min",
-    source: "hasfit",
   },
   {
     id: 62,
@@ -621,7 +559,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=IXRcuTu7i-o",
     thumbnail: "http://img.youtube.com/vi/IXRcuTu7i-o/0.jpg",
     duration: "25 min",
-    source: "hasfit",
   },
   {
     id: 64,
@@ -631,7 +568,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=XklVcpXN9ic",
     thumbnail: "http://img.youtube.com/vi/XklVcpXN9ic/0.jpg",
     duration: "5 min",
-    source: "hasfit",
   },
   {
     id: 65,
@@ -641,7 +577,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=dzbc60Wfsi0",
     thumbnail: "http://img.youtube.com/vi/dzbc60Wfsi0/0.jpg",
     duration: "20 min",
-    source: "hasfit",
   },
   {
     id: 66,
@@ -796,7 +731,6 @@ const workouts = [
     duration: "40 min",
     watchCount: 0,
     rating: 0,
-    source: "hasfit",
   },
   {
     id: 81,
@@ -806,7 +740,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=_P9MqDJaiBQ",
     thumbnail: "http://img.youtube.com/vi/_P9MqDJaiBQ/0.jpg",
     duration: "20 min",
-    source: "hasfit",
   },
   {
     id: 82,
@@ -816,7 +749,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=d3G0s9vuvdw&t=4s",
     thumbnail: "http://img.youtube.com/vi/d3G0s9vuvdw/0.jpg",
     duration: "30 min",
-    source: "hasfit",
   },
   {
     id: 83,
@@ -826,7 +758,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=og3M0aP-xC8",
     thumbnail: "http://img.youtube.com/vi/og3M0aP-xC8/0.jpg",
     duration: "30 min",
-    source: "hasfit",
   },
   {
     id: 84,
@@ -836,7 +767,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=Zooc4Zcg-8w",
     thumbnail: "http://img.youtube.com/vi/Zooc4Zcg-8w/0.jpg",
     duration: "35 min",
-    source: "hasfit",
   },
   {
     id: 85,
@@ -846,7 +776,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=vvxnFNsnE6o",
     thumbnail: "http://img.youtube.com/vi/vvxnFNsnE6o/0.jpg",
     duration: "15 min",
-    source: "hasfit",
   },
   {
     id: 86,
@@ -856,7 +785,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=oW5bQTLcRrI",
     thumbnail: "http://img.youtube.com/vi/oW5bQTLcRrI/0.jpg",
     duration: "15 min",
-    source: "hasfit",
   },
   {
     id: 87,
@@ -866,7 +794,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=l5juaxVWVYE&t=1782s",
     thumbnail: "http://img.youtube.com/vi/l5juaxVWVYE/0.jpg",
     duration: "30 min",
-    source: "hasfit",
   },
   {
     id: 88,
@@ -876,7 +803,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=CihZIXjoUQw",
     thumbnail: "http://img.youtube.com/vi/CihZIXjoUQw/0.jpg",
     duration: "20 min",
-    source: "hasfit",
   },
   {
     id: 89,
@@ -886,7 +812,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=VobnOG8Z90o",
     thumbnail: "http://img.youtube.com/vi/VobnOG8Z90o/0.jpg",
     duration: "20 min",
-    source: "hasfit",
   },
   {
     id: 90,
@@ -896,7 +821,6 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=RptJK3foyo4",
     thumbnail: "http://img.youtube.com/vi/RptJK3foyo4/0.jpg",
     duration: "40 min",
-    source: "hasfit",
   },
   {
     id: 91,
@@ -906,9 +830,7 @@ const workouts = [
     link: "https://www.youtube.com/watch?v=oq5mc0v41uk",
     thumbnail: "http://img.youtube.com/vi/oq5mc0v41uk/0.jpg",
     duration: "30 min",
-    source: "hasfit",
   },
-
 ];
 
 module.exports = {
