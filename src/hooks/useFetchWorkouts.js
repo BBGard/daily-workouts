@@ -16,8 +16,8 @@ const useFetchWorkouts = () => {
   return useQuery({
     queryKey,
     queryFn,
-    staleTime: 60000, // Data is considered fresh for 1 minute
-    cacheTime: 300000, // Data stays in the cache for 5 minutes
+    staleTime: 300000, // Data is considered fresh for 5 minutes
+    cacheTime: 600000, // Data stays in the cache for 10 minutes
   });
 };
 
