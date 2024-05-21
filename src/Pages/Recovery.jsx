@@ -19,12 +19,14 @@ import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
 import WorkoutCard from "../Components/WorkoutCard";
+import { useGetWorkoutData } from "../hooks/useGetWorkoutData";
 
 
-const Recovery = (props) => {
+const Recovery = () => {
   // const workouts = props.workoutData.workouts;
-  const recoveryMuscleGroups = props.workoutData.recoveryMuscleGroups;
-  const recovery = props.workoutData.recovery;
+  const workoutData = useGetWorkoutData();
+  const recoveryMuscleGroups = workoutData.recoveryMuscleGroups;
+  const recovery = workoutData.recovery;
 
   const [workoutsToShow, setWorkoutsToShow] = useState(recovery); // workouts to show
   const [searchText, setSearchText] = useState([]); // search text
@@ -280,9 +282,9 @@ const Recovery = (props) => {
           <Tab key="All" label="All" value="All" sx={{ fontWeight: "bold" }} />
           {muscleGroups.map((group) => (
             <Tab
-              key={group}
-              label={group}
-              value={group}
+              key={group.id}
+              label={group.muscle_group}
+              value={group.muscle_group}
               sx={{ fontWeight: "bold" }}
             />
           ))}
@@ -303,7 +305,17 @@ const Recovery = (props) => {
             <WorkoutCard key={routine.id} workout={routine} size="small" />
           ))
         ) : (
-          <WorkoutCard type="missing" />
+          workoutData.isLoading ? (
+          <>
+          <WorkoutCard type="skeleton-small" />
+          <WorkoutCard type="skeleton-small" />
+          <WorkoutCard type="skeleton-small" />
+          <WorkoutCard type="skeleton-small" />
+          </>
+          ) : (
+            <WorkoutCard type="missing" />
+          )
+
         )}
       </Box>
     </Box>
