@@ -1,7 +1,6 @@
 
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { workouts, stretchMuscleGroups, sources } from "../Data/workoutData";
 import {
   Typography,
   Box,
@@ -20,16 +19,15 @@ import {
 } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import WorkoutCard from "../Components/WorkoutCard";
+import { useGetWorkoutData } from "../hooks/useGetWorkoutData";
 
 const Stretches = () => {
   // Select only stretches from workout data
-  const stretches = workouts.filter(
-      (workout) => workout.category.includes("Stretch")
-    );
+  const workoutData = useGetWorkoutData();
+  const stretches = workoutData.stretches;
+  const stretchMuscleGroups = workoutData.stretchMuscleGroups;
 
-  const [workoutsToShow, setWorkoutsToShow] = useState(
-    workouts.filter((workout) => workout.category.includes("Stretch"))
-  ); // workouts to show
+  const [workoutsToShow, setWorkoutsToShow] = useState(stretches); // workouts to show
 
   const [searchText, setSearchText] = useState([]); // search text
 
@@ -69,7 +67,7 @@ const Stretches = () => {
 
     // If no muscle groups or workout types are selected show all workouts
     if (muscleGroupsSelection.length === 0 && searchText.length === 0 && sourceSelection.length === 0) {
-      setWorkoutsToShow(sortByScore(workouts));
+      setWorkoutsToShow(sortByScore(stretches));
       return;
     }
 
@@ -105,24 +103,15 @@ const Stretches = () => {
     );
   };
 
-  const handleSourceChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setSourceSelection(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
-  };
 
   const handleTabClick = (event, newValue) => {
     setTabSelection(newValue);
     if (newValue === "All") {
-      setWorkoutsToShow(sortByScore(workouts));
+      setWorkoutsToShow(sortByScore(stretches));
       return;
     }
 
-    const stretchList = sortByScore(workouts);
+    const stretchList = sortByScore(stretches);
     setWorkoutsToShow(
       stretchList.filter((workout) => workout.group.includes(newValue))
     );
@@ -133,22 +122,23 @@ const Stretches = () => {
   useEffect(() => {
 
     // set the workouts to show
-    setWorkoutsToShow(sortByScore(workouts));
-  }, []);
+    setWorkoutsToShow(sortByScore(stretches));
+  }, [stretches]);
 
-  // Function to sort workouts by score
+  // TODO Function to sort workouts by score
   const sortByScore = (workoutList) => {
-    const stretchList = workoutList.filter(
-      (workout) => workout.category.includes("Stretch")
-    );
-    stretchList.forEach((workout) => {
-      workout.score = workout.rating - workout.watchCount;
-    });
+    return workoutList;
+    // const stretchList = workoutList.filter(
+    //   (workout) => workout.category.includes("Stretch")
+    // );
+    // stretchList.forEach((workout) => {
+    //   workout.score = workout.rating - workout.watchCount;
+    // });
 
-    // sort the workouts by score
-    stretchList.sort((a, b) => (a.score > b.score ? -1 : 1));
+    // // sort the workouts by score
+    // stretchList.sort((a, b) => (a.score > b.score ? -1 : 1));
 
-    return stretchList;
+    // return stretchList;
   };
 
 
@@ -207,34 +197,9 @@ const Stretches = () => {
             MenuProps={MenuProps}
           >
             {muscleGroups.map((group) => (
-              <MenuItem key={group} value={group}>
-                <Checkbox checked={muscleGroupsSelection.indexOf(group) > -1} />
-                <ListItemText primary={group} />
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <FormControl
-          label="Source"
-          variant="outlined"
-          sx={{ marginTop: "1rem", width: "100%" }}
-        >
-          <InputLabel id="source-label">Source</InputLabel>
-          <Select
-            labelId="source-label"
-            id="source-checkbox"
-            multiple
-            value={sourceSelection}
-            onChange={handleSourceChange}
-            input={<OutlinedInput label={"Source"} />}
-            renderValue={(selected) => selected.join(", ")}
-            MenuProps={MenuProps}
-          >
-            {sources.map((source) => (
-              <MenuItem key={source} value={source}>
-                <Checkbox checked={sourceSelection.indexOf(source) > -1} />
-                <ListItemText primary={source} />
+              <MenuItem key={group.id} value={group.muscle_group}>
+                <Checkbox checked={muscleGroupsSelection.indexOf(group.muscle_group) > -1} />
+                <ListItemText primary={group.muscle_group} />
               </MenuItem>
             ))}
           </Select>
@@ -256,7 +221,7 @@ const Stretches = () => {
             color="primary"
             onClick={() => {
               setSearchText("");
-              setWorkoutsToShow(sortByScore(workouts));
+              setWorkoutsToShow(sortByScore(stretches));
               setMuscleGroupsSelection([]);
               setSourceSelection([]);
             }}
@@ -282,9 +247,9 @@ const Stretches = () => {
           <Tab key="All" label="All" value="All" sx={{ fontWeight: "bold" }} />
           {muscleGroups.map((group) => (
             <Tab
-              key={group}
-              label={group}
-              value={group}
+              key={group.id}
+              label={group.muscle_group}
+              value={group.muscle_group}
               sx={{ fontWeight: "bold" }}
             />
           ))}
@@ -305,7 +270,16 @@ const Stretches = () => {
             <WorkoutCard key={routine.id} workout={routine} size="small" />
           ))
         ) : (
-          <WorkoutCard type="missing" />
+          workoutData.isLoading ? (
+          <>
+          <WorkoutCard type="skeleton-small" />
+          <WorkoutCard type="skeleton-small" />
+          <WorkoutCard type="skeleton-small" />
+          <WorkoutCard type="skeleton-small" />
+          </>
+          ) : (
+            <WorkoutCard type="missing" />
+          )
         )}
       </Box>
     </Box>
