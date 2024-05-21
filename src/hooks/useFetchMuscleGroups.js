@@ -7,7 +7,6 @@ const useFetchMuscleGroups = () => {
 
   // Function to fetch muscle groups from the database
   const queryFn = async () => {
-    console.log('fetching muscle groups');
 
     const recoveryPromise = client.from('recovery_muscle_groups').select();
     const stretchPromise = client.from('stretch_muscle_groups').select();

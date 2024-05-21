@@ -6,7 +6,6 @@ const useFetchWorkouts = () => {
   const queryKey = ["workouts"];
 
   const queryFn = async () => {
-    console.log("fetching workouts");
     return await client
       .from("workouts")
       .select()
