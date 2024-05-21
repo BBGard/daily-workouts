@@ -2,21 +2,13 @@
  * @fileoverview Home page for the app. Displays the recommended workout for the day.
  */
 import React, { useState } from "react";
-import {
-  Box,
-  Tabs,
-  Tab,
-  Divider,
-} from "@mui/material";
+import { Box, Tabs, Tab, Divider } from "@mui/material";
 import WorkoutCard from "../Components/WorkoutCard";
 import { useGetWorkoutData } from "../hooks/useGetWorkoutData";
 
-
 const Home = () => {
- const [selectedTab, setSelectedTab] = useState(0); // 0: Workout, 1: Warmup, 2: Recovery, 3: Stretch
+  const [selectedTab, setSelectedTab] = useState(0); // 0: Workout, 1: Warmup, 2: Recovery, 3: Stretch
   const workoutData = useGetWorkoutData();
-
-
 
   // Function to toggle between the two workout schedules
   function toggleWorkoutSchedule() {
@@ -27,7 +19,6 @@ const Home = () => {
   const handleTabSelect = (event, newValue) => {
     setSelectedTab(newValue);
   };
-
 
   return (
     <>
@@ -55,52 +46,59 @@ const Home = () => {
         </Tabs>
         <Divider />
 
+        {selectedTab === 0 &&
+          (!workoutData.isLoading ? (
+            <WorkoutCard
+              size="large"
+              title="Recommended Workout"
+              workout={workoutData.recommendedWorkout}
+              incrementFunction={workoutData.incrementRecommendedWorkout}
+              hasToggle={true}
+              toggleFunction={toggleWorkoutSchedule}
+              isChecked={workoutData.usingAltSchedule}
+            />
+          ) : (
+            <WorkoutCard type="skeleton-large" />
+          ))}
 
+        {selectedTab === 1 &&
+          (!workoutData.isLoading ? (
+            <WorkoutCard
+              size="large"
+              title="Need a Warmup?"
+              workout={workoutData.recommendedWarmup}
+              incrementFunction={workoutData.incrementRecommendedWarmup}
+            />
+          ) : (
+            <WorkoutCard type="skeleton-large" />
+          ))}
 
-        {selectedTab === 0 && (
-          <WorkoutCard
-            size="large"
-            title="Recommended Workout"
-            workout={workoutData.recommendedWorkout}
-            incrementFunction={workoutData.incrementRecommendedWorkout}
-            hasToggle={true}
-            toggleFunction={toggleWorkoutSchedule}
-            isChecked={workoutData.usingAltSchedule}
-          />
-        )}
+        {selectedTab === 2 &&
+          (!workoutData.isLoading ? (
+            <WorkoutCard
+              size="large"
+              title="Time to Recover?"
+              workout={workoutData.recommendedRecovery}
+              incrementFunction={workoutData.incrementRecommendedRecovery}
+            />
+          ) : (
+            <WorkoutCard type="skeleton-large" />
+          ))}
 
-
-        {selectedTab === 1 && (
-          <WorkoutCard
-            size="large"
-            title="Need a Warmup?"
-            workout={workoutData.recommendedWarmup}
-            incrementFunction={workoutData.incrementRecommendedWarmup}
-          />
-        )}
-
-        {selectedTab === 2 && (
-          <WorkoutCard
-            size="large"
-            title="Time to Recover?"
-            workout={workoutData.recommendedRecovery}
-            incrementFunction={workoutData.incrementRecommendedRecovery}
-          />
-        )}
-
-        {selectedTab === 3 && (
-          <WorkoutCard
-            size="large"
-            title="Relax and Stretch"
-            workout={workoutData.recommendedStretch}
-            incrementFunction={workoutData.incrementRecommendedStretch}
-          />
-        )}
-
-
+        {selectedTab === 3 &&
+          (!workoutData.isLoading ? (
+            <WorkoutCard
+              size="large"
+              title="Relax and Stretch"
+              workout={workoutData.recommendedStretch}
+              incrementFunction={workoutData.incrementRecommendedStretch}
+            />
+          ) : (
+            <WorkoutCard type="skeleton-large" />
+          ))}
       </Box>
     </>
   );
-}
+};
 
 export default Home;

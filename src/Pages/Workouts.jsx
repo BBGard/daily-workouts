@@ -1,11 +1,5 @@
 import React, { useEffect } from "react";
 import {
-  // workouts,
-  // weightMuscleGroups,
-  // workoutTypes,
-  sources,
-} from "../Data/workoutData";
-import {
   Typography,
   Box,
   Button,
@@ -311,7 +305,16 @@ const Workouts = () => {
             <WorkoutCard key={workout.id} workout={workout} size="small" />
           ))
         ) : (
-          <WorkoutCard type="missing" />
+          workoutData.isLoading ? (
+          <>
+          <WorkoutCard type="skeleton-small" />
+          <WorkoutCard type="skeleton-small" />
+          <WorkoutCard type="skeleton-small" />
+          <WorkoutCard type="skeleton-small" />
+          </>
+          ) : (
+            <WorkoutCard type="missing" />
+          )
         )}
       </Box>
     </Box>

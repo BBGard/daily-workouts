@@ -24,7 +24,6 @@ const useFetchMuscleGroups = () => {
     if (stretchResponse.error) throw new Error(stretchResponse.error.message);
     if (weightResponse.error) throw new Error(weightResponse.error.message);
 
-    console.log('recoveryResponse', recoveryResponse.data);
 
     // Return the data
     return {
