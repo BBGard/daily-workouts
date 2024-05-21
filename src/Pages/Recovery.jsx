@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { workouts, recoveryMuscleGroups, sources } from "../Data/workoutData";
+// import { workouts, recoveryMuscleGroups, sources } from "../Data/workoutData";
 import {
   Typography,
   Box,
@@ -19,18 +19,18 @@ import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
 import WorkoutCard from "../Components/WorkoutCard";
+import { useGetWorkoutData } from "../hooks/useGetWorkoutData";
+
 
 const Recovery = () => {
-  // Select only recovery routines from workout data
-  const recovery = workouts.filter(
-      (workout) => workout.category.includes("Recovery")
-    );
+  // const workouts = props.workoutData.workouts;
+  const workoutData = useGetWorkoutData();
+  const recoveryMuscleGroups = workoutData.recoveryMuscleGroups;
+  const recovery = workoutData.recovery;
 
-  const [workoutsToShow, setWorkoutsToShow] = useState(
-    workouts.filter((workout) => workout.category.includes("Recovery"))
-  ); // workouts to show
+  const [workoutsToShow, setWorkoutsToShow] = useState(recovery); // workouts to show
   const [searchText, setSearchText] = useState([]); // search text
-  const [sourceSelection, setSourceSelection] = useState([]); // muscle groups
+  // const [sourceSelection, setSourceSelection] = useState([]); // muscle groups
   const [muscleGroupsSelection, setMuscleGroupsSelection] = useState([]); // muscle groups
   const [tabSelection, setTabSelection] = useState("All"); // muscle groups
 
@@ -57,15 +57,16 @@ const Recovery = () => {
         return (
           workout.name.toLowerCase().includes(searchText.toLowerCase()) ||
           workout.category.toLowerCase().includes(searchText.toLowerCase()) ||
-          workout.group.toLowerCase().includes(searchText.toLowerCase()) ||
-          workout.source.toLowerCase().includes(searchText.toLowerCase())
+          workout.group.toLowerCase().includes(searchText.toLowerCase())
+          // workout.source.toLowerCase().includes(searchText.toLowerCase())
         );
       });
     }
 
     // If no muscle groups or workout types are selected show all workouts
-    if (muscleGroupsSelection.length === 0 && searchText.length === 0 && sourceSelection.length === 0) {
-      setWorkoutsToShow(sortByScore(workouts));
+    if (muscleGroupsSelection.length === 0 && searchText.length === 0 ) {
+      // setWorkoutsToShow(sortByScore(recovery));
+      setWorkoutsToShow(recovery);
       return;
     }
 
@@ -79,17 +80,18 @@ const Recovery = () => {
     }
 
     // If sources are selected, filter workouts by source
-    if (sourceSelection.length > 0) {
-      filteredWorkouts = filteredWorkouts.filter((workout) => {
-        return sourceSelection.some((source) => {
-          return workout.source.toLowerCase().includes(source.toLowerCase());
-        });
-      });
-    }
+    // if (sourceSelection.length > 0) {
+    //   filteredWorkouts = filteredWorkouts.filter((workout) => {
+    //     return sourceSelection.some((source) => {
+    //       return workout.source.toLowerCase().includes(source.toLowerCase());
+    //     });
+    //   });
+    // }
 
 
     // Set the workouts to show
-    setWorkoutsToShow(sortByScore(filteredWorkouts));
+    // setWorkoutsToShow(sortByScore(filteredWorkouts));
+    setWorkoutsToShow(filteredWorkouts);
   };
 
   const handleMuscleChange = (event) => {
@@ -102,15 +104,15 @@ const Recovery = () => {
     );
   };
 
-  const handleSourceChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setSourceSelection(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
-  };
+  // const handleSourceChange = (event) => {
+  //   const {
+  //     target: { value },
+  //   } = event;
+  //   setSourceSelection(
+  //     // On autofill we get a stringified value.
+  //     typeof value === "string" ? value.split(",") : value
+  //   );
+  // };
 
   const handleTabClick = (event, newValue) => {
     setTabSelection(newValue);
@@ -119,7 +121,8 @@ const Recovery = () => {
       return;
     }
 
-    const sortedWorkouts = sortByScore(recovery);
+    // const sortedWorkouts = sortByScore(recovery);
+    const sortedWorkouts = recovery;
     setWorkoutsToShow(
       sortedWorkouts.filter((workout) => workout.group.includes(newValue))
     );
@@ -129,23 +132,24 @@ const Recovery = () => {
   useEffect(() => {
 
     // set the workouts to show
-    setWorkoutsToShow(sortByScore(workouts));
-  }, []);
+    // setWorkoutsToShow(sortByScore(recovery));
+    setWorkoutsToShow(recovery);
+  }, [recovery]);
 
   // Function to sort workouts by score
-  const sortByScore = (workoutList) => {
-    const recoveryList = workoutList.filter(
-      (workout) => workout.category.includes("Recovery")
-    );
-    recoveryList.forEach((workout) => {
-      workout.score = workout.rating - workout.watchCount;
-    });
+  // const sortByScore = (workoutList) => {
+  //   const recoveryList = workoutList.filter(
+  //     (workout) => workout.category.includes("Recovery")
+  //   );
+  //   recoveryList.forEach((workout) => {
+  //     workout.score = workout.rating - workout.watchCount;
+  //   });
 
-    // sort the workouts by score
-    recoveryList.sort((a, b) => (a.score > b.score ? -1 : 1));
+  //   // sort the workouts by score
+  //   recoveryList.sort((a, b) => (a.score > b.score ? -1 : 1));
 
-    return recoveryList;
-  };
+  //   return recoveryList;
+  // };
 
   return (
     <Box sx={{ my: 4 }}>
@@ -210,7 +214,7 @@ const Recovery = () => {
           </Select>
         </FormControl>
 
-        <FormControl
+        {/* <FormControl
           label="Source"
           variant="outlined"
           sx={{ marginTop: "1rem", width: "100%" }}
@@ -233,7 +237,7 @@ const Recovery = () => {
               </MenuItem>
             ))}
           </Select>
-        </FormControl>
+        </FormControl> */}
 
         <CardActions
           sx={{ justifyContent: "center", gap: "1rem", marginTop: "1rem" }}
@@ -254,7 +258,7 @@ const Recovery = () => {
               setSearchText("");
               setWorkoutsToShow(recovery);
               setTabSelection("All");
-              setSourceSelection([]);
+              // setSourceSelection([]);
             }}
             width="100%"
           >
@@ -278,9 +282,9 @@ const Recovery = () => {
           <Tab key="All" label="All" value="All" sx={{ fontWeight: "bold" }} />
           {muscleGroups.map((group) => (
             <Tab
-              key={group}
-              label={group}
-              value={group}
+              key={group.id}
+              label={group.muscle_group}
+              value={group.muscle_group}
               sx={{ fontWeight: "bold" }}
             />
           ))}
@@ -301,7 +305,17 @@ const Recovery = () => {
             <WorkoutCard key={routine.id} workout={routine} size="small" />
           ))
         ) : (
-          <WorkoutCard type="missing" />
+          workoutData.isLoading ? (
+          <>
+          <WorkoutCard type="skeleton-small" />
+          <WorkoutCard type="skeleton-small" />
+          <WorkoutCard type="skeleton-small" />
+          <WorkoutCard type="skeleton-small" />
+          </>
+          ) : (
+            <WorkoutCard type="missing" />
+          )
+
         )}
       </Box>
     </Box>

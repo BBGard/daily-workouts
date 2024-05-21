@@ -1,27 +1,39 @@
 /**
  * @fileoverview This file provides the ResponsiveAppBar component.
  */
-import * as React from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import * as React from "react";
+import { useNavigate, Link } from "react-router-dom";
 
-import {AppBar, Avatar, Box, Card, Toolbar, IconButton, Typography, Container, Button, MenuItem, Slide, Drawer, Modal} from '@mui/material';
+import {
+  AppBar,
+  Avatar,
+  Box,
+  Card,
+  Toolbar,
+  IconButton,
+  Typography,
+  Container,
+  Button,
+  MenuItem,
+  Slide,
+  Drawer,
+  Modal,
+} from "@mui/material";
 
-import MenuIcon from '@mui/icons-material/Menu';
-import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
-import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
-import WhatshotOutlinedIcon from '@mui/icons-material/WhatshotOutlined';
-import RestoreOutlinedIcon from '@mui/icons-material/RestoreOutlined';
-import HomeIcon from '@mui/icons-material/Home';
-import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
+import MenuIcon from "@mui/icons-material/Menu";
+import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
+import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
+import WhatshotOutlinedIcon from "@mui/icons-material/WhatshotOutlined";
+import RestoreOutlinedIcon from "@mui/icons-material/RestoreOutlined";
+import HomeIcon from "@mui/icons-material/Home";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
 
-import { useGetUserInfo } from '../hooks/useGetUserInfo';
+import { useGetUserInfo } from "../hooks/useGetUserInfo";
 
-import 'firebase/auth';
-import {auth} from '../Config/firebase';
-import { signOut } from 'firebase/auth';
+import { supabase } from "../Config/supabase.config";
 
-const pages = ['Workouts', 'Warmups', 'Recovery', 'Stretches'];
+const pages = ["Workouts", "Warmups", "Recovery", "Stretches"];
 
 export function ResponsiveAppBar() {
   const navigate = useNavigate();
@@ -32,9 +44,11 @@ export function ResponsiveAppBar() {
 
   // Toggle the drawer
   const toggleDrawer = (inOpen) => (event) => {
-
     // If the event is a keydown and the key is tab or shift, return
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
       return;
     }
 
@@ -50,26 +64,23 @@ export function ResponsiveAppBar() {
   // Open the logout modal
   const openLogoutModal = () => {
     setOpenLogout(true);
-  }
+  };
 
   // Close the logout modal
   const closeLogoutModal = () => {
     setOpenLogout(false);
-  }
+  };
 
   // Logout the user
-  const logoutUser = () => {
+  const logoutUser = async () => {
+    const { error } = await supabase.auth.signOut();
 
-    signOut(auth).then(() => {
-      // Remove the user cookie
-      document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      // Redirect to home page
-      navigate('/');
-    }).catch((error) => {
-      console.log(error);
-    });
-  }
-
+    if (error) {
+      console.error("Error logging out:", error.message);
+    } else {
+      console.log("User logged out successfully!");
+    }
+  };
 
   // Return the AppBar
   return (
@@ -217,8 +228,7 @@ export function ResponsiveAppBar() {
                       id="login-button"
                       variant="outlined"
                       color="info"
-                      onClick={open ? toggleDrawer(false)  : toggleDrawer(true) }
-
+                      onClick={open ? toggleDrawer(false) : toggleDrawer(true)}
                       sx={{
                         height: "50%",
                         maxHeight: "2rem",
@@ -483,13 +493,12 @@ export function ResponsiveAppBar() {
                   Log In
                 </Button>
               )}
-                  <Avatar
-                  sx={{alignSelf: "center", marginLeft: "1rem"}}
-                    alt={userInfo?.user?.name || ""}
-                    src={userInfo?.user?.photo || ""}
-                  />
+              <Avatar
+                sx={{ alignSelf: "center", marginLeft: "1rem" }}
+                alt={userInfo?.user?.name || ""}
+                src={userInfo?.user?.photo || ""}
+              />
             </Box>
-
           </Toolbar>
         </Container>
       </AppBar>

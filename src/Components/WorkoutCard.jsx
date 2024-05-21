@@ -15,7 +15,11 @@ import {
 } from "@mui/material";
 import { Skeleton, Slide } from "@mui/material";
 import notFoundImage from "../images/undraw_pilates_ltw9.svg";
-import { TimerOutlined, RunCircleOutlined, AccessibilityNewOutlined } from "@mui/icons-material";
+import {
+  TimerOutlined,
+  RunCircleOutlined,
+  AccessibilityNewOutlined,
+} from "@mui/icons-material";
 // import { FavoriteBorderRounded } from "@mui/icons-material";
 
 export function WorkoutCard(props) {
@@ -31,8 +35,7 @@ export function WorkoutCard(props) {
   const isChecked = props.isChecked ? props.isChecked : false; // boolean to determine if the toggle is checked
   const type = props.type ? props.type : "workout"; // type of card - workout, warmup, recovery, stretch, missing
 
-
-  if(type === "missing") {
+  if (type === "missing") {
     return (
       <Card
         sx={{
@@ -54,17 +57,125 @@ export function WorkoutCard(props) {
             {type === "missing" ? "Try a different search" : type}
           </Typography>
         </CardContent>
-         <CardMedia
-            component="img"
-            alt="workout video screenshot"
-            // height="190"
-            image={notFoundImage}
-          />
-
-
-
+        <CardMedia
+          component="img"
+          alt="workout video screenshot"
+          // height="190"
+          image={notFoundImage}
+        />
       </Card>
-    )
+    );
+  } else if (type === "skeleton-small") {
+    return (
+      <Card
+        sx={{
+          maxWidth: 345,
+          width: "100%",
+          margin: "1rem auto",
+        }}
+      >
+        <Skeleton
+          variant="rectangular"
+          width={345}
+          height={190}
+          animation="wave"
+        />
+        <CardContent
+          sx={{
+            textAlign: "left",
+          }}
+        >
+          <Skeleton animation="wave" height={20} width="80%" />
+          <Skeleton variant="text" width={100} sx={{ fontSize: "1rem" }} />
+          <Skeleton variant="text" width={100} sx={{ fontSize: "1rem" }} />
+        </CardContent>
+
+        <CardActions
+          sx={{
+            justifyContent: "center",
+            gap: "1rem",
+            marginBottom: "1rem",
+          }}
+        >
+          <Skeleton
+            variant="text"
+            width={100}
+            sx={{ fontSize: "2rem", margin: "0 1rem", borderRadius: "25px" }}
+          />
+        </CardActions>
+      </Card>
+    );
+  } else if (type === "skeleton-large") {
+    return (
+      <Slide
+        direction="right"
+        timeout={500}
+        in={true}
+        mountOnEnter
+        unmountOnExit
+      >
+        <Card sx={{ maxWidth: 540, margin: "0 auto", borderRadius: "0" }}>
+          <Skeleton variant="text" width="50%" sx={{ fontSize: "1.3rem", margin: "1rem auto" }} />
+          <Skeleton variant="text" width="75%" sx={{ fontSize: "1rem", margin: "1rem auto" }} />
+
+          <Skeleton
+            variant="rectangular"
+            width="100%"
+            height="400px"
+
+            animation="wave"
+          />
+          <CardContent
+            sx={{
+              textAlign: "left",
+              margin: "1rem auto",
+            }}
+          >
+            <Box sx={{ height: "5em" }}>
+              <Skeleton animation="wave" height={20} width="80%" />
+              <Divider />
+            </Box>
+            <Box sx={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+              <TimerOutlined sx={{ color: "#FF2E00" }} />
+              <Skeleton variant="text" width={100} sx={{ fontSize: "1rem" }} />
+            </Box>
+            <Box sx={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+              <RunCircleOutlined sx={{ color: "#FF2E00" }} />
+              <Skeleton variant="text" width={100} sx={{ fontSize: "1rem" }} />
+            </Box>
+            <Box sx={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+              <AccessibilityNewOutlined sx={{ color: "#FF2E00" }} />
+              <Skeleton variant="text" width={100} sx={{ fontSize: "1rem" }} />
+            </Box>
+          </CardContent>
+          <CardActions
+            sx={{
+              justifyContent: "center",
+              gap: "1rem",
+              marginBottom: "1rem",
+            }}
+          >
+            <Skeleton
+              variant="text"
+              width={100}
+              sx={{ fontSize: "2rem", margin: "0 1rem", borderRadius: "25px" }}
+            />
+            <Skeleton
+              variant="text"
+              width={100}
+              sx={{ fontSize: "2rem", margin: "0 1rem", borderRadius: "25px" }}
+            />
+          </CardActions>
+          <CardActions
+            sx={{
+              justifyContent: "center",
+              gap: "1rem",
+              padding: "1rem 0",
+            }}
+          ></CardActions>
+        </Card>
+      </Slide>
+    );
   } else if (size === "large") {
     return (
       <Slide
@@ -202,7 +313,12 @@ export function WorkoutCard(props) {
           >
             {workout ? (
               <>
-                <Button size="large" variant="outlined" color="secondary" href="/workouts">
+                <Button
+                  size="large"
+                  variant="outlined"
+                  color="secondary"
+                  href="/workouts"
+                >
                   All
                 </Button>
                 <Button
@@ -359,9 +475,7 @@ export function WorkoutCard(props) {
         </CardActions>
       </Card>
     );
-  }
-
-   else {
+  } else {
     return (
       <>
         <h1>Error</h1>

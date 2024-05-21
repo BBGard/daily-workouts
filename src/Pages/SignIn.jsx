@@ -1,9 +1,6 @@
-
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import 'firebase/auth';
-import {auth, provider} from '../Config/firebase';
-import { signInWithPopup } from 'firebase/auth';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "../Config/supabase.config";
 import {
   Typography,
   Box,
@@ -13,62 +10,28 @@ import {
   CardContent,
   CardMedia,
 } from "@mui/material";
-import fitnessImage from '../images/undraw_fitness_stats..svg';
-import { getFirestore, collection, doc, getDoc, setDoc } from 'firebase/firestore';
+import fitnessImage from "../images/undraw_fitness_stats..svg";
 
-export const Auth = () => {
-
+export const SignIn = () => {
   const navigate = useNavigate();
 
-  // Sign in with Google
   const signInWithGoogle = async () => {
     try {
-      // console.log("attempt sign in");
-      // console.log("auth: ", auth);
-      const results = await signInWithPopup(auth, provider);
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+      });
 
-      // Save login cookies
-      const user = results.user;
-      const token = user.accessToken;
-      const userCookie = {
-        name: user.displayName,
-        email: user.email,
-        photo: user.photoURL,
-        token: token,
-      };
-      document.cookie = `user=${JSON.stringify(userCookie)}; max-age=3600; path=/`;
-
-      console.log("Signed in with Google");
-
-      // Setup user in database
-      const db = getFirestore();
-      const usersRef = collection(db, 'users');
-      const userRef = doc(usersRef, user.uid);
-      const userDoc = await getDoc(userRef);
-      if (!userDoc.exists()) {
-        await setDoc(userRef, {
-          name: user.displayName,
-          email: user.email,
-          photo: user.photoURL,
-          token: token,
-          watchCounts: [],
-          ratings: [],
-        });
+      if (error) {
+        throw error;
       }
 
-      // Console log the user
-      // console.log(user);
-
-      // Redirect to home page
-      navigate('/');
-
-      // console.log(results);
+      // Redirect to home page or any other page upon successful sign-in
+      navigate("/");
+    } catch (error) {
+      console.error("Error signing in with Google:", error.message);
     }
-    catch(error) {
-      console.log(error);
-    }
+  };
 
-  }
   return (
     <Box sx={{ my: 4 }}>
       <Card
@@ -134,7 +97,6 @@ export const Auth = () => {
       </Card>
     </Box>
   );
-}
+};
 
-
-export default Auth;
+export default SignIn;
