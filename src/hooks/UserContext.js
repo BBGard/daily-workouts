@@ -51,6 +51,7 @@ export const UserProvider = ({ children }) => {
         name: null,
         photo: null,
         email: null,
+        id: null,
         token: null,
       };
     } else {
@@ -58,6 +59,7 @@ export const UserProvider = ({ children }) => {
         name: session.user?.user_metadata?.full_name || null,
         photo: session.user?.user_metadata?.avatar_url || null,
         email: session.user?.email || null,
+        id: session.user?.id || null,
         token: session.access_token || null,
       };
     }

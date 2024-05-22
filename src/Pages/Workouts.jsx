@@ -19,16 +19,21 @@ import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
 import WorkoutCard from "../Components/WorkoutCard";
 import { useGetWorkoutData } from "../hooks/useGetWorkoutData";
+import { useUser } from "../hooks/UserContext";
 
 
 
 const Workouts = () => {
   const workoutData = useGetWorkoutData();
+  const userData = useUser();
+
+  // console.log("User: ", userData.user);
   const [workoutsToShow, setWorkoutsToShow] = useState(workoutData.workouts); // workouts to show
   const [searchText, setSearchText] = useState([]); // search text
   const [muscleGroupsSelection, setMuscleGroupsSelection] = useState([]); // muscle groups
   const [workoutTypesSelection, setWorkoutTypesSelection] = useState([]); // workout types
   const [muscleGroupTabSelection, setMuscleGroupTabSelection] = useState("All"); // muscle groups
+
 
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
@@ -135,7 +140,8 @@ const Workouts = () => {
 
   // TODO Function to sort workouts by score
   const sortByScore = (workoutList) => {
-    return workoutList;
+    if(!userData.user) return workoutList;
+
     // const fullList = workoutList.filter(
     //   (workout) =>
     //     workout.category.includes("Recovery") ||

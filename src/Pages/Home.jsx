@@ -55,6 +55,7 @@ const Home = () => {
               incrementFunction={workoutData.incrementRecommendedWorkout}
               hasToggle={true}
               toggleFunction={toggleWorkoutSchedule}
+              watchFunction={workoutData.handleWatchWorkout}
               isChecked={workoutData.usingAltSchedule}
             />
           ) : (
@@ -68,6 +69,8 @@ const Home = () => {
               title="Need a Warmup?"
               workout={workoutData.recommendedWarmup}
               incrementFunction={workoutData.incrementRecommendedWarmup}
+              watchFunction={workoutData.handleWatchWorkout}
+
             />
           ) : (
             <WorkoutCard type="skeleton-large" />
@@ -80,6 +83,8 @@ const Home = () => {
               title="Time to Recover?"
               workout={workoutData.recommendedRecovery}
               incrementFunction={workoutData.incrementRecommendedRecovery}
+              watchFunction={workoutData.handleWatchWorkout}
+
             />
           ) : (
             <WorkoutCard type="skeleton-large" />
@@ -92,6 +97,8 @@ const Home = () => {
               title="Relax and Stretch"
               workout={workoutData.recommendedStretch}
               incrementFunction={workoutData.incrementRecommendedStretch}
+              watchFunction={workoutData.handleWatchWorkout}
+
             />
           ) : (
             <WorkoutCard type="skeleton-large" />

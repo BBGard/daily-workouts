@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import useFetchWorkouts from "./useFetchWorkouts";
 import useFetchMuscleGroups from "./useFetchMuscleGroups";
-
+import useFetchUserWorkouts from "./useFetchUserWorkouts";
+import useUpdateUserWorkouts from "./useUpdateUserWorkouts";
+import { useUser } from "./UserContext";
 
 
 export const useGetWorkoutData = () => {
@@ -10,14 +12,30 @@ export const useGetWorkoutData = () => {
 
   // Get the muscle group data from the database
   const { data: muscleGroups } = useFetchMuscleGroups();
-  const { recoveryMuscleGroups, weightMuscleGroups, stretchMuscleGroups } = muscleGroups || { recoveryMuscleGroups: [], weightMuscleGroups: [], stretchMuscleGroups: [] };
+  const { recoveryMuscleGroups, weightMuscleGroups, stretchMuscleGroups } =
+    muscleGroups || {
+      recoveryMuscleGroups: [],
+      weightMuscleGroups: [],
+      stretchMuscleGroups: [],
+    };
+
+  // Get user data
+  const { user } = useUser();
+  const { data: userWorkouts } = useFetchUserWorkouts();
+  const updateUserWorkouts = useUpdateUserWorkouts(); // Get the function to update the user workouts
+
+  console.log("User workouts in useGetWorkoutData: ", userWorkouts);
 
   // Select unique categories from the workouts
   const workoutTypes = workouts
-  ? [...new Set(workouts
-      .map(workout => workout.category)
-      .filter(category => !category.includes(',')))]
-  : [];
+    ? [
+        ...new Set(
+          workouts
+            .map((workout) => workout.category)
+            .filter((category) => !category.includes(","))
+        ),
+      ]
+    : [];
 
   // Initialize workoutSchedule - note: Sunday is index 0
   const workoutSchedule = [
@@ -112,25 +130,60 @@ export const useGetWorkoutData = () => {
     useState(workoutSchedule);
   const [usingAltSchedule, setUsingAltSchedule] = useState(false);
 
-
-
   /////////////////////////////////////////////////////////////////////
   // Functions
   /////////////////////////////////////////////////////////////////////
 
+  // Handle watching a workout
+  const handleWatchWorkout = (workout) => {
+    window.open(workout.link, "_blank");
+
+    // If a user is logged in
+    if (user && user.id) {
+      console.log("user in handleWatchWorkout: ", user);
+      // If the workout exists in the user workouts update the count and last watched date
+      if (
+        userWorkouts &&
+        userWorkouts.find(
+          (userWorkout) => userWorkout.workout_id === workout.id
+        )
+      ) {
+        console.log("Update the user workout!");
+        // Update the user workouts
+        updateUserWorkouts.mutate({
+          user_id: user.id,
+          workout_id: workout.id,
+          workout_count:
+            userWorkouts.find(
+              (userWorkout) => userWorkout.workout_id === workout.id
+            ).workout_count + 1,
+          workout_last_watched: new Date().toISOString(),
+        });
+      } else {
+        console.log("Add the user workout!");
+        // Add the workout to the user workouts
+        updateUserWorkouts.mutate({
+          user_id: user.id,
+          workout_id: workout.id,
+          workout_count: 1,
+          workout_last_watched: new Date().toISOString(),
+        });
+      }
+    }
+  };
 
   // If the current workout schedule is the default schedule, use the alternative schedule
   const switchCurrentWorkoutSchedule = () => {
-
     // Compare the current workout schedule to the default schedule - using JSON.stringify otherwise it will compare the objects reference
-    if (JSON.stringify(currentWorkoutSchedule) === JSON.stringify(workoutSchedule)) {
+    if (
+      JSON.stringify(currentWorkoutSchedule) === JSON.stringify(workoutSchedule)
+    ) {
       setCurrentWorkoutSchedule(workoutScheduleAlt);
       setUsingAltSchedule(true);
     } else {
       setCurrentWorkoutSchedule(workoutSchedule);
       setUsingAltSchedule(false);
     }
-
   };
 
   // Increment the recommended workout
@@ -182,10 +235,8 @@ export const useGetWorkoutData = () => {
   /////////////////////////////////////////////////////////////////////
   // On mount, load all workouts, generate today's workouts, and set the recommended workout
   useEffect(() => {
-
     // Generate today's workouts and recommended workout based on schedule
     const generateTodaysWorkouts = () => {
-
       // setWorkouts(data);
 
       setWarmups(
@@ -252,9 +303,7 @@ export const useGetWorkoutData = () => {
         workouts.filter((workout) => workout.category.includes("Warm Up"))[0]
       );
       setRecommendedRecovery(
-        workouts.filter((workout) =>
-          workout.category.includes("Recovery")
-        )[0]
+        workouts.filter((workout) => workout.category.includes("Recovery"))[0]
       );
       setRecommendedStretch(
         workouts.filter((workout) => workout.category.includes("Stretch"))[0]
@@ -267,7 +316,7 @@ export const useGetWorkoutData = () => {
     };
 
     // Generate today's workouts and recommended workout
-    if(workouts) {
+    if (workouts) {
       generateTodaysWorkouts(workouts);
     }
 
@@ -309,6 +358,8 @@ export const useGetWorkoutData = () => {
     switchCurrentWorkoutSchedule,
     incrementRecommendedWorkout,
     usingAltSchedule,
+    userWorkouts,
+    handleWatchWorkout,
   };
 
   return workoutData;
