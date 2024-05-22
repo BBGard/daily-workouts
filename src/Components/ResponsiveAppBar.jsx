@@ -30,22 +30,13 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
 import { useUser } from '../hooks/UserContext';
 
-
-// import { useGetUserInfo } from "../hooks/useGetUserInfo";
-// import useFetchUser from "../hooks/useFetchUser";
-
-// import { supabase } from "../Config/supabase.config";
-
 const pages = ["Workouts", "Warmups", "Recovery", "Stretches"];
 
 export function ResponsiveAppBar(props) {
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const currentPage = window.location.pathname;
-  // const user = props.user;
   const {user, signOut} = useUser();
-  // const logoutUser = props.signOut;
-
   const [openLogout, setOpenLogout] = React.useState(false);
 
   // Toggle the drawer
@@ -76,17 +67,6 @@ export function ResponsiveAppBar(props) {
   const closeLogoutModal = () => {
     setOpenLogout(false);
   };
-
-  // // Logout the user
-  // const logoutUser = async () => {
-  //   const { error } = await supabase.auth.signOut();
-
-  //   if (error) {
-  //     console.error("Error logging out:", error.message);
-  //   } else {
-  //     console.log("User logged out successfully!");
-  //   }
-  // };
 
   // Return the AppBar
   return (
