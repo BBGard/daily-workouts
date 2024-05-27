@@ -4,6 +4,7 @@ import useFetchMuscleGroups from "./useFetchMuscleGroups";
 import useFetchUserWorkouts from "./useFetchUserWorkouts";
 import useUpdateUserWorkouts from "./useUpdateUserWorkouts";
 import { useUser } from "./UserContext";
+import { workoutSchedule, workoutScheduleAlt } from "../Data/workoutData";
 
 
 export const useGetWorkoutData = () => {
@@ -19,13 +20,6 @@ export const useGetWorkoutData = () => {
       stretchMuscleGroups: [],
     };
 
-  // Get user data
-  const { user } = useUser();
-  const { data: userWorkouts } = useFetchUserWorkouts();
-  const updateUserWorkouts = useUpdateUserWorkouts(); // Get the function to update the user workouts
-
-  console.log("User workouts in useGetWorkoutData: ", userWorkouts);
-
   // Select unique categories from the workouts
   const workoutTypes = workouts
     ? [
@@ -37,83 +31,11 @@ export const useGetWorkoutData = () => {
       ]
     : [];
 
-  // Initialize workoutSchedule - note: Sunday is index 0
-  const workoutSchedule = [
-    {
-      day: "Sunday",
-      group: "Full Body",
-      category: "Recovery",
-    },
-    {
-      day: "Monday",
-      group: "Legs",
-      category: "Weights",
-    },
-    {
-      day: "Tuesday",
-      group: "Chest",
-      category: "Weights",
-    },
-    {
-      day: "Wednesday",
-      group: "Back",
-      category: "Weights",
-    },
-    {
-      day: "Thursday",
-      group: "Shoulders",
-      category: "Weights",
-    },
-    {
-      day: "Friday",
-      group: "Arms",
-      category: "Weights",
-    },
-    {
-      day: "Saturday",
-      group: "Abs",
-      category: "Weights",
-    },
-  ];
-
-  // Alternative workoutSchedule - full body followed by recovery
-  const workoutScheduleAlt = [
-    {
-      day: "Sunday",
-      group: "Full Body",
-      category: "Recovery",
-    },
-    {
-      day: "Monday",
-      group: "Full Body",
-      category: "Weights",
-    },
-    {
-      day: "Tuesday",
-      group: "Full Body",
-      category: "Weights",
-    },
-    {
-      day: "Wednesday",
-      group: "Full Body",
-      category: "Recovery",
-    },
-    {
-      day: "Thursday",
-      group: "Full Body",
-      category: "Weights",
-    },
-    {
-      day: "Friday",
-      group: "Full Body",
-      category: "Weights",
-    },
-    {
-      day: "Saturday",
-      group: "Full Body",
-      category: "Weights",
-    },
-  ];
+  // Get user data
+  const { user } = useUser();
+  // const { data: userWorkouts } = useFetchUserWorkouts();
+  const { data: userWorkouts, refetch } = useFetchUserWorkouts(user?.id);
+  const updateUserWorkouts = useUpdateUserWorkouts(); // Get the function to update the user workouts
 
   /////////////////////////////////////////////////////////////////////
   // State variables
@@ -364,3 +286,45 @@ export const useGetWorkoutData = () => {
 
   return workoutData;
 };
+
+// // Function to setup user data
+// export async function setupUserData(client, data) {
+//   console.log("Inside setupUser function");
+
+//   // Get the existing user workouts from the database
+//   const existingUserWorkouts = await client
+//     .from("user_workouts")
+//     .select()
+//     // .eq("user_id", data.user_id)
+//     .then((response) => response.data);
+
+//     console.log("existingUserWorkouts: ", existingUserWorkouts);
+
+//   const existingWorkoutIds = existingUserWorkouts.map((workout) => workout.workout_id);
+
+//   console.log("existingWorkoutIds: ", existingWorkoutIds);
+
+//   // Filter out workouts that already exist in the database
+//   const newUserWorkouts = data.workouts
+//     .filter((workout) => !existingWorkoutIds.includes(workout.id))
+//     .map((workout) => ({
+//       user_id: data.user_id,
+//       workout_id: workout.id,
+//       workout_count: 0,
+//       workout_rating: 0,
+//       workout_last_watched: new Date().toISOString(),
+//     }));
+
+//   if (newUserWorkouts.length > 0) {
+//     // Insert the new user_workouts records into the database
+//     console.log("Adding new workouts for user_id:", data.user_id);
+//     console.log("newUserWorkouts: ", newUserWorkouts);
+//     // return await client
+//     //   .from("user_workouts")
+//     //   .insert(newUserWorkouts)
+//     //   .then((response) => response.data);
+//   } else {
+//     console.log("No new workouts to add for user_id:", data.user_id);
+//     return [];
+//   }
+// }
