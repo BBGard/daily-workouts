@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import {
   Typography,
   Box,
@@ -33,7 +33,6 @@ const Workouts = () => {
   const [muscleGroupsSelection, setMuscleGroupsSelection] = useState([]); // muscle groups
   const [workoutTypesSelection, setWorkoutTypesSelection] = useState([]); // workout types
   const [muscleGroupTabSelection, setMuscleGroupTabSelection] = useState("All"); // muscle groups
-
 
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
@@ -132,15 +131,12 @@ const Workouts = () => {
     );
   };
 
-  // sort routines by score on each load
-  useEffect(() => {
-    // set the workouts to show
-    setWorkoutsToShow(sortByScore(workoutData.workouts));
-  }, [workoutData.workouts]);
+
 
   // TODO Function to sort workouts by score
-  const sortByScore = (workoutList) => {
+  const sortByScore = useCallback((workoutList) => {
     if(!userData.user) return workoutList;
+    return workoutList;
 
     // const fullList = workoutList.filter(
     //   (workout) =>
@@ -157,7 +153,13 @@ const Workouts = () => {
     // fullList.sort((a, b) => (a.score > b.score ? -1 : 1));
 
     // return fullList;
-  };
+  }, []);
+
+  // sort routines by score on each load
+  useEffect(() => {
+    // set the workouts to show
+    setWorkoutsToShow(sortByScore(workoutData.workouts));
+  }, [workoutData.workouts, sortByScore]);
 
 
   return (
@@ -217,7 +219,11 @@ const Workouts = () => {
           >
             {workoutData.weightMuscleGroups.map((group) => (
               <MenuItem key={group.id} value={group.muscle_group}>
-                <Checkbox checked={muscleGroupsSelection.indexOf(group.muscle_group) > -1} />
+                <Checkbox
+                  checked={
+                    muscleGroupsSelection.indexOf(group.muscle_group) > -1
+                  }
+                />
                 <ListItemText primary={group.muscle_group} />
               </MenuItem>
             ))}
@@ -243,7 +249,6 @@ const Workouts = () => {
             ))}
           </Select>
         </FormControl>
-
 
         <CardActions
           sx={{ justifyContent: "center", gap: "1rem", marginTop: "1rem" }}
@@ -291,7 +296,7 @@ const Workouts = () => {
               key={type.id}
               label={type.muscle_group}
               value={type.muscle_group}
-              sx={{ fontWeight: "bold", }}
+              sx={{ fontWeight: "bold" }}
             />
           ))}
         </Tabs>
@@ -308,19 +313,22 @@ const Workouts = () => {
       >
         {workoutsToShow && workoutsToShow.length > 0 ? (
           workoutsToShow.map((workout) => (
-            <WorkoutCard key={workout.id} workout={workout} size="small" />
+            <WorkoutCard
+              key={workout.id}
+              workout={workout}
+              size="small"
+              watchFunction={workoutData.handleWatchWorkout}
+            />
           ))
-        ) : (
-          workoutData.isLoading ? (
+        ) : workoutData.isLoading ? (
           <>
-          <WorkoutCard type="skeleton-small" />
-          <WorkoutCard type="skeleton-small" />
-          <WorkoutCard type="skeleton-small" />
-          <WorkoutCard type="skeleton-small" />
+            <WorkoutCard type="skeleton-small" />
+            <WorkoutCard type="skeleton-small" />
+            <WorkoutCard type="skeleton-small" />
+            <WorkoutCard type="skeleton-small" />
           </>
-          ) : (
-            <WorkoutCard type="missing" />
-          )
+        ) : (
+          <WorkoutCard type="missing" />
         )}
       </Box>
     </Box>

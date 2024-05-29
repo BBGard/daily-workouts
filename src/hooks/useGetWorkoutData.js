@@ -2,14 +2,19 @@ import { useEffect, useState } from "react";
 import useFetchWorkouts from "./useFetchWorkouts";
 import useFetchMuscleGroups from "./useFetchMuscleGroups";
 import useFetchUserWorkouts from "./useFetchUserWorkouts";
-import useUpdateUserWorkouts from "./useUpdateUserWorkouts";
+// import useUpdateUserWorkouts from "./useUpdateUserWorkouts";
 import { useUser } from "./UserContext";
 import { workoutSchedule, workoutScheduleAlt } from "../Data/workoutData";
+
+import useSupabase from "./useSupabase";
 
 
 export const useGetWorkoutData = () => {
   // Get the workout data from the database
   const { data: workouts, isLoading, isError } = useFetchWorkouts();
+
+
+  const client = useSupabase();
 
   // Get the muscle group data from the database
   const { data: muscleGroups } = useFetchMuscleGroups();
@@ -35,7 +40,7 @@ export const useGetWorkoutData = () => {
   const { user } = useUser();
   // const { data: userWorkouts } = useFetchUserWorkouts();
   const { data: userWorkouts, refetch } = useFetchUserWorkouts(user?.id);
-  const updateUserWorkouts = useUpdateUserWorkouts(); // Get the function to update the user workouts
+  // const updateUserWorkouts = useUpdateUserWorkouts(); // Get the function to update the user workouts
 
   /////////////////////////////////////////////////////////////////////
   // State variables
@@ -57,12 +62,16 @@ export const useGetWorkoutData = () => {
   /////////////////////////////////////////////////////////////////////
 
   // Handle watching a workout
-  const handleWatchWorkout = (workout) => {
+  const handleWatchWorkout = async (workout) => {
     window.open(workout.link, "_blank");
 
     // If a user is logged in
     if (user && user.id) {
-      console.log("user in handleWatchWorkout: ", user);
+      // console.log("user in handleWatchWorkout: ", user);
+      // console.log("workout in handleWatchWorkout: ", workout);
+      console.log("User workouts: ", userWorkouts);
+      // console.log("userWorkouts.find: ", userWorkouts.find( (userWorkout) => userWorkout.workout_id === workout.id));
+
       // If the workout exists in the user workouts update the count and last watched date
       if (
         userWorkouts &&
@@ -71,25 +80,50 @@ export const useGetWorkoutData = () => {
         )
       ) {
         console.log("Update the user workout!");
+        return await client
+          .from("user_workouts")
+          .update({
+            workout_count:
+              userWorkouts.find(
+                (userWorkout) => userWorkout.workout_id === workout.id
+              ).workout_count + 1,
+            workout_last_watched: new Date().toISOString(),
+          })
+          .match({ workout_id: workout.id, user_id: user.id })
+          .then((response) => response.data);
+
+
         // Update the user workouts
-        updateUserWorkouts.mutate({
-          user_id: user.id,
-          workout_id: workout.id,
-          workout_count:
-            userWorkouts.find(
-              (userWorkout) => userWorkout.workout_id === workout.id
-            ).workout_count + 1,
-          workout_last_watched: new Date().toISOString(),
-        });
+        // updateUserWorkouts.mutate({
+        //   user_id: user.id,
+        //   workout_id: workout.id,
+        //   workout_count:
+        //     userWorkouts.find(
+        //       (userWorkout) => userWorkout.workout_id === workout.id
+        //     ).workout_count + 1,
+        //   workout_last_watched: new Date().toISOString(),
+        // });
       } else {
         console.log("Add the user workout!");
+        return await client
+          .from("user_workouts")
+          .insert({
+            user_id: user.id,
+            workout_id: workout.id,
+            workout_count: 1,
+            workout_rating: 0,
+            workout_last_watched: new Date().toISOString(),
+          })
+          .then((response) => response.data);
+
+
         // Add the workout to the user workouts
-        updateUserWorkouts.mutate({
-          user_id: user.id,
-          workout_id: workout.id,
-          workout_count: 1,
-          workout_last_watched: new Date().toISOString(),
-        });
+        // updateUserWorkouts.mutate({
+        //   user_id: user.id,
+        //   workout_id: workout.id,
+        //   workout_count: 1,
+        //   workout_last_watched: new Date().toISOString(),
+        // });
       }
     }
   };
@@ -257,6 +291,7 @@ export const useGetWorkoutData = () => {
   }, [currentWorkoutSchedule, workouts]);
 
   const workoutData = {
+    workouts,
     isLoading,
     isError,
     recommendedWorkout,
@@ -269,7 +304,6 @@ export const useGetWorkoutData = () => {
     recommendedStretch,
     currentWorkoutSchedule,
     workoutScheduleAlt,
-    workouts,
     recoveryMuscleGroups,
     weightMuscleGroups,
     stretchMuscleGroups,

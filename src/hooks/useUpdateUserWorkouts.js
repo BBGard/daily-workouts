@@ -10,6 +10,8 @@ export async function updateUserWorkoutsByUserId(
     .match({ user_id: data.user_id })
     .then((response) => response.data);
 
+
+
 }
 
 const useUpdateUserWorkouts = () => {
@@ -20,6 +22,8 @@ const useUpdateUserWorkouts = () => {
     return updateUserWorkoutsByUserId(client, data).then(
       (response) => response.data
     );
+
+
 
     // return await client
     //   .from("user_workouts")

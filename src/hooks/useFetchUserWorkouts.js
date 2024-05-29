@@ -34,12 +34,14 @@ const useFetchUserWorkouts = (userId) => {
   const client = useSupabase();
   const queryKey = ["user_workouts", userId];
 
+  // console.log("userId in useFetchUserWorkouts", userId);
+
   const queryFn = async () => {
     if (!userId) return null;
     return await client
       .from("user_workouts")
       .select()
-      .eq("user_id", userId)
+      // .eq("user_id", userId)
       .then((response) => response.data);
   };
 
