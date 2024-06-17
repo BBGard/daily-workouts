@@ -15,6 +15,8 @@ export const useGetUserInfo = () => {
       try {
         const { data: session } = await client.auth.getSession(); // Get session data
         setSession(session); // Set session state
+
+        console.log("Heres the session: ", session);
       } catch (error) {
         console.error("Error fetching session:", error);
       }

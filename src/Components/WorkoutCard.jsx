@@ -20,7 +20,6 @@ import {
   RunCircleOutlined,
   AccessibilityNewOutlined,
 } from "@mui/icons-material";
-// import { FavoriteBorderRounded } from "@mui/icons-material";
 
 export function WorkoutCard(props) {
   const workout = props.workout; // workout object - must contain name, duration, link, thumbnail
@@ -28,6 +27,7 @@ export function WorkoutCard(props) {
   // const subtitle = props.subtitle; // subtitle of the card - usually the type of workout
   const size = props.size ? props.size : "small"; // size of the card - large or small
   const incrementFunction = props.incrementFunction; // function to increment the workout
+  const handleWatchWorkout = props.watchFunction; // function to watch the workout
   const hasToggle = props.hasToggle ? props.hasToggle : false; // boolean to determine if the card has a toggle button
   const toggleFunction = props.toggleFunction
     ? props.toggleFunction
@@ -334,9 +334,10 @@ export function WorkoutCard(props) {
                   size="large"
                   variant="contained"
                   color="secondary"
-                  onClick={() => {
-                    window.open(workout.link, "_blank");
-                  }}
+                  // onClick={() => {
+                  //   window.open(workout.link, "_blank");
+                  // }}
+                  onClick={() => {handleWatchWorkout(workout)}}
                   width="100%"
                 >
                   Watch
@@ -381,9 +382,10 @@ export function WorkoutCard(props) {
             alt="workout video screenshot"
             height="190"
             image={workout.thumbnail}
-            onClick={() => {
-              window.open(workout.link, "_blank");
-            }}
+            // onClick={() => {
+            //   window.open(workout.link, "_blank");
+            // }}
+            onClick={() => {handleWatchWorkout(workout)}}
             sx={{
               cursor: "pointer",
             }}
@@ -459,9 +461,10 @@ export function WorkoutCard(props) {
             <Button
               variant="contained"
               color="secondary"
-              onClick={() => {
-                window.open(workout.link, "_blank");
-              }}
+              // onClick={() => {
+              //   window.open(workout.link, "_blank");
+              // }}
+              onClick={() => {handleWatchWorkout(workout)}}
               width="100%"
             >
               Watch

@@ -1,101 +1,46 @@
 import { useEffect, useState } from "react";
 import useFetchWorkouts from "./useFetchWorkouts";
 import useFetchMuscleGroups from "./useFetchMuscleGroups";
+import useFetchUserWorkouts from "./useFetchUserWorkouts";
+// import useUpdateUserWorkouts from "./useUpdateUserWorkouts";
+import { useUser } from "./UserContext";
+import { workoutSchedule, workoutScheduleAlt } from "../Data/workoutData";
 
+import useSupabase from "./useSupabase";
 
 
 export const useGetWorkoutData = () => {
   // Get the workout data from the database
   const { data: workouts, isLoading, isError } = useFetchWorkouts();
 
+
+  const client = useSupabase();
+
   // Get the muscle group data from the database
   const { data: muscleGroups } = useFetchMuscleGroups();
-  const { recoveryMuscleGroups, weightMuscleGroups, stretchMuscleGroups } = muscleGroups || { recoveryMuscleGroups: [], weightMuscleGroups: [], stretchMuscleGroups: [] };
+  const { recoveryMuscleGroups, weightMuscleGroups, stretchMuscleGroups } =
+    muscleGroups || {
+      recoveryMuscleGroups: [],
+      weightMuscleGroups: [],
+      stretchMuscleGroups: [],
+    };
 
   // Select unique categories from the workouts
   const workoutTypes = workouts
-  ? [...new Set(workouts
-      .map(workout => workout.category)
-      .filter(category => !category.includes(',')))]
-  : [];
+    ? [
+        ...new Set(
+          workouts
+            .map((workout) => workout.category)
+            .filter((category) => !category.includes(","))
+        ),
+      ]
+    : [];
 
-  // Initialize workoutSchedule - note: Sunday is index 0
-  const workoutSchedule = [
-    {
-      day: "Sunday",
-      group: "Full Body",
-      category: "Recovery",
-    },
-    {
-      day: "Monday",
-      group: "Legs",
-      category: "Weights",
-    },
-    {
-      day: "Tuesday",
-      group: "Chest",
-      category: "Weights",
-    },
-    {
-      day: "Wednesday",
-      group: "Back",
-      category: "Weights",
-    },
-    {
-      day: "Thursday",
-      group: "Shoulders",
-      category: "Weights",
-    },
-    {
-      day: "Friday",
-      group: "Arms",
-      category: "Weights",
-    },
-    {
-      day: "Saturday",
-      group: "Abs",
-      category: "Weights",
-    },
-  ];
-
-  // Alternative workoutSchedule - full body followed by recovery
-  const workoutScheduleAlt = [
-    {
-      day: "Sunday",
-      group: "Full Body",
-      category: "Recovery",
-    },
-    {
-      day: "Monday",
-      group: "Full Body",
-      category: "Weights",
-    },
-    {
-      day: "Tuesday",
-      group: "Full Body",
-      category: "Weights",
-    },
-    {
-      day: "Wednesday",
-      group: "Full Body",
-      category: "Recovery",
-    },
-    {
-      day: "Thursday",
-      group: "Full Body",
-      category: "Weights",
-    },
-    {
-      day: "Friday",
-      group: "Full Body",
-      category: "Weights",
-    },
-    {
-      day: "Saturday",
-      group: "Full Body",
-      category: "Weights",
-    },
-  ];
+  // Get user data
+  const { user } = useUser();
+  // const { data: userWorkouts } = useFetchUserWorkouts();
+  const { data: userWorkouts, refetch } = useFetchUserWorkouts(user?.id);
+  // const updateUserWorkouts = useUpdateUserWorkouts(); // Get the function to update the user workouts
 
   /////////////////////////////////////////////////////////////////////
   // State variables
@@ -112,25 +57,89 @@ export const useGetWorkoutData = () => {
     useState(workoutSchedule);
   const [usingAltSchedule, setUsingAltSchedule] = useState(false);
 
-
-
   /////////////////////////////////////////////////////////////////////
   // Functions
   /////////////////////////////////////////////////////////////////////
 
+  // Handle watching a workout
+  const handleWatchWorkout = async (workout) => {
+    window.open(workout.link, "_blank");
+
+    // If a user is logged in
+    if (user && user.id) {
+      // console.log("user in handleWatchWorkout: ", user);
+      // console.log("workout in handleWatchWorkout: ", workout);
+      console.log("User workouts: ", userWorkouts);
+      // console.log("userWorkouts.find: ", userWorkouts.find( (userWorkout) => userWorkout.workout_id === workout.id));
+
+      // If the workout exists in the user workouts update the count and last watched date
+      if (
+        userWorkouts &&
+        userWorkouts.find(
+          (userWorkout) => userWorkout.workout_id === workout.id
+        )
+      ) {
+        console.log("Update the user workout!");
+        return await client
+          .from("user_workouts")
+          .update({
+            workout_count:
+              userWorkouts.find(
+                (userWorkout) => userWorkout.workout_id === workout.id
+              ).workout_count + 1,
+            workout_last_watched: new Date().toISOString(),
+          })
+          .match({ workout_id: workout.id, user_id: user.id })
+          .then((response) => response.data);
+
+
+        // Update the user workouts
+        // updateUserWorkouts.mutate({
+        //   user_id: user.id,
+        //   workout_id: workout.id,
+        //   workout_count:
+        //     userWorkouts.find(
+        //       (userWorkout) => userWorkout.workout_id === workout.id
+        //     ).workout_count + 1,
+        //   workout_last_watched: new Date().toISOString(),
+        // });
+      } else {
+        console.log("Add the user workout!");
+        return await client
+          .from("user_workouts")
+          .insert({
+            user_id: user.id,
+            workout_id: workout.id,
+            workout_count: 1,
+            workout_rating: 0,
+            workout_last_watched: new Date().toISOString(),
+          })
+          .then((response) => response.data);
+
+
+        // Add the workout to the user workouts
+        // updateUserWorkouts.mutate({
+        //   user_id: user.id,
+        //   workout_id: workout.id,
+        //   workout_count: 1,
+        //   workout_last_watched: new Date().toISOString(),
+        // });
+      }
+    }
+  };
 
   // If the current workout schedule is the default schedule, use the alternative schedule
   const switchCurrentWorkoutSchedule = () => {
-
     // Compare the current workout schedule to the default schedule - using JSON.stringify otherwise it will compare the objects reference
-    if (JSON.stringify(currentWorkoutSchedule) === JSON.stringify(workoutSchedule)) {
+    if (
+      JSON.stringify(currentWorkoutSchedule) === JSON.stringify(workoutSchedule)
+    ) {
       setCurrentWorkoutSchedule(workoutScheduleAlt);
       setUsingAltSchedule(true);
     } else {
       setCurrentWorkoutSchedule(workoutSchedule);
       setUsingAltSchedule(false);
     }
-
   };
 
   // Increment the recommended workout
@@ -182,10 +191,8 @@ export const useGetWorkoutData = () => {
   /////////////////////////////////////////////////////////////////////
   // On mount, load all workouts, generate today's workouts, and set the recommended workout
   useEffect(() => {
-
     // Generate today's workouts and recommended workout based on schedule
     const generateTodaysWorkouts = () => {
-
       // setWorkouts(data);
 
       setWarmups(
@@ -252,9 +259,7 @@ export const useGetWorkoutData = () => {
         workouts.filter((workout) => workout.category.includes("Warm Up"))[0]
       );
       setRecommendedRecovery(
-        workouts.filter((workout) =>
-          workout.category.includes("Recovery")
-        )[0]
+        workouts.filter((workout) => workout.category.includes("Recovery"))[0]
       );
       setRecommendedStretch(
         workouts.filter((workout) => workout.category.includes("Stretch"))[0]
@@ -267,7 +272,7 @@ export const useGetWorkoutData = () => {
     };
 
     // Generate today's workouts and recommended workout
-    if(workouts) {
+    if (workouts) {
       generateTodaysWorkouts(workouts);
     }
 
@@ -286,6 +291,7 @@ export const useGetWorkoutData = () => {
   }, [currentWorkoutSchedule, workouts]);
 
   const workoutData = {
+    workouts,
     isLoading,
     isError,
     recommendedWorkout,
@@ -298,7 +304,6 @@ export const useGetWorkoutData = () => {
     recommendedStretch,
     currentWorkoutSchedule,
     workoutScheduleAlt,
-    workouts,
     recoveryMuscleGroups,
     weightMuscleGroups,
     stretchMuscleGroups,
@@ -309,7 +314,51 @@ export const useGetWorkoutData = () => {
     switchCurrentWorkoutSchedule,
     incrementRecommendedWorkout,
     usingAltSchedule,
+    userWorkouts,
+    handleWatchWorkout,
   };
 
   return workoutData;
 };
+
+// // Function to setup user data
+// export async function setupUserData(client, data) {
+//   console.log("Inside setupUser function");
+
+//   // Get the existing user workouts from the database
+//   const existingUserWorkouts = await client
+//     .from("user_workouts")
+//     .select()
+//     // .eq("user_id", data.user_id)
+//     .then((response) => response.data);
+
+//     console.log("existingUserWorkouts: ", existingUserWorkouts);
+
+//   const existingWorkoutIds = existingUserWorkouts.map((workout) => workout.workout_id);
+
+//   console.log("existingWorkoutIds: ", existingWorkoutIds);
+
+//   // Filter out workouts that already exist in the database
+//   const newUserWorkouts = data.workouts
+//     .filter((workout) => !existingWorkoutIds.includes(workout.id))
+//     .map((workout) => ({
+//       user_id: data.user_id,
+//       workout_id: workout.id,
+//       workout_count: 0,
+//       workout_rating: 0,
+//       workout_last_watched: new Date().toISOString(),
+//     }));
+
+//   if (newUserWorkouts.length > 0) {
+//     // Insert the new user_workouts records into the database
+//     console.log("Adding new workouts for user_id:", data.user_id);
+//     console.log("newUserWorkouts: ", newUserWorkouts);
+//     // return await client
+//     //   .from("user_workouts")
+//     //   .insert(newUserWorkouts)
+//     //   .then((response) => response.data);
+//   } else {
+//     console.log("No new workouts to add for user_id:", data.user_id);
+//     return [];
+//   }
+// }

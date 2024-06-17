@@ -23,14 +23,12 @@ import { useGetWorkoutData } from "../hooks/useGetWorkoutData";
 
 
 const Recovery = () => {
-  // const workouts = props.workoutData.workouts;
   const workoutData = useGetWorkoutData();
   const recoveryMuscleGroups = workoutData.recoveryMuscleGroups;
   const recovery = workoutData.recovery;
 
   const [workoutsToShow, setWorkoutsToShow] = useState(recovery); // workouts to show
   const [searchText, setSearchText] = useState([]); // search text
-  // const [sourceSelection, setSourceSelection] = useState([]); // muscle groups
   const [muscleGroupsSelection, setMuscleGroupsSelection] = useState([]); // muscle groups
   const [tabSelection, setTabSelection] = useState("All"); // muscle groups
 
@@ -206,9 +204,9 @@ const Recovery = () => {
             MenuProps={MenuProps}
           >
             {muscleGroups.map((group) => (
-              <MenuItem key={group} value={group}>
-                <Checkbox checked={muscleGroupsSelection.indexOf(group) > -1} />
-                <ListItemText primary={group} />
+              <MenuItem key={group.id} value={group.muscle_group}>
+                <Checkbox checked={muscleGroupsSelection.indexOf(group.muscle_group) > -1} />
+                <ListItemText primary={group.muscle_group} />
               </MenuItem>
             ))}
           </Select>

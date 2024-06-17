@@ -25,6 +25,7 @@ export const SignIn = () => {
         throw error;
       }
 
+
       // Redirect to home page or any other page upon successful sign-in
       navigate("/");
     } catch (error) {

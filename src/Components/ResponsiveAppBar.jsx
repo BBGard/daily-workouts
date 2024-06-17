@@ -28,18 +28,15 @@ import RestoreOutlinedIcon from "@mui/icons-material/RestoreOutlined";
 import HomeIcon from "@mui/icons-material/Home";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
-
-import { useGetUserInfo } from "../hooks/useGetUserInfo";
-
-import { supabase } from "../Config/supabase.config";
+import { useUser } from '../hooks/UserContext';
 
 const pages = ["Workouts", "Warmups", "Recovery", "Stretches"];
 
-export function ResponsiveAppBar() {
+export function ResponsiveAppBar(props) {
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const currentPage = window.location.pathname;
-  const userInfo = useGetUserInfo();
+  const {user, signOut} = useUser();
   const [openLogout, setOpenLogout] = React.useState(false);
 
   // Toggle the drawer
@@ -69,17 +66,6 @@ export function ResponsiveAppBar() {
   // Close the logout modal
   const closeLogoutModal = () => {
     setOpenLogout(false);
-  };
-
-  // Logout the user
-  const logoutUser = async () => {
-    const { error } = await supabase.auth.signOut();
-
-    if (error) {
-      console.error("Error logging out:", error.message);
-    } else {
-      console.log("User logged out successfully!");
-    }
   };
 
   // Return the AppBar
@@ -150,7 +136,7 @@ export function ResponsiveAppBar() {
                     bgcolor: "primary.main",
                   }}
                 >
-                  {userInfo && userInfo.user.name !== null ? (
+                  {user && user.name !== null ? (
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                       <Button
                         // On click show logout modal
@@ -214,7 +200,7 @@ export function ResponsiveAppBar() {
                             <Button
                               variant="contained"
                               color="success"
-                              onClick={logoutUser}
+                              onClick={signOut}
                               sx={{ marginLeft: "1rem" }}
                             >
                               Yes
@@ -256,8 +242,8 @@ export function ResponsiveAppBar() {
                 <Box sx={{ display: "flex", justifyContent: "center" }}>
                   <Avatar
                     sx={{ width: "5rem", height: "5rem" }}
-                    alt={userInfo?.user?.name || ""}
-                    src={userInfo?.user?.photo || ""}
+                    alt={user?.user?.name || ""}
+                    src={user?.user?.photo || ""}
                   />
                 </Box>
 
@@ -397,7 +383,7 @@ export function ResponsiveAppBar() {
                 </Button>
               ))}
 
-              {userInfo && userInfo.user.name !== null ? (
+              {user && user.name !== null ? (
                 <Box
                   sx={{
                     display: "flex",
@@ -422,7 +408,6 @@ export function ResponsiveAppBar() {
                     {/* {userInfo.user.name.split(" ")[0]} */}
                     Log out
                   </Button>
-                  {/* <Avatar alt={userInfo.user.name} src={userInfo.user.photo} /> */}
                   <Modal
                     open={openLogout}
                     onClose={closeLogoutModal}
@@ -466,7 +451,7 @@ export function ResponsiveAppBar() {
                         <Button
                           variant="contained"
                           color="success"
-                          onClick={logoutUser}
+                          onClick={signOut}
                           sx={{ marginLeft: "1rem" }}
                         >
                           Yes
@@ -495,8 +480,8 @@ export function ResponsiveAppBar() {
               )}
               <Avatar
                 sx={{ alignSelf: "center", marginLeft: "1rem" }}
-                alt={userInfo?.user?.name || ""}
-                src={userInfo?.user?.photo || ""}
+                alt={user?.name || ""}
+                src={user?.photo || ""}
               />
             </Box>
           </Toolbar>
